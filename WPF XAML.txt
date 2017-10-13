@@ -1,0 +1,113 @@
+<Window x:Class="CourseWork.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Check, Check, Checkers..." Height="1500" Width="1500" Background="White">
+
+
+    <Grid>
+        <Grid x:Name="GameBoard">
+
+            <!-- Row 1-->
+            <Button x:Name="POS1" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="100,000,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS2" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="300,000,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS3" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="500,000,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS4" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="700,000,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS5" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="900,000,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+
+            <!-- Row 2-->
+            <Button x:Name="POS6" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="000,100,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS7" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="200,100,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS8" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="400,100,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS9" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="600,100,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS10" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="800,100,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+
+            <!-- Row 3-->
+            <Button x:Name="POS11" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="100,200,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS12" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="300,200,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS13" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="500,200,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS14" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="700,200,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS15" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="900,200,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+
+            <!-- Row 4-->
+            <Button x:Name="POS16" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="000,300,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS17" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="200,300,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS18" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="400,300,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS19" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="600,300,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS20" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="800,300,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+
+            <!-- Row 5-->
+            <Button x:Name="POS21" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="100,400,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS22" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="300,400,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS23" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="500,400,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS24" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="700,400,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS25" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="900,400,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+
+            <!-- Row 6-->
+            <Button x:Name="POS26" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="000,500,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS27" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="200,500,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS28" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="400,500,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS29" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="600,500,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS30" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="800,500,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+
+            <!-- Row 7-->
+            <Button x:Name="POS31" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="100,600,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS32" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="300,600,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS33" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="500,600,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS34" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="700,600,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS35" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="900,600,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+
+            <!-- Row 8-->
+            <Button x:Name="POS36" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="000,700,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS37" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="200,700,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS38" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="400,700,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS39" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="600,700,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS40" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="800,700,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+
+            <!-- Row 7-->
+            <Button x:Name="POS41" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="100,800,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS42" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="300,800,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS43" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="500,800,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS44" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="700,800,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS45" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="900,800,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+
+            <!-- Row 8-->
+            <Button x:Name="POS46" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="000,900,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS47" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="200,900,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS48" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="400,900,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS49" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="600,900,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+            <Button x:Name="POS50" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="800,900,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
+
+        </Grid>
+
+        <TextBlock x:Name="turnTxtBlock" HorizontalAlignment="Left" Margin="1268,530,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" FontSize="20" Height="40"/>
+
+        <Button x:Name="undoBtn" Content="Undo" HorizontalAlignment="Left" Margin="1258,605,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="undoBtn_Click"/>
+        <Button x:Name="clrBtn" Content="Restart" HorizontalAlignment="Left" Margin="1258,686,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="clrBtn_Click"/>
+        <Button x:Name="exitBtn" Content="Exit the App" HorizontalAlignment="Left" Margin="1258,759,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="exitBtn_Click"/>
+
+        <Separator HorizontalAlignment="Left" Height="28" Margin="501,487,-7,0" VerticalAlignment="Top" Width="998" RenderTransformOrigin="0.5,0.5" Foreground="Black" Background="Black">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+
+
+        <Separator HorizontalAlignment="Left" Height="28" Margin="2,985,0,0" VerticalAlignment="Top" Width="997" RenderTransformOrigin="0.5,0.5" Foreground="Black" Background="Black">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+    </Grid>
+
+
+</Window>
