@@ -287,6 +287,41 @@ namespace CourseWork
             {
                 if (player.Equals("X"))
                 {
+
+
+                    if ((isSelectedStart - clickedPos).Equals(18))
+                    {
+                        int removePiece = (isSelectedStart - 9);
+                        positionsArray[removePiece] = string.Empty;
+                        positionsArray[clickedPos] = player;
+                        positionsArray[isSelectedStart] = string.Empty;
+
+                        RefreshBoard();
+                        isSelectedStart = 0;
+                        canMove = false;
+                        player1Turn = false;
+                        turnTxtBlock.Text = "Player O";
+                        return;
+                    }
+
+                    if ((isSelectedStart - clickedPos).Equals(22))
+                    {
+                        int removePiece = (isSelectedStart - 11);
+                        positionsArray[removePiece] = string.Empty;
+                        positionsArray[clickedPos] = player;
+                        positionsArray[isSelectedStart] = string.Empty; 
+
+                        RefreshBoard();
+                        isSelectedStart = 0;
+                        canMove = false;
+                        player1Turn = false;
+                        turnTxtBlock.Text = "Player O";
+                        return;
+                    }
+
+
+
+
                     if (player1.Movement(isSelectedStart, clickedPos) == true)
                     {
 
@@ -298,7 +333,6 @@ namespace CourseWork
                         RefreshBoard();
                         isSelectedStart = 0;
                         canMove = false;
-
                         player1Turn = false;
                         turnTxtBlock.Text = "Player O";
                         return;
@@ -311,6 +345,40 @@ namespace CourseWork
                 }
                 if (player.Equals("O"))
                 {
+                    if ((clickedPos - isSelectedStart).Equals(18))
+                    {
+                        int removePiece = (isSelectedStart + 9);
+                        positionsArray[removePiece] = string.Empty;
+                        positionsArray[clickedPos] = player;
+                        positionsArray[isSelectedStart] = string.Empty;
+
+                        RefreshBoard();
+                        isSelectedStart = 0;
+                        canMove = false;
+                        player1Turn = true;
+                        turnTxtBlock.Text = "Player X";
+                        return;
+                    }
+
+                    if ((clickedPos - isSelectedStart).Equals(22))
+                    {
+                        int removePiece = (isSelectedStart + 11);
+                        positionsArray[removePiece] = string.Empty;
+                        positionsArray[clickedPos] = player;
+                        positionsArray[isSelectedStart] = string.Empty;
+
+                        RefreshBoard();
+                        isSelectedStart = 0;
+                        canMove = false;
+                        player1Turn = true;
+                        turnTxtBlock.Text = "Player X";
+                        return;
+                    }
+
+
+
+
+
                     if (player2.Movement(isSelectedStart, clickedPos) == true)
                     {
 
