@@ -23,8 +23,8 @@ namespace CourseWork
 
         #region Variables / Objects / Collections
         
-        PlayerOne player1 = new PlayerOne();
-        PlayerTwo player2 = new PlayerTwo();
+        Player playerOb = new Player();
+        
 
         string[] positionsArray = new string[100];
 
@@ -289,7 +289,7 @@ namespace CourseWork
                 {
 
 
-                    if ((isSelectedStart - clickedPos).Equals(18))
+                    if ((isSelectedStart - clickedPos).Equals(18) && positionsArray[(isSelectedStart - 9)].Equals("O"))
                     {
                         int removePiece = (isSelectedStart - 9);
                         positionsArray[removePiece] = string.Empty;
@@ -299,12 +299,21 @@ namespace CourseWork
                         RefreshBoard();
                         isSelectedStart = 0;
                         canMove = false;
-                        player1Turn = false;
-                        turnTxtBlock.Text = "Player O";
+
+                        //if (playerOb.CanAPieceBeCaptured(clickedPos, positionsArray) == true)
+                        //{
+
+                        //}
+                        //else
+                        //{
+                            player1Turn = false;
+                            turnTxtBlock.Text = "Player O";
+                        //}
+                        
                         return;
                     }
 
-                    if ((isSelectedStart - clickedPos).Equals(22))
+                    if ((isSelectedStart - clickedPos).Equals(22) && positionsArray[(isSelectedStart - 11)].Equals("O"))
                     {
                         int removePiece = (isSelectedStart - 11);
                         positionsArray[removePiece] = string.Empty;
@@ -322,7 +331,7 @@ namespace CourseWork
 
 
 
-                    if (player1.Movement(isSelectedStart, clickedPos) == true)
+                    if (playerOb.Movement(isSelectedStart, clickedPos, player).Equals(true))
                     {
 
                         positionsArray[clickedPos] = player;
@@ -345,7 +354,7 @@ namespace CourseWork
                 }
                 if (player.Equals("O"))
                 {
-                    if ((clickedPos - isSelectedStart).Equals(18))
+                    if ((clickedPos - isSelectedStart).Equals(18) && positionsArray[(isSelectedStart + 9)].Equals("X"))
                     {
                         int removePiece = (isSelectedStart + 9);
                         positionsArray[removePiece] = string.Empty;
@@ -360,7 +369,7 @@ namespace CourseWork
                         return;
                     }
 
-                    if ((clickedPos - isSelectedStart).Equals(22))
+                    if ((clickedPos - isSelectedStart).Equals(22) && positionsArray[(isSelectedStart + 11)].Equals("X"))
                     {
                         int removePiece = (isSelectedStart + 11);
                         positionsArray[removePiece] = string.Empty;
@@ -379,7 +388,7 @@ namespace CourseWork
 
 
 
-                    if (player2.Movement(isSelectedStart, clickedPos) == true)
+                    if (playerOb.Movement(isSelectedStart, clickedPos, player).Equals(true))
                     {
 
                         positionsArray[clickedPos] = player;
@@ -418,5 +427,9 @@ namespace CourseWork
             //replayQueue.Enqueue(aMove.ToString());
             return;
         }
+
+
+
+        
     }
 }
