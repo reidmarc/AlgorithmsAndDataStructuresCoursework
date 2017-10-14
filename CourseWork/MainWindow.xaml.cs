@@ -58,11 +58,9 @@ namespace CourseWork
 
         public bool NewGame()
         {
-            
-
             for (int i = 1; i < 42; i++)
             {
-                positionsArray[i] = "O"; 
+                positionsArray[i] = "O";
             }
 
             for (int i = 42; i < 62; i++)
@@ -133,7 +131,7 @@ namespace CourseWork
             positionsArray[92] = "Blank";
             positionsArray[94] = "Blank";
             positionsArray[96] = "Blank";
-            positionsArray[98] = "Blank";
+            positionsArray[98] = "Blank";                  
 
             return true;
 
@@ -289,36 +287,89 @@ namespace CourseWork
                 {
 
 
+
+
+                    // Moving Right initally
                     if ((isSelectedStart - clickedPos).Equals(18) && positionsArray[(isSelectedStart - 9)].Equals("O"))
                     {
-                        int removePiece = (isSelectedStart - 9);
-                        positionsArray[removePiece] = string.Empty;
-                        positionsArray[clickedPos] = player;
                         positionsArray[isSelectedStart] = string.Empty;
+                        positionsArray[(isSelectedStart - 9)] = string.Empty;
+                        positionsArray[clickedPos] = player;
+
+                        int currentPos = clickedPos; 
+
+                        if (positionsArray[(currentPos - 11)].Equals("O") && (positionsArray[((currentPos - 11) - 11)].Equals(string.Empty)))
+                        {  
+                            player1Turn = true;
+                            RefreshBoard();
+                            isSelectedStart = 0;
+                            canMove = false;
+                            return;                                                      
+                        }                        
+
+                        if (positionsArray[(clickedPos - 9)].Equals("O") && (positionsArray[((currentPos - 9) - 9)].Equals(string.Empty)))
+                        {  
+                            player1Turn = true;
+                            RefreshBoard();
+                            isSelectedStart = 0;
+                            canMove = false;
+                            return;                                                      
+                        }
+
+                        if (positionsArray[(clickedPos + 11)].Equals("O") && (positionsArray[((currentPos + 11) + 11)].Equals(string.Empty)))
+                        {     
+                            player1Turn = true;
+                            RefreshBoard();
+                            isSelectedStart = 0;
+                            canMove = false;
+                            return;                                                       
+                        }
+
 
                         RefreshBoard();
                         isSelectedStart = 0;
                         canMove = false;
-
-                        //if (playerOb.CanAPieceBeCaptured(clickedPos, positionsArray) == true)
-                        //{
-
-                        //}
-                        //else
-                        //{
-                            player1Turn = false;
-                            turnTxtBlock.Text = "Player O";
-                        //}
-                        
+                        player1Turn = false;
+                        turnTxtBlock.Text = "Player O";
                         return;
                     }
 
+                    // Moving left initally
                     if ((isSelectedStart - clickedPos).Equals(22) && positionsArray[(isSelectedStart - 11)].Equals("O"))
                     {
-                        int removePiece = (isSelectedStart - 11);
-                        positionsArray[removePiece] = string.Empty;
+                        positionsArray[(isSelectedStart - 11)] = string.Empty;
                         positionsArray[clickedPos] = player;
-                        positionsArray[isSelectedStart] = string.Empty; 
+                        positionsArray[isSelectedStart] = string.Empty;
+
+                        int currentPos = clickedPos;
+
+
+                        if (positionsArray[(currentPos + 9)].Equals("O") && (positionsArray[((currentPos + 9) + 9)].Equals(string.Empty)))
+                        {                            
+                            player1Turn = true;
+                            RefreshBoard();
+                            isSelectedStart = 0;
+                            canMove = false;
+                            return; 
+                        }
+
+                        if (positionsArray[(clickedPos - 11)].Equals("O") && (positionsArray[((currentPos - 11) - 11)].Equals(string.Empty)))
+                        {
+                            player1Turn = true;
+                            RefreshBoard();
+                            isSelectedStart = 0;
+                            canMove = false;
+                            return;                            
+                        }
+
+                        if (positionsArray[(clickedPos - 9)].Equals("O") && (positionsArray[((currentPos - 9) - 9)].Equals(string.Empty)))
+                        {                            
+                            player1Turn = true;
+                            RefreshBoard();
+                            isSelectedStart = 0;
+                            canMove = false;
+                            return;                            
+                        }
 
                         RefreshBoard();
                         isSelectedStart = 0;
@@ -330,7 +381,7 @@ namespace CourseWork
 
 
 
-
+                    // Basic Movement
                     if (playerOb.Movement(isSelectedStart, clickedPos, player).Equals(true))
                     {
 
@@ -345,19 +396,20 @@ namespace CourseWork
                         player1Turn = false;
                         turnTxtBlock.Text = "Player O";
                         return;
+
                     }
                     else
                     {
                         MessageBox.Show("More functionality to be implemented");
                         return;
-                    }
+                    }   
                 }
+
                 if (player.Equals("O"))
                 {
                     if ((clickedPos - isSelectedStart).Equals(18) && positionsArray[(isSelectedStart + 9)].Equals("X"))
                     {
-                        int removePiece = (isSelectedStart + 9);
-                        positionsArray[removePiece] = string.Empty;
+                        positionsArray[(isSelectedStart + 9)] = string.Empty;
                         positionsArray[clickedPos] = player;
                         positionsArray[isSelectedStart] = string.Empty;
 
@@ -371,8 +423,7 @@ namespace CourseWork
 
                     if ((clickedPos - isSelectedStart).Equals(22) && positionsArray[(isSelectedStart + 11)].Equals("X"))
                     {
-                        int removePiece = (isSelectedStart + 11);
-                        positionsArray[removePiece] = string.Empty;
+                        positionsArray[(isSelectedStart + 11)] = string.Empty;
                         positionsArray[clickedPos] = player;
                         positionsArray[isSelectedStart] = string.Empty;
 
