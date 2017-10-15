@@ -72,7 +72,7 @@ namespace CourseWork
                 // If one of the left hand side edge squares is selected
                 if (player2LeftArray.Contains(currentPos))
                 {
-                    if (destinationPos.Equals(currentPos + 9))
+                    if (destinationPos.Equals(currentPos + 11))
                     {
                         return true;
                     }
@@ -85,7 +85,7 @@ namespace CourseWork
                 // If one of the right hand side edge squares is selected
                 if (player2RightArray.Contains(currentPos))
                 {
-                    if (destinationPos == (currentPos + 11))
+                    if (destinationPos == (currentPos + 9))
                     {
                         return true;
                     }
