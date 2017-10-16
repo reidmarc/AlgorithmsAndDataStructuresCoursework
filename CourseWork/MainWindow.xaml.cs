@@ -75,38 +75,38 @@ namespace CourseWork
 
 
 
-            //// Player 2 starting positions            
-            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
-            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
+            // Player 2 starting positions            
+            positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
 
-            //// Blank starting squares            
-            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
+            // Blank starting squares            
+            positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
 
-            //// Player 1 starting positions
-            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
-            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
+            // Player 1 starting positions
+            positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
 
 
             ///////////////////////////// FOR TESTING PURPOSES ONLY /////////////////////////////
 
 
-            positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
-            positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
-            positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
-            positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
-            positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
+            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
+            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
+            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
 
-            positionsArray[7, 0] = playerOne;
-            positionsArray[5, 2] = playerTwo;
-            positionsArray[3, 4] = playerTwo;
-            positionsArray[0, 1] = playerTwo;
-
+            //positionsArray[7, 0] = playerOne;
+            //positionsArray[5, 2] = playerTwo;
+            //positionsArray[3, 4] = playerTwo;
+            //positionsArray[1, 6] = playerTwo;
+            //positionsArray[4, 5] = playerOne;
 
 
 
@@ -238,39 +238,153 @@ namespace CourseWork
             return;
         }
 
-        private void Playable_Square_Click(object sender, RoutedEventArgs e)
+        private int ConvertButtonNameToIntY(string buttonClicked)
         {
-            var button = (Button)sender;
-
-            // Removes the POS from the start of the button            
-            string btnClicked = button.Name.Replace("POS", "").ToString();
-
             // Stores the 2 digit value in a Char Array
-            var singleDigit = btnClicked.ToCharArray();
+            var singleDigit = buttonClicked.ToCharArray();
 
             // Removes the first number as the Y co-ord
-            string yPosString = singleDigit[0].ToString();
+            string yPosString = singleDigit[0].ToString(); 
+
+            // Converts the string to an int
+            int yPos;            
+            Int32.TryParse(yPosString, out yPos);
+            return yPos;        }
+
+        private int ConvertButtonNameToIntX(string buttonClicked)
+        {
+            // Stores the 2 digit value in a Char Array
+            var singleDigit = buttonClicked.ToCharArray();
 
             // Removes the second number as the X co-ord
             string xPosString = singleDigit[1].ToString();
 
-
-            // Converts the string to an int
-            int yPos;
             int xPos;
-            Int32.TryParse(yPosString, out yPos);
             Int32.TryParse(xPosString, out xPos);
+            return xPos;
+        }
 
+        private void Playable_Square_Click(object sender, RoutedEventArgs e)
+        {
+            bool forcedCapture = false;
+            int count = 0;
+            List<int> listOfForcedMoves = new List<int>();
+
+            var button = (Button)sender;
+
+            // Removes the POS from the start of the button            
+            string btnClicked = button.Name.Replace("POS", "").ToString();            
+
+            // Returns the Y co-ord as an int
+            int yPos = ConvertButtonNameToIntY(btnClicked);
+
+            // Returns the X co-ord as an int
+            int xPos = ConvertButtonNameToIntX(btnClicked);
 
             if (player1Turn)
             {
+                if (canMove.Equals(false))
+                {
+                    for (int i = 0; i < 8; i++)
+                    {
+                        for (int j = 0; j < 8; j++)
+                        {
+                            if ((positionsArray[i, j]).Contains(playerOne))
+                            {
+                                if (playerOb.CanAPieceBeCapturedRight(i, j, positionsArray, playerOne).Equals(true))
+                                {
+                                    int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
+                                    listOfForcedMoves.Add(potentialMove);
+
+                                    count = count + 1;
+                                    forcedCapture = true;
+                                }
+                                if (playerOb.CanAPieceBeCapturedLeft(i, j, positionsArray, playerOne).Equals(true))
+                                {
+                                    int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
+                                    listOfForcedMoves.Add(potentialMove);
+
+
+                                    count = count + 1;
+                                    forcedCapture = true;
+                                }
+                            }
+                        }
+                    }
+
+                    if (forcedCapture.Equals(true))
+                    {
+
+                        int potentialMoveCheck = Convert.ToInt32(string.Format("{0}{1}", yPos, xPos));
+
+                        if (listOfForcedMoves.Contains(potentialMoveCheck))
+                        {
+                            PlayerMove(yPos, xPos, playerOne);
+                            return;
+                        }
+                        else
+                        {
+                            MessageBox.Show("You must 'take' your opponents piece");
+
+                            return;
+                        }
+                    } 
+                }
+
                 PlayerMove(yPos, xPos, playerOne);
-                //turnTxtBlock.Text = "Player 1";
             }
             else
             {
+                if (canMove.Equals(false))
+                {
+                    for (int i = 0; i < 8; i++)
+                    {
+                        for (int j = 0; j < 8; j++)
+                        {
+                            if ((positionsArray[i, j]).Contains(playerTwo))
+                            {
+                                if (playerOb.CanAPieceBeCapturedRight(i, j, positionsArray, playerTwo).Equals(true))
+                                {
+                                    int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
+                                    listOfForcedMoves.Add(potentialMove);
+
+                                    count = count + 1;
+                                    forcedCapture = true;
+                                }
+                                if (playerOb.CanAPieceBeCapturedLeft(i, j, positionsArray, playerTwo).Equals(true))
+                                {
+                                    int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
+                                    listOfForcedMoves.Add(potentialMove);
+
+
+                                    count = count + 1;
+                                    forcedCapture = true;
+                                }
+                            }
+                        }
+                    }
+
+                    if (forcedCapture.Equals(true))
+                    {
+
+                        int potentialMoveCheck = Convert.ToInt32(string.Format("{0}{1}", yPos, xPos));
+
+                        if (listOfForcedMoves.Contains(potentialMoveCheck))
+                        {
+                            PlayerMove(yPos, xPos, playerTwo);
+                            return;
+                        }
+                        else
+                        {
+                            MessageBox.Show("You must 'take' your opponents piece");
+
+                            return;
+                        }
+                    }
+                }
+
                 PlayerMove(yPos, xPos, playerTwo);
-                //turnTxtBlock.Text = "Player 2";
+
             }
         }
 
@@ -288,11 +402,11 @@ namespace CourseWork
                 return;
             }
             
-            if (positionsArray[firstClickY,firstClickX] != player)
-            {
-                MessageBox.Show("It is not currently your turn");
-                return;
-            }
+            //if (positionsArray[firstClickY,firstClickX] != player)
+            //{
+            //    MessageBox.Show("It is not currently your turn");
+            //    return;
+            //}
 
             // Player 1 Movement Logic
             if (player.Equals(playerOne) && canMove.Equals(true))
