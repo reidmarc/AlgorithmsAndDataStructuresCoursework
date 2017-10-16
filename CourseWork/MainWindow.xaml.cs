@@ -32,8 +32,8 @@ namespace CourseWork
         Queue<string> replayQueue = new Queue<string>();
 
 
-        const string playerOne = "X";
-        const string playerTwo = "O";
+        public const string playerOne = "X";
+        public const string playerTwo = "O";
 
         int firstClickY;
         int firstClickX;
@@ -75,35 +75,36 @@ namespace CourseWork
 
 
 
-            // Player 2 starting positions            
-            positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
-            positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
+            //// Player 2 starting positions            
+            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
 
-            // Blank starting squares            
-            positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
+            //// Blank starting squares            
+            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
 
-            // Player 1 starting positions
-            positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
-            positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
+            //// Player 1 starting positions
+            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
 
 
             ///////////////////////////// FOR TESTING PURPOSES ONLY /////////////////////////////
 
 
-            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
-            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
-            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
-            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
-            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
+            positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
+            positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
+            positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
 
-            //positionsArray[4, 7] = playerOne;
-            //positionsArray[1, 4] = playerTwo;
+            positionsArray[6, 7] = playerOne;
+            positionsArray[3, 4] = playerTwo;
+            positionsArray[2, 3] = playerTwo;
 
 
 
@@ -219,6 +220,23 @@ namespace CourseWork
             return;
         }
 
+        private void endBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (player1Turn.Equals(true))
+            {
+                player1Turn = false;
+                turnTxtBlock.Text = "Player O";
+            }
+            else
+            {
+                player1Turn = true;
+                turnTxtBlock.Text = "Player X";
+            }
+
+            canMove = false;
+            return;
+        }
+
         private void Playable_Square_Click(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
@@ -271,83 +289,74 @@ namespace CourseWork
 
             // Player 1 Movement Logic
             if (player.Equals(playerOne) && canMove.Equals(true))
-            {
-                // To stop the if statement recieving an out of bounds exception
-                if (firstClickY > 1 && firstClickX < 6)
+            {               
+
+                if (playerOb.CanAPieceBeCapturedRight(firstClickY, firstClickX, positionsArray, player).Equals(true))
                 {
-                    // Check if player 1 can remove a player 2 piece to the right
-                    // If it can then it is still player 1's turn
-                    if (positionsArray[(firstClickY - 1), (firstClickX + 1)].Equals(playerTwo) && (positionsArray[(firstClickY - 2), (firstClickX + 2)].Equals(string.Empty)))
+                    // Checks if removing a piece to the right is the move made
+                    if ((firstClickY - 2).Equals(y) && (firstClickX + 2).Equals(x))
                     {
-                        // Checks if removing a piece to the right is the move made
-                        if ((firstClickY - 2).Equals(y) && (firstClickX + 2).Equals(x))
-                        {
-                            // Sets the square clicked first to blank
-                            positionsArray[firstClickY, firstClickX] = string.Empty;
+                        // Sets the square clicked first to blank
+                        positionsArray[firstClickY, firstClickX] = string.Empty;
 
-                            // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(firstClickY - 1), (firstClickX + 1)] = string.Empty;
+                        // Sets the square with the oppositions pieces on it to empty
+                        positionsArray[(firstClickY - 1), (firstClickX + 1)] = string.Empty;
 
-                            // Sets the square clicked second to now show the player one piece
-                            positionsArray[y, x] = player;
+                        // Sets the square clicked second to now show the player one piece
+                        positionsArray[y, x] = player;
 
-
-                            RefreshBoard();
-                            player1Turn = false;
-                            turnTxtBlock.Text = "Player O";
-                        }
-                        else
-                        {
-                            MessageBox.Show("You must remove the piece available");
-                            player1Turn = true;                            
-                        }
-
-                        canMove = false;
-                        y = 0;
-                        x = 0;
-                        firstClickY = 0;
-                        firstClickX = 0;
-                        return;
+                        RefreshBoard();
+                        player1Turn = false;
+                        turnTxtBlock.Text = "Player O";
                     }
+                    else
+                    {
+                        MessageBox.Show("You must remove the piece available");
+                        player1Turn = true;
+                    }
+
+                    canMove = false;
+                    y = 0;
+                    x = 0;
+                    firstClickY = 0;
+                    firstClickX = 0;
+                    return;
+                    
                 }
 
-
-                if (firstClickY > 1 && firstClickX > 1)
+                if (playerOb.CanAPieceBeCapturedLeft(firstClickY, firstClickX, positionsArray, player).Equals(true))
                 {
-                    // Check if player 1 can remove a player 2 piece to the left
-                    // If it can then it is still player 1's turn
-                    if (positionsArray[(firstClickY - 1), (firstClickX - 1)].Equals(playerTwo) && (positionsArray[(firstClickY - 2), (firstClickX - 2)].Equals(string.Empty)))
+                    // Checks if removing a piece to the left is the move made
+                    if ((firstClickY - 2).Equals(y) && (firstClickX - 2).Equals(x))
                     {
-                        // Checks if removing a piece to the left is the move made
-                        if ((firstClickY - 2).Equals(y) && (firstClickX - 2).Equals(x))
-                        {
-                            // Sets the square clicked first to blank
-                            positionsArray[firstClickY, firstClickX] = string.Empty;
+                        // Sets the square clicked first to blank
+                        positionsArray[firstClickY, firstClickX] = string.Empty;
 
-                            // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(firstClickY - 1), (firstClickX - 1)] = string.Empty;
+                        // Sets the square with the oppositions pieces on it to empty
+                        positionsArray[(firstClickY - 1), (firstClickX - 1)] = string.Empty;
 
-                            // Sets the square clicked second to now show the player one piece
-                            positionsArray[y, x] = player;
+                        // Sets the square clicked second to now show the player one piece
+                        positionsArray[y, x] = player;
 
-                            RefreshBoard();
-                            player1Turn = false;
-                            turnTxtBlock.Text = "Player O";
-                        }
-                        else
-                        {
-                            MessageBox.Show("You must remove the piece available");
-                            player1Turn = true;
-                        }
-
-                        canMove = false;
-                        y = 0;
-                        x = 0;
-                        firstClickY = 0;
-                        firstClickX = 0;
-                        return;
+                        RefreshBoard();
+                        player1Turn = false;
+                        turnTxtBlock.Text = "Player O";
                     }
-                }            
+                    else
+                    {
+                        MessageBox.Show("You must remove the piece available");
+                        player1Turn = true;
+                    }
+
+                    canMove = false;
+                    y = 0;
+                    x = 0;
+                    firstClickY = 0;
+                    firstClickX = 0;
+                    return;
+                }
+                    
+                            
 
 
                 if (positionsArray[y, x].Equals(string.Empty))
@@ -374,85 +383,73 @@ namespace CourseWork
             }
             else
             {
-
                 // Player 2 Movement Logic
                 if (player.Equals(playerTwo) && canMove.Equals(true))
                 {
-                    // To stop the if statement recieving an out of bounds exception
-                    if (firstClickY < 6 && firstClickX < 6)
+                    if (playerOb.CanAPieceBeCapturedRight(firstClickY, firstClickX, positionsArray, player).Equals(true))
                     {
-                        // Check if player 2 can remove a player 1 piece to the right
-                        // If it can then it is still player 2's turn
-                        if (positionsArray[(firstClickY + 1), (firstClickX + 1)].Equals(playerOne) && (positionsArray[(firstClickY + 2), (firstClickX + 2)].Equals(string.Empty)))
+                        // Checks if removing a piece to the right is the move made
+                        if ((firstClickY + 2).Equals(y) && (firstClickX + 2).Equals(x))
                         {
-                            // Checks if removing a piece to the right is the move made
-                            if ((firstClickY + 2).Equals(y) && (firstClickX + 2).Equals(x))
-                            {
-                                // Sets the square clicked first to blank
-                                positionsArray[firstClickY, firstClickX] = string.Empty;
+                            // Sets the square clicked first to blank
+                            positionsArray[firstClickY, firstClickX] = string.Empty;
 
-                                // Sets the square with the oppositions pieces on it to empty
-                                positionsArray[(firstClickY + 1), (firstClickX + 1)] = string.Empty;
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(firstClickY + 1), (firstClickX + 1)] = string.Empty;
 
-                                // Sets the square clicked second to now show the player one piece
-                                positionsArray[y, x] = player;
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[y, x] = player;
 
 
-                                RefreshBoard();
-                                player1Turn = true;
-                                turnTxtBlock.Text = "Player X";
-                            }
-                            else
-                            {
-                                MessageBox.Show("You must remove the piece available");
-                                player1Turn = false;                                
-                            }
-
-                            canMove = false;
-                            y = 0;
-                            x = 0;
-                            firstClickY = 0;
-                            firstClickX = 0;
-                            return;
+                            RefreshBoard();
+                            player1Turn = true;
+                            turnTxtBlock.Text = "Player X";
                         }
+                        else
+                        {
+                            MessageBox.Show("You must remove the piece available");
+                            player1Turn = false;
+                        }
+
+                        canMove = false;
+                        y = 0;
+                        x = 0;
+                        firstClickY = 0;
+                        firstClickX = 0;
+                        return;
                     }
 
 
-                    if (firstClickY < 6 && firstClickX > 1)
-                    {
-                        // Check if player 2 can remove a player 1 piece to the left
-                        // If it can then it is still player 2's turn
-                        if (positionsArray[(firstClickY + 1), (firstClickX - 1)].Equals(playerOne) && (positionsArray[(firstClickY + 2), (firstClickX - 2)].Equals(string.Empty)))
+                    if (playerOb.CanAPieceBeCapturedLeft(firstClickY, firstClickX, positionsArray, player).Equals(true))
+                    {                        
+                        // Checks if removing a piece to the left is the move made
+                        if ((firstClickY + 2).Equals(y) && (firstClickX - 2).Equals(x))
                         {
-                            // Checks if removing a piece to the left is the move made
-                            if ((firstClickY + 2).Equals(y) && (firstClickX - 2).Equals(x))
-                            {
-                                // Sets the square clicked first to blank
-                                positionsArray[firstClickY, firstClickX] = string.Empty;
+                            // Sets the square clicked first to blank
+                            positionsArray[firstClickY, firstClickX] = string.Empty;
 
-                                // Sets the square with the oppositions pieces on it to empty
-                                positionsArray[(firstClickY + 1), (firstClickX - 1)] = string.Empty;
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(firstClickY + 1), (firstClickX - 1)] = string.Empty;
 
-                                // Sets the square clicked second to now show the player one piece
-                                positionsArray[y, x] = player;
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[y, x] = player;
 
-                                RefreshBoard();
-                                player1Turn = true;
-                                turnTxtBlock.Text = "Player X";
-                            }
-                            else
-                            {
-                                MessageBox.Show("You must remove the piece available");
-                                player1Turn = false;
-                            }
-
-                            canMove = false;
-                            y = 0;
-                            x = 0;
-                            firstClickY = 0;
-                            firstClickX = 0;
-                            return;
+                            RefreshBoard();
+                            player1Turn = true;
+                            turnTxtBlock.Text = "Player X";
                         }
+                        else
+                        {
+                            MessageBox.Show("You must remove the piece available");
+                            player1Turn = false;
+                        }
+
+                        canMove = false;
+                        y = 0;
+                        x = 0;
+                        firstClickY = 0;
+                        firstClickX = 0;
+                        return;  
                     }
 
 
@@ -479,9 +476,7 @@ namespace CourseWork
                     }
                 }
             }
-        }
-
-        
+        }        
     }
 }
 

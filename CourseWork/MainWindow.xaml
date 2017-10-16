@@ -54,20 +54,21 @@
             <Button x:Name="POS72" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="200,700,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
             <Button x:Name="POS74" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="400,700,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
             <Button x:Name="POS76" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="600,700,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
-            
+
 
         </Grid>
 
         <TextBlock x:Name="turnTxtBlock" HorizontalAlignment="Left" Margin="825,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" FontSize="20" Height="40"/>
 
+        <Button x:Name="endBtn" Content="End Turn" HorizontalAlignment="Left" Margin="825,506,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="endBtn_Click"/>
 
-        <Button x:Name="resetBtn" Content="Reset Move" HorizontalAlignment="Left" Margin="825,555,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="resetBtn_Click"/>
+        <Button x:Name="resetBtn" Content="Reset Turn" HorizontalAlignment="Left" Margin="825,459,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="resetBtn_Click"/>
 
-        <Button x:Name="undoBtn" Content="Undo" HorizontalAlignment="Left" Margin="825,602,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="undoBtn_Click"/>
+        <Button x:Name="undoBtn" Content="Undo" HorizontalAlignment="Left" Margin="825,55,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="undoBtn_Click"/>
         <Button x:Name="clrBtn" Content="Restart" HorizontalAlignment="Left" Margin="825,649,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="clrBtn_Click"/>
         <Button x:Name="exitBtn" Content="Exit the App" HorizontalAlignment="Left" Margin="825,696,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="exitBtn_Click"/>
 
-        <Separator HorizontalAlignment="Left" Height="28" Margin="401,387,0,0" VerticalAlignment="Top" Width="798" RenderTransformOrigin="0.5,0.5" Foreground="Black" Background="Black">
+        <Separator HorizontalAlignment="Left" Height="28" Margin="400,388,-208,0" VerticalAlignment="Top" Width="800" RenderTransformOrigin="0.5,0.5" Foreground="Black" Background="Black">
             <Separator.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
