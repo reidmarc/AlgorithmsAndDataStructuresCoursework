@@ -14,19 +14,18 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CourseWork
-{  
+{
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-
         #region Variables / Objects / Collections
-        
-        Player playerOb = new Player();
-        
 
-        string[] positionsArray = new string[100];
+        Player playerOb = new Player();
+
+        // 2D array to map store the piece locations
+        string[,] positionsArray = new string[8, 8];
 
         Stack<string> undoStack = new Stack<string>();
         Stack<string> redoStack = new Stack<string>();
@@ -36,11 +35,14 @@ namespace CourseWork
         const string playerOne = "X";
         const string playerTwo = "O";
 
+        int firstClickY;
+        int firstClickX;
+
 
         bool player1Turn;
 
         bool canMove = false;
-        int isSelectedStart;
+
 
         //bool isKing;
 
@@ -56,86 +58,56 @@ namespace CourseWork
             RefreshBoard();
             turnTxtBlock.Text = "Player X";
         }
+
         #endregion
 
         #region Board Methods
 
         public bool NewGame()
         {
-            for (int i = 1; i < 41; i++)
+            for (int i = 0; i < 8; i++)
             {
-                positionsArray[i] = playerTwo;
+                for (int j = 0; j < 8; j++)
+                {
+                    positionsArray[i, j] = "UNPLAYABLESQUARE";
+                }
             }
 
-            for (int i = 41; i < 61; i++)
-            {
-                positionsArray[i] = string.Empty;
-            }
 
-            for (int i = 61; i < 100; i++)
-            {
-                positionsArray[i] = playerOne;
-            }
 
-            positionsArray[0] = "Blank";
-            positionsArray[1] = "Blank";
-            positionsArray[3] = "Blank";
-            positionsArray[5] = "Blank";
-            positionsArray[7] = "Blank";
-            positionsArray[9] = "Blank";
+            // Player 2 starting positions            
+            positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
 
-            positionsArray[12] = "Blank";
-            positionsArray[14] = "Blank";
-            positionsArray[16] = "Blank";
-            positionsArray[18] = "Blank";
-            positionsArray[20] = "Blank";
-        
-            positionsArray[21] = "Blank";
-            positionsArray[23] = "Blank";
-            positionsArray[25] = "Blank";
-            positionsArray[27] = "Blank";
-            positionsArray[29] = "Blank";
+            // Blank starting squares            
+            positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
 
-            positionsArray[32] = "Blank";
-            positionsArray[34] = "Blank";
-            positionsArray[36] = "Blank";
-            positionsArray[38] = "Blank";
-            positionsArray[40] = "Blank";
+            // Player 1 starting positions
+            positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
 
-            positionsArray[41] = "Blank";
-            positionsArray[43] = "Blank";
-            positionsArray[45] = "Blank";
-            positionsArray[47] = "Blank";
-            positionsArray[49] = "Blank";
 
-            positionsArray[52] = "Blank";
-            positionsArray[54] = "Blank";
-            positionsArray[56] = "Blank";
-            positionsArray[58] = "Blank";
-            positionsArray[60] = "Blank";
+            ///////////////////////////// FOR TESTING PURPOSES ONLY /////////////////////////////
 
-            positionsArray[61] = "Blank";
-            positionsArray[63] = "Blank";
-            positionsArray[65] = "Blank";
-            positionsArray[67] = "Blank";
-            positionsArray[69] = "Blank";
 
-            positionsArray[72] = "Blank";
-            positionsArray[74] = "Blank";
-            positionsArray[76] = "Blank";
-            positionsArray[78] = "Blank";
-            positionsArray[80] = "Blank";
+            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
+            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
+            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
 
-            positionsArray[81] = "Blank";
-            positionsArray[83] = "Blank";
-            positionsArray[85] = "Blank";
-            positionsArray[87] = "Blank";
-            positionsArray[89] = "Blank";
+            //positionsArray[4, 7] = playerOne;
+            //positionsArray[1, 4] = playerTwo;
 
-            positionsArray[92] = "Blank";
-            positionsArray[94] = "Blank";
-            positionsArray[96] = "Blank";
-            positionsArray[98] = "Blank";                  
+
+
+
 
             return true;
 
@@ -143,78 +115,62 @@ namespace CourseWork
 
         private void RefreshBoard()
         {
-            // Player 2's Checkers
-            POS2.Content = positionsArray[2];
-            POS4.Content = positionsArray[4];
-            POS6.Content = positionsArray[6];
-            POS8.Content = positionsArray[8];
-            POS10.Content = positionsArray[10];
 
-            POS11.Content = positionsArray[11];
-            POS13.Content = positionsArray[13];
-            POS15.Content = positionsArray[15];
-            POS17.Content = positionsArray[17];
-            POS19.Content = positionsArray[19];
+            POS01.Content = positionsArray[0, 1];
+            POS03.Content = positionsArray[0, 3];
+            POS05.Content = positionsArray[0, 5];
+            POS07.Content = positionsArray[0, 7];
 
-            POS22.Content = positionsArray[22];
-            POS24.Content = positionsArray[24];            
-            POS26.Content = positionsArray[26];
-            POS28.Content = positionsArray[28];
-            POS30.Content = positionsArray[30];
+            POS10.Content = positionsArray[1, 0];
+            POS12.Content = positionsArray[1, 2];
+            POS14.Content = positionsArray[1, 4];
+            POS16.Content = positionsArray[1, 6];
 
-            POS31.Content = positionsArray[31];
-            POS33.Content = positionsArray[33];
-            POS35.Content = positionsArray[35];
-            POS37.Content = positionsArray[37];
-            POS39.Content = positionsArray[39];
+            POS21.Content = positionsArray[2, 1];
+            POS23.Content = positionsArray[2, 3];
+            POS25.Content = positionsArray[2, 5];
+            POS27.Content = positionsArray[2, 7];
 
-            // Free Space
-            POS42.Content = positionsArray[42];
-            POS44.Content = positionsArray[44];
-            POS46.Content = positionsArray[46];
-            POS48.Content = positionsArray[48];
-            POS50.Content = positionsArray[50];
+            POS30.Content = positionsArray[3, 0];
+            POS32.Content = positionsArray[3, 2];
+            POS34.Content = positionsArray[3, 4];
+            POS36.Content = positionsArray[3, 6];
 
-            POS51.Content = positionsArray[51];
-            POS53.Content = positionsArray[53];
-            POS55.Content = positionsArray[55];
-            POS57.Content = positionsArray[57];
-            POS59.Content = positionsArray[59];
+            POS41.Content = positionsArray[4, 1];
+            POS43.Content = positionsArray[4, 3];
+            POS45.Content = positionsArray[4, 5];
+            POS47.Content = positionsArray[4, 7];
 
-            // Player 1's Checkers
-            POS62.Content = positionsArray[62];
-            POS64.Content = positionsArray[64];
-            POS66.Content = positionsArray[66];
-            POS68.Content = positionsArray[68];
-            POS70.Content = positionsArray[70];
+            POS50.Content = positionsArray[5, 0];
+            POS52.Content = positionsArray[5, 2];
+            POS54.Content = positionsArray[5, 4];
+            POS56.Content = positionsArray[5, 6];
 
-            POS71.Content = positionsArray[71];
-            POS73.Content = positionsArray[73];
-            POS75.Content = positionsArray[75];
-            POS77.Content = positionsArray[77];
-            POS79.Content = positionsArray[79];
+            POS61.Content = positionsArray[6, 1];
+            POS63.Content = positionsArray[6, 3];
+            POS65.Content = positionsArray[6, 5];
+            POS67.Content = positionsArray[6, 7];
 
-            POS82.Content = positionsArray[82];
-            POS84.Content = positionsArray[84];
-            POS86.Content = positionsArray[86];
-            POS88.Content = positionsArray[88];
-            POS90.Content = positionsArray[90];
+            POS70.Content = positionsArray[7, 0];
+            POS72.Content = positionsArray[7, 2];
+            POS74.Content = positionsArray[7, 4];
+            POS76.Content = positionsArray[7, 6];
 
-            POS91.Content = positionsArray[91];
-            POS93.Content = positionsArray[93];
-            POS95.Content = positionsArray[95];
-            POS97.Content = positionsArray[97];
-            POS99.Content = positionsArray[99];
+
         }
 
         private void ClearTheBoard()
         {
+            // A loop which clears the array and content displayed in the buttons on the grid
             GameBoard.Children.Cast<Button>().ToList().ForEach(button =>
             {
-                for (int i = 1; i < 100; i++)
+                for (int i = 0; i < 8; i++)
                 {
-                    positionsArray[i] = string.Empty;
-                    button.Content = string.Empty;
+                    for (int j = 0; j < 8; j++)
+                    {
+                        positionsArray[i, j] = string.Empty;
+                        button.Content = string.Empty;
+                    }
                 }
 
             });
@@ -229,13 +185,19 @@ namespace CourseWork
 
         private void clrBtn_Click(object sender, RoutedEventArgs e)
         {
+            // Clears the board and resets the pieces
             ClearTheBoard();
+
+            // Sets it back to player 1's turn
             player1Turn = true;
+
+            // Sets the textbox to Player X indicating who's turn it is
             turnTxtBlock.Text = "Player X";
         }
 
         private void exitBtn_Click(object sender, RoutedEventArgs e)
         {
+            // Shuts down the application
             Application.Current.Shutdown();
         }
 
@@ -255,251 +217,263 @@ namespace CourseWork
         {
             var button = (Button)sender;
 
-            // Removes the POS from the start of the button
-            //then converts the string to a number
+            // Removes the POS from the start of the button            
             string btnClicked = button.Name.Replace("POS", "").ToString();
 
-            int cellClicked;
-            Int32.TryParse(btnClicked, out cellClicked);
+            // Stores the 2 digit value in a Char Array
+            var singleDigit = btnClicked.ToCharArray();
+
+            // Removes the first number as the Y co-ord
+            string yPosString = singleDigit[0].ToString();
+
+            // Removes the second number as the X co-ord
+            string xPosString = singleDigit[1].ToString();
+
+
+            // Converts the string to an int
+            int yPos;
+            int xPos;
+            Int32.TryParse(yPosString, out yPos);
+            Int32.TryParse(xPosString, out xPos);
+
 
             if (player1Turn)
             {
-                PlayerMove(cellClicked, "X");
+                PlayerMove(yPos, xPos, playerOne);
                 //turnTxtBlock.Text = "Player 1";
             }
             else
             {
-                PlayerMove(cellClicked, "O");
+                PlayerMove(yPos, xPos, playerTwo);
                 //turnTxtBlock.Text = "Player 2";
             }
         }
 
         #endregion
 
-        private void PlayerMove(int clickedPos, string player)
+
+        private void PlayerMove(int y, int x, string player)
         {
-            if ((positionsArray[clickedPos].Equals(player)) && canMove.Equals(false))
-            {
+            // Checks the square clicked first belongs to the player whose turn it is
+            if ((positionsArray[y, x].Equals(player)) && canMove.Equals(false))
+            {                
+                firstClickY = y;
+                firstClickX = x;
                 canMove = true;
-                isSelectedStart = clickedPos;
                 return;
-            }           
+            }
 
-            if ((positionsArray[clickedPos].Equals(string.Empty)) && canMove == true)
+            // Player 1 Movement Logic
+            if (player.Equals(playerOne) && canMove.Equals(true))
             {
-                if (player.Equals(playerOne))
+                // To stop the if statement recieving an out of bounds exception
+                if (firstClickY > 1 && firstClickX < 6)
                 {
-                    // Moving Right initally
-                    if (((isSelectedStart - clickedPos).Equals(18)) && (positionsArray[clickedPos].Equals(string.Empty)) && (positionsArray[(isSelectedStart - 9)].Equals(playerTwo)))
+                    // Check if player 1 can remove a player 2 piece to the right
+                    // If it can then it is still player 1's turn
+                    if (positionsArray[(firstClickY - 1), (firstClickX + 1)].Equals(playerTwo) && (positionsArray[(firstClickY - 2), (firstClickX + 2)].Equals(string.Empty)))
                     {
-                        positionsArray[isSelectedStart] = string.Empty;
-                        positionsArray[(isSelectedStart - 9)] = string.Empty;
-                        positionsArray[clickedPos] = player;
-
-                        int currentPos = clickedPos;
-
-                        if (((currentPos - 11) - 11) < 0 || (((currentPos - 9) - 9)) < 0)
+                        // Checks if removing a piece to the right is the move made
+                        if ((firstClickY - 2).Equals(y) && (firstClickX + 2).Equals(x))
                         {
-                            MessageBox.Show("Out of bounds");
-                            canMove = false;
-                            return;
+                            // Sets the square clicked first to blank
+                            positionsArray[firstClickY, firstClickX] = string.Empty;
+
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(firstClickY - 1), (firstClickX + 1)] = string.Empty;
+
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[y, x] = player;
+
+
+                            RefreshBoard();
+                            player1Turn = false;
+                            turnTxtBlock.Text = "Player O";
+                        }
+                        else
+                        {
+                            MessageBox.Show("You must remove the piece available");
+                            player1Turn = true;                            
                         }
 
-
-
-
-                        if (positionsArray[(currentPos - 11)].Equals(playerTwo) && (positionsArray[((currentPos - 11) - 11)].Equals(string.Empty)))
-                        {  
-                            player1Turn = true;
-                            RefreshBoard();
-                            isSelectedStart = 0;
-                            canMove = false;
-                            return;                                                      
-                        }                        
-
-                        if (positionsArray[(clickedPos - 9)].Equals(playerTwo) && (positionsArray[((currentPos - 9) - 9)].Equals(string.Empty)))
-                        {  
-                            player1Turn = true;
-                            RefreshBoard();
-                            isSelectedStart = 0;
-                            canMove = false;
-                            return;                                                      
-                        }
-
-                        if (positionsArray[(clickedPos + 11)].Equals(playerTwo) && (positionsArray[((currentPos + 11) + 11)].Equals(string.Empty)))
-                        {     
-                            player1Turn = true;
-                            RefreshBoard();
-                            isSelectedStart = 0;
-                            canMove = false;
-                            return;                                                       
-                        }
-
-
-                        RefreshBoard();
-                        isSelectedStart = 0;
                         canMove = false;
-                        player1Turn = false;
-                        turnTxtBlock.Text = "Player O";
+                        y = 0;
+                        x = 0;
+                        firstClickY = 0;
+                        firstClickX = 0;
                         return;
                     }
+                }
 
-                    // Moving left initally
-                    if (((isSelectedStart - clickedPos).Equals(22)) && (positionsArray[clickedPos].Equals(string.Empty)) && (positionsArray[(isSelectedStart - 11)].Equals("O")))
+
+                if (firstClickY > 1 && firstClickX > 1)
+                {
+                    // Check if player 1 can remove a player 2 piece to the left
+                    // If it can then it is still player 1's turn
+                    if (positionsArray[(firstClickY - 1), (firstClickX - 1)].Equals(playerTwo) && (positionsArray[(firstClickY - 2), (firstClickX - 2)].Equals(string.Empty)))
                     {
-                        positionsArray[(isSelectedStart - 11)] = string.Empty;
-                        positionsArray[clickedPos] = player;
-                        positionsArray[isSelectedStart] = string.Empty;
-
-                        int currentPos = clickedPos;
-
-                        if (((currentPos - 11) - 11) < 0 || (((currentPos - 9) - 9)) < 0)
+                        // Checks if removing a piece to the left is the move made
+                        if ((firstClickY - 2).Equals(y) && (firstClickX - 2).Equals(x))
                         {
-                            MessageBox.Show("Out of bounds");
-                            canMove = false;
-                            return;
-                        }
+                            // Sets the square clicked first to blank
+                            positionsArray[firstClickY, firstClickX] = string.Empty;
 
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(firstClickY - 1), (firstClickX - 1)] = string.Empty;
 
-                        if (positionsArray[(currentPos + 9)].Equals(playerTwo) && (positionsArray[((currentPos + 9) + 9)].Equals(string.Empty)))
-                        {                            
-                            player1Turn = true;
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[y, x] = player;
+
                             RefreshBoard();
-                            isSelectedStart = 0;
-                            canMove = false;
-                            return; 
+                            player1Turn = false;
+                            turnTxtBlock.Text = "Player O";
                         }
-
-                        if (positionsArray[(clickedPos - 11)].Equals(playerTwo) && (positionsArray[((currentPos - 11) - 11)].Equals(string.Empty)))
+                        else
                         {
+                            MessageBox.Show("You must remove the piece available");
                             player1Turn = true;
-                            RefreshBoard();
-                            isSelectedStart = 0;
-                            canMove = false;
-                            return;                            
                         }
 
-                        if (positionsArray[(clickedPos - 9)].Equals(playerTwo) && (positionsArray[((currentPos - 9) - 9)].Equals(string.Empty)))
-                        {                            
-                            player1Turn = true;
-                            RefreshBoard();
-                            isSelectedStart = 0;
-                            canMove = false;
-                            return;                            
-                        }
-
-                        RefreshBoard();
-                        isSelectedStart = 0;
                         canMove = false;
-                        player1Turn = false;
-                        turnTxtBlock.Text = "Player O";
+                        y = 0;
+                        x = 0;
+                        firstClickY = 0;
+                        firstClickX = 0;
                         return;
                     }
+                }            
 
 
-
+                if (positionsArray[y, x].Equals(string.Empty))
+                {
                     // Basic Movement
-                    if (playerOb.Movement(isSelectedStart, clickedPos, player).Equals(true))
+                    if (playerOb.Movement(firstClickY, firstClickX, y, x, player).Equals(true))
                     {
+                        positionsArray[firstClickY, firstClickX] = string.Empty;
+                        positionsArray[y, x] = player;
 
-                        positionsArray[clickedPos] = player;
-                        positionsArray[isSelectedStart] = string.Empty;
+                        //StoringAMove(isSelectedStart, clickedPos, player);
 
-                        StoringAMove(isSelectedStart, clickedPos, player);
-
-                        RefreshBoard();
-                        isSelectedStart = 0;
-                        canMove = false;
                         player1Turn = false;
                         turnTxtBlock.Text = "Player O";
-                        return;
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("More functionality to be implemented Player X");
-                        canMove = false;
-
-                        return;
-                    }   
-                }
-
-                if (player.Equals(playerTwo))
-                {
-                    if ((clickedPos - isSelectedStart).Equals(18) && positionsArray[(isSelectedStart + 9)].Equals(playerOne))
-                    {
-                        positionsArray[(isSelectedStart + 9)] = string.Empty;
-                        positionsArray[clickedPos] = player;
-                        positionsArray[isSelectedStart] = string.Empty;
-
                         RefreshBoard();
-                        isSelectedStart = 0;
+                        y = 0;
+                        x = 0;
+                        firstClickY = 0;
+                        firstClickX = 0;
                         canMove = false;
-                        player1Turn = true;
-                        turnTxtBlock.Text = "Player X";
-                        return;
-                    }
-
-                    if ((clickedPos - isSelectedStart).Equals(22) && positionsArray[(isSelectedStart + 11)].Equals(playerOne))
-                    {
-                        positionsArray[(isSelectedStart + 11)] = string.Empty;
-                        positionsArray[clickedPos] = player;
-                        positionsArray[isSelectedStart] = string.Empty;
-
-                        RefreshBoard();
-                        isSelectedStart = 0;
-                        canMove = false;
-                        player1Turn = true;
-                        turnTxtBlock.Text = "Player X";
-                        return;
-                    }
-
-                    if (playerOb.Movement(isSelectedStart, clickedPos, player).Equals(true))
-                    {
-
-                        positionsArray[clickedPos] = player;
-                        positionsArray[isSelectedStart] = string.Empty;
-
-                        StoringAMove(isSelectedStart, clickedPos, player);
-
-                        RefreshBoard();
-                        isSelectedStart = 0;
-                        canMove = false;
-
-                        player1Turn = true;
-                        turnTxtBlock.Text = "Player X";
-                        return;
-                    }
-                    else
-                    {
-                        MessageBox.Show("More functionality to be implemented Player O");
-                        canMove = false;
-
-
-
                         return;
                     }
                 }
-                else
+            }
+            else
+            {
+
+                // Player 2 Movement Logic
+                if (player.Equals(playerTwo) && canMove.Equals(true))
                 {
-                    MessageBox.Show("Error Code 202020202");
+                    // To stop the if statement recieving an out of bounds exception
+                    if (firstClickY < 6 && firstClickX < 6)
+                    {
+                        // Check if player 2 can remove a player 1 piece to the right
+                        // If it can then it is still player 2's turn
+                        if (positionsArray[(firstClickY + 1), (firstClickX + 1)].Equals(playerOne) && (positionsArray[(firstClickY + 2), (firstClickX + 2)].Equals(string.Empty)))
+                        {
+                            // Checks if removing a piece to the right is the move made
+                            if ((firstClickY + 2).Equals(y) && (firstClickX + 2).Equals(x))
+                            {
+                                // Sets the square clicked first to blank
+                                positionsArray[firstClickY, firstClickX] = string.Empty;
+
+                                // Sets the square with the oppositions pieces on it to empty
+                                positionsArray[(firstClickY + 1), (firstClickX + 1)] = string.Empty;
+
+                                // Sets the square clicked second to now show the player one piece
+                                positionsArray[y, x] = player;
+
+
+                                RefreshBoard();
+                                player1Turn = true;
+                                turnTxtBlock.Text = "Player X";
+                            }
+                            else
+                            {
+                                MessageBox.Show("You must remove the piece available");
+                                player1Turn = false;                                
+                            }
+
+                            canMove = false;
+                            y = 0;
+                            x = 0;
+                            firstClickY = 0;
+                            firstClickX = 0;
+                            return;
+                        }
+                    }
+
+
+                    if (firstClickY < 6 && firstClickX > 1)
+                    {
+                        // Check if player 2 can remove a player 1 piece to the left
+                        // If it can then it is still player 2's turn
+                        if (positionsArray[(firstClickY + 1), (firstClickX - 1)].Equals(playerOne) && (positionsArray[(firstClickY + 2), (firstClickX - 2)].Equals(string.Empty)))
+                        {
+                            // Checks if removing a piece to the left is the move made
+                            if ((firstClickY + 2).Equals(y) && (firstClickX - 2).Equals(x))
+                            {
+                                // Sets the square clicked first to blank
+                                positionsArray[firstClickY, firstClickX] = string.Empty;
+
+                                // Sets the square with the oppositions pieces on it to empty
+                                positionsArray[(firstClickY + 1), (firstClickX - 1)] = string.Empty;
+
+                                // Sets the square clicked second to now show the player one piece
+                                positionsArray[y, x] = player;
+
+                                RefreshBoard();
+                                player1Turn = true;
+                                turnTxtBlock.Text = "Player X";
+                            }
+                            else
+                            {
+                                MessageBox.Show("You must remove the piece available");
+                                player1Turn = false;
+                            }
+
+                            canMove = false;
+                            y = 0;
+                            x = 0;
+                            firstClickY = 0;
+                            firstClickX = 0;
+                            return;
+                        }
+                    }
+
+
+                    if (positionsArray[y, x].Equals(string.Empty))
+                    {
+                        // Basic Movement
+                        if (playerOb.Movement(firstClickY, firstClickX, y, x, player).Equals(true))
+                        {
+                            positionsArray[firstClickY, firstClickX] = string.Empty;
+                            positionsArray[y, x] = player;
+
+                            //StoringAMove(isSelectedStart, clickedPos, player);
+
+                            player1Turn = true;
+                            turnTxtBlock.Text = "Player X";
+                            RefreshBoard();
+                            y = 0;
+                            x = 0;
+                            firstClickY = 0;
+                            firstClickX = 0;
+                            canMove = false;
+                            return;
+                        }
+                    }
                 }
             }
         }
-
-        private void StoringAMove(int startingPos, int finishPos, string player)
-        {
-            startingPos.ToString();
-            finishPos.ToString();
-
-            string aMove = "Player " + player + " : " + startingPos.ToString() + " - " + finishPos.ToString() + "";
-            undoStack.Push(aMove.ToString());
-            //replayQueue.Enqueue(aMove.ToString());
-            return;
-        }
-
-
-
-        
     }
 }
+

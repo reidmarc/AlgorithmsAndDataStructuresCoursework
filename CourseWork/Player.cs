@@ -3,28 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CourseWork
 {
     class Player
     {
-        int[] player1InnerArray = new int[] {99,97,95,93,88,86,84,82,79,77,75,73,68,66,64,62,59,57,55,53,48,46,44,42,39,37,35,33,28,26,24,22,19,17,15,13};
-        int[] player1LeftArray = new int[] {91,71,51,31,11};
-        int[] player1RightArray = new int[] {90,70,50,30};
+        int[] player1InnerArray = new int[] { 76, 74, 72, 65, 63, 61, 56, 54, 52, 45, 43, 41, 36, 34, 32, 25, 23, 21, 16, 14, 12 };
+        int[] player1LeftArray = new int[] { 70, 50, 30, 10 };
+        int[] player1RightArray = new int[] { 67, 47, 27 };
 
-        int[] player2InnerArray = new int[] {88,86,84,82,79,77,75,73,68,66,64,62,59,57,55,53,48,46,44,42,39,37,35,33,28,26,24,22,19,17,15,13,8,6,4,2};
-        int[] player2LeftArray = new int[] {71,51,31,11};
-        int[] player2RightArray = new int[] {90,70,50,30,10};
+        int[] player2InnerArray = new int[] {65, 63, 61, 56, 54, 52, 45, 43, 41, 36, 34, 32, 25, 23, 21, 16, 14, 12 };
+        int[] player2LeftArray = new int[] {50, 30, 10 };
+        int[] player2RightArray = new int[] {67, 47, 27, 07  };
 
         //int[] kingArray = new int[] { };
 
 
         #region Basic Movement
 
-        public bool Movement(int currentPos, int destinationPos, string player)
+        public bool Movement(int currentPosY, int currentPosX, int destinationPosY, int destinationPosX, string player)
         {
+            int currentPos = Convert.ToInt32(string.Format("{0}{1}", currentPosY, currentPosX));
+            int destinationPos = Convert.ToInt32(string.Format("{0}{1}", destinationPosY, destinationPosX));
+
+
             if (player.Equals("X"))
-            {
+            {     
                 // If one of the left hand side edge squares is selected
                 if (player1LeftArray.Contains(currentPos))
                 {
@@ -47,7 +52,7 @@ namespace CourseWork
                     }
                     else
                     {
-                        return false;  
+                        return false;
                     }
                 }
 
@@ -116,21 +121,6 @@ namespace CourseWork
 
         public bool CanAPieceBeCaptured(int pos, string[] array)
         {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             return true;
         }
 
