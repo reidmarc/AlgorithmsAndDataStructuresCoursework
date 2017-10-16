@@ -54,11 +54,14 @@
             <Button x:Name="POS72" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="200,700,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
             <Button x:Name="POS74" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="400,700,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
             <Button x:Name="POS76" Content="" FontSize="50" Background="Gray" HorizontalAlignment="Left" Margin="600,700,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="Black" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Playable_Square_Click"/>
-
+            
 
         </Grid>
 
-        <TextBlock x:Name="turnTxtBlock" HorizontalAlignment="Left" Margin="825,542,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" FontSize="20" Height="40"/>
+        <TextBlock x:Name="turnTxtBlock" HorizontalAlignment="Left" Margin="825,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" FontSize="20" Height="40"/>
+
+
+        <Button x:Name="resetBtn" Content="Reset Move" HorizontalAlignment="Left" Margin="825,555,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="resetBtn_Click"/>
 
         <Button x:Name="undoBtn" Content="Undo" HorizontalAlignment="Left" Margin="825,602,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="undoBtn_Click"/>
         <Button x:Name="clrBtn" Content="Restart" HorizontalAlignment="Left" Margin="825,649,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="clrBtn_Click"/>

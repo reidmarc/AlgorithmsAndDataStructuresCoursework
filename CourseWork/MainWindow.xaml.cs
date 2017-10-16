@@ -213,6 +213,12 @@ namespace CourseWork
             }
         }
 
+        private void resetBtn_Click(object sender, RoutedEventArgs e)
+        {
+            canMove = false;
+            return;
+        }
+
         private void Playable_Square_Click(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
@@ -474,6 +480,8 @@ namespace CourseWork
                 }
             }
         }
+
+        
     }
 }
 
