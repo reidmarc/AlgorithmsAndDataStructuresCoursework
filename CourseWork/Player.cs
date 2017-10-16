@@ -13,7 +13,7 @@ namespace CourseWork
         int[] player1LeftArray = new int[] { 70, 50, 30, 10 };
         int[] player1RightArray = new int[] { 67, 47, 27 };
 
-        int[] player2InnerArray = new int[] {65, 63, 61, 56, 54, 52, 45, 43, 41, 36, 34, 32, 25, 23, 21, 16, 14, 12 };
+        int[] player2InnerArray = new int[] {65, 63, 61, 56, 54, 52, 45, 43, 41, 36, 34, 32, 25, 23, 21, 16, 14, 12, 05, 03, 01 };
         int[] player2LeftArray = new int[] {50, 30, 10 };
         int[] player2RightArray = new int[] {67, 47, 27, 07  };
 

@@ -102,9 +102,10 @@ namespace CourseWork
             positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
             positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
 
-            positionsArray[6, 7] = playerOne;
+            positionsArray[7, 0] = playerOne;
+            positionsArray[5, 2] = playerTwo;
             positionsArray[3, 4] = playerTwo;
-            positionsArray[2, 3] = playerTwo;
+            positionsArray[0, 1] = playerTwo;
 
 
 
@@ -286,6 +287,12 @@ namespace CourseWork
                 canMove = true;
                 return;
             }
+            
+            if (positionsArray[firstClickY,firstClickX] != player)
+            {
+                MessageBox.Show("It is not currently your turn");
+                return;
+            }
 
             // Player 1 Movement Logic
             if (player.Equals(playerOne) && canMove.Equals(true))
@@ -305,9 +312,17 @@ namespace CourseWork
                         // Sets the square clicked second to now show the player one piece
                         positionsArray[y, x] = player;
 
+                        if ((playerOb.CanAPieceBeCapturedRight(y, x, positionsArray, player)).Equals(false) && (playerOb.CanAPieceBeCapturedLeft(y, x, positionsArray, player)).Equals(false))
+                        {
+                            player1Turn = false;
+                            turnTxtBlock.Text = "Player O";
+
+                            MessageBox.Show("There is another move available, if you do not wish to make the move please press 'End Turn'");
+                        }
+
+                        
                         RefreshBoard();
-                        player1Turn = false;
-                        turnTxtBlock.Text = "Player O";
+                        
                     }
                     else
                     {
@@ -338,9 +353,20 @@ namespace CourseWork
                         // Sets the square clicked second to now show the player one piece
                         positionsArray[y, x] = player;
 
+
+
+                        if ((playerOb.CanAPieceBeCapturedRight(y, x, positionsArray, player)).Equals(false) && (playerOb.CanAPieceBeCapturedLeft(y, x, positionsArray, player)).Equals(false))
+                        {
+                            player1Turn = false;
+                            turnTxtBlock.Text = "Player O";
+
+                            MessageBox.Show("There is another move available, if you do not wish to make the move please press 'End Turn'");
+                        }
+
+
                         RefreshBoard();
-                        player1Turn = false;
-                        turnTxtBlock.Text = "Player O";
+                        
+
                     }
                     else
                     {
@@ -400,10 +426,17 @@ namespace CourseWork
                             // Sets the square clicked second to now show the player one piece
                             positionsArray[y, x] = player;
 
+                            if ((playerOb.CanAPieceBeCapturedRight(y, x, positionsArray, player)).Equals(false) && (playerOb.CanAPieceBeCapturedLeft(y, x, positionsArray, player)).Equals(false))
+                            {
+                                player1Turn = true;
+                                turnTxtBlock.Text = "Player X";
+
+                                MessageBox.Show("There is another move available, if you do not wish to make the move please press 'End Turn'");
+                            }
+
 
                             RefreshBoard();
-                            player1Turn = true;
-                            turnTxtBlock.Text = "Player X";
+                            
                         }
                         else
                         {
@@ -434,9 +467,15 @@ namespace CourseWork
                             // Sets the square clicked second to now show the player one piece
                             positionsArray[y, x] = player;
 
+                            if ((playerOb.CanAPieceBeCapturedRight(y, x, positionsArray, player)).Equals(false) && (playerOb.CanAPieceBeCapturedLeft(y, x, positionsArray, player)).Equals(false))
+                            {
+                                player1Turn = true;
+                                turnTxtBlock.Text = "Player X";
+
+                                MessageBox.Show("There is another move available, if you do not wish to make the move please press 'End Turn'");
+                            }
                             RefreshBoard();
-                            player1Turn = true;
-                            turnTxtBlock.Text = "Player X";
+                            
                         }
                         else
                         {
