@@ -8,33 +8,21 @@ using System.Windows;
 namespace CourseWork
 {
     class Player
-    {
-        int[] player1InnerArray = new int[] { 76, 74, 72, 65, 63, 61, 56, 54, 52, 45, 43, 41, 36, 34, 32, 25, 23, 21, 16, 14, 12 };
-        int[] player1LeftArray = new int[] { 70, 50, 30, 10 };
-        int[] player1RightArray = new int[] { 67, 47, 27 };
-
-        int[] player2InnerArray = new int[] {65, 63, 61, 56, 54, 52, 45, 43, 41, 36, 34, 32, 25, 23, 21, 16, 14, 12, 05, 03, 01 };
-        int[] player2LeftArray = new int[] {50, 30, 10 };
-        int[] player2RightArray = new int[] {67, 47, 27, 07  };
-
-        //int[] kingArray = new int[] { };
-
-
+    { 
         #region Basic Movement
 
-        public bool Movement(int currentPosY, int currentPosX, int destinationPosY, int destinationPosX, string player)
+        public bool MovementRight(int posY, int posX, int destY, int destX, string[,] positionsArray, string player)
         {
-            int currentPos = Convert.ToInt32(string.Format("{0}{1}", currentPosY, currentPosX));
-            int destinationPos = Convert.ToInt32(string.Format("{0}{1}", destinationPosY, destinationPosX));
-
-
-            if (player.Equals("X"))
-            {     
-                // If one of the left hand side edge squares is selected
-                if (player1LeftArray.Contains(currentPos))
+            if (player.Equals(MainWindow.playerOne))
+            {
+                // To stop the if statement recieving an out of bounds exception
+                if (posY > 0 && posX < 7)
                 {
-                    if (destinationPos.Equals(currentPos - 9))
+                    // Check if player 1 can move right
+                    if ((positionsArray[destY, destX].Equals(string.Empty)) && (((posY - destY).Equals(1)) && ((posX - destX).Equals(-1))))
                     {
+                        positionsArray[posY, posX] = string.Empty;
+                        positionsArray[destY, destX] = player;
                         return true;
                     }
                     else
@@ -42,43 +30,21 @@ namespace CourseWork
                         return false;
                     }
                 }
-
-                // If one of the right hand side edge squares is selected
-                if (player1RightArray.Contains(currentPos))
+                else
                 {
-                    if (destinationPos.Equals(currentPos - 11))
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-
-                // If one of the inner squares is selected
-                if (player1InnerArray.Contains(currentPos))
-                {
-                    if (destinationPos.Equals(currentPos - 9) || destinationPos.Equals(currentPos - 11))
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-
-                // The code 'should' never reach here.
-                return false;
             }
             else
             {
-                // If one of the left hand side edge squares is selected
-                if (player2LeftArray.Contains(currentPos))
+                // To stop the if statement recieving an out of bounds exception
+                if (posY < 7 && posX < 7)
                 {
-                    if (destinationPos.Equals(currentPos + 11))
+                    // Check if player 2 can move right
+                    if ((positionsArray[destY, destX].Equals(string.Empty)) && (((posY - destY).Equals(-1)) && ((posX - destX).Equals(-1))))
                     {
+                        positionsArray[posY, posX] = string.Empty;
+                        positionsArray[destY, destX] = player;
                         return true;
                     }
                     else
@@ -86,12 +52,25 @@ namespace CourseWork
                         return false;
                     }
                 }
-
-                // If one of the right hand side edge squares is selected
-                if (player2RightArray.Contains(currentPos))
+                else
                 {
-                    if (destinationPos == (currentPos + 9))
+                    return false;
+                }
+            } 
+        }
+
+        public bool MovementLeft(int posY, int posX, int destY, int destX, string[,] positionsArray, string player)
+        {
+            if (player.Equals(MainWindow.playerOne))
+            {
+                // To stop the if statement recieving an out of bounds exception
+                if (posY > 0 && posX > 0)
+                {
+                    // Check if player 1 can move left
+                    if ((positionsArray[destY, destX].Equals(string.Empty)) && (((posY - destY).Equals(1)) && ((posX - destX).Equals(1))))
                     {
+                        positionsArray[posY, posX] = string.Empty;
+                        positionsArray[destY, destX] = player;
                         return true;
                     }
                     else
@@ -99,12 +78,20 @@ namespace CourseWork
                         return false;
                     }
                 }
-
-                // If one of the inner squares is selected
-                if (player2InnerArray.Contains(currentPos))
+                else
                 {
-                    if (destinationPos.Equals(currentPos + 9) || destinationPos.Equals(currentPos + 11))
+                    return false;
+                }
+            }
+            else
+            {
+                if (posY < 7 && posX > 0)
+                {
+                    // Check if player 2 can move left                    
+                    if ((positionsArray[destY, destX].Equals(string.Empty)) && (((posY - destY).Equals(-1)) && ((posX - destX).Equals(1))))
                     {
+                        positionsArray[posY, posX] = string.Empty;
+                        positionsArray[destY, destX] = player;
                         return true;
                     }
                     else
@@ -112,16 +99,20 @@ namespace CourseWork
                         return false;
                     }
                 }
-
-                // The code 'should' never reach here.
-                return false;
+                else
+                {
+                    return false;
+                }
             }
         }
+
         #endregion
+
+        #region Removing Pieces Checks
 
         public bool CanAPieceBeCapturedRight(int posY, int posX, string[,] positionsArray, string player)
         {
-            if (player.Equals("X"))
+            if (player.Equals(MainWindow.playerOne))
             {
                 // To stop the if statement recieving an out of bounds exception
                 if (posY > 1 && posX < 6)
@@ -161,14 +152,13 @@ namespace CourseWork
                 else
                 {
                     return false;
-                }
-                        
+                }                        
             }
         }
 
         public bool CanAPieceBeCapturedLeft(int posY, int posX, string[,] positionsArray, string player)
         {
-            if (player.Equals("X"))
+            if (player.Equals(MainWindow.playerOne))
             {
                 // To stop the if statement recieving an out of bounds exception
                 if (posY > 1 && posX > 1)
@@ -210,6 +200,8 @@ namespace CourseWork
                 }
             }
         }
+
+        #endregion
 
     }
 }

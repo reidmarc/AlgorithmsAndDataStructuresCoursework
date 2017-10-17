@@ -75,41 +75,38 @@ namespace CourseWork
 
 
 
-            // Player 2 starting positions            
-            positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
-            positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
+            //// Player 2 starting positions            
+            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
 
-            // Blank starting squares            
-            positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
+            //// Blank starting squares            
+            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
 
-            // Player 1 starting positions
-            positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
-            positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
+            //// Player 1 starting positions
+            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
 
 
             ///////////////////////////// FOR TESTING PURPOSES ONLY /////////////////////////////
 
 
-            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
-            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
-            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
-            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
-            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
+            positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
+            positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
+            positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
 
-            //positionsArray[7, 0] = playerOne;
-            //positionsArray[5, 2] = playerTwo;
-            //positionsArray[3, 4] = playerTwo;
-            //positionsArray[1, 6] = playerTwo;
-            //positionsArray[4, 5] = playerOne;
-
-
-
+            positionsArray[7, 0] = playerOne;
+            positionsArray[5, 2] = playerTwo;
+            positionsArray[3, 4] = playerTwo;
+            positionsArray[1, 6] = playerTwo;
+            positionsArray[1, 4] = playerTwo; 
 
             return true;
 
@@ -401,12 +398,12 @@ namespace CourseWork
                 canMove = true;
                 return;
             }
-            
-            //if (positionsArray[firstClickY,firstClickX] != player)
-            //{
-            //    MessageBox.Show("It is not currently your turn");
-            //    return;
-            //}
+
+            if (positionsArray[firstClickY, firstClickX] != player)
+            {
+                MessageBox.Show("It is not currently your turn");
+                return;
+            }
 
             // Player 1 Movement Logic
             if (player.Equals(playerOne) && canMove.Equals(true))
@@ -430,8 +427,6 @@ namespace CourseWork
                         {
                             player1Turn = false;
                             turnTxtBlock.Text = "Player O";
-
-                            MessageBox.Show("There is another move available, if you do not wish to make the move please press 'End Turn'");
                         }
 
                         
@@ -472,9 +467,7 @@ namespace CourseWork
                         if ((playerOb.CanAPieceBeCapturedRight(y, x, positionsArray, player)).Equals(false) && (playerOb.CanAPieceBeCapturedLeft(y, x, positionsArray, player)).Equals(false))
                         {
                             player1Turn = false;
-                            turnTxtBlock.Text = "Player O";
-
-                            MessageBox.Show("There is another move available, if you do not wish to make the move please press 'End Turn'");
+                            turnTxtBlock.Text = "Player O";                            
                         }
 
 
@@ -500,15 +493,10 @@ namespace CourseWork
 
 
                 if (positionsArray[y, x].Equals(string.Empty))
-                {
+                {   
                     // Basic Movement
-                    if (playerOb.Movement(firstClickY, firstClickX, y, x, player).Equals(true))
+                    if ((playerOb.MovementRight(firstClickY, firstClickX, y, x, positionsArray, player).Equals(true)) || (playerOb.MovementLeft(firstClickY, firstClickX, y, x, positionsArray, player).Equals(true)))
                     {
-                        positionsArray[firstClickY, firstClickX] = string.Empty;
-                        positionsArray[y, x] = player;
-
-                        //StoringAMove(isSelectedStart, clickedPos, player);
-
                         player1Turn = false;
                         turnTxtBlock.Text = "Player O";
                         RefreshBoard();
@@ -519,6 +507,7 @@ namespace CourseWork
                         canMove = false;
                         return;
                     }
+                   
                 }
             }
             else
@@ -543,9 +532,7 @@ namespace CourseWork
                             if ((playerOb.CanAPieceBeCapturedRight(y, x, positionsArray, player)).Equals(false) && (playerOb.CanAPieceBeCapturedLeft(y, x, positionsArray, player)).Equals(false))
                             {
                                 player1Turn = true;
-                                turnTxtBlock.Text = "Player X";
-
-                                MessageBox.Show("There is another move available, if you do not wish to make the move please press 'End Turn'");
+                                turnTxtBlock.Text = "Player X";                                
                             }
 
 
@@ -584,9 +571,7 @@ namespace CourseWork
                             if ((playerOb.CanAPieceBeCapturedRight(y, x, positionsArray, player)).Equals(false) && (playerOb.CanAPieceBeCapturedLeft(y, x, positionsArray, player)).Equals(false))
                             {
                                 player1Turn = true;
-                                turnTxtBlock.Text = "Player X";
-
-                                MessageBox.Show("There is another move available, if you do not wish to make the move please press 'End Turn'");
+                                turnTxtBlock.Text = "Player X";                                
                             }
                             RefreshBoard();
                             
@@ -609,13 +594,8 @@ namespace CourseWork
                     if (positionsArray[y, x].Equals(string.Empty))
                     {
                         // Basic Movement
-                        if (playerOb.Movement(firstClickY, firstClickX, y, x, player).Equals(true))
-                        {
-                            positionsArray[firstClickY, firstClickX] = string.Empty;
-                            positionsArray[y, x] = player;
-
-                            //StoringAMove(isSelectedStart, clickedPos, player);
-
+                        if ((playerOb.MovementRight(firstClickY, firstClickX, y, x, positionsArray, player).Equals(true)) || (playerOb.MovementLeft(firstClickY, firstClickX, y, x, positionsArray, player).Equals(true)))
+                        {              
                             player1Turn = true;
                             turnTxtBlock.Text = "Player X";
                             RefreshBoard();
