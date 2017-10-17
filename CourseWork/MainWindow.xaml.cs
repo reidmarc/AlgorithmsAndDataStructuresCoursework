@@ -58,8 +58,7 @@ namespace CourseWork
         {
             InitializeComponent();
 
-            player1Turn = NewGame();
-            StoreTheMovePositions();
+            player1Turn = NewGame();            
             RefreshBoard();
             turnTxtBlock.Text = "Player X";
         }
@@ -173,7 +172,7 @@ namespace CourseWork
                 }
             }
 
-            if (savedPositions[63].Equals("O"))
+            if (savedPositions[64].Equals("O"))
             {
                 player1Turn = true;
                 turnTxtBlock.Text = "Player X";
@@ -226,17 +225,7 @@ namespace CourseWork
             positionsArray[7, 0] = savedPositions[56];
             positionsArray[7, 2] = savedPositions[58];
             positionsArray[7, 4] = savedPositions[60];
-            positionsArray[7, 6] = savedPositions[62];
-
-            RefreshBoard();
-
-            return;
-
-
-
-            
-
-
+            positionsArray[7, 6] = savedPositions[62];            
         }
 
 
@@ -319,6 +308,10 @@ namespace CourseWork
 
             // Sets the textbox to Player X indicating who's turn it is
             turnTxtBlock.Text = "Player X";
+
+            undoStack.Clear();
+            redoStack.Clear();
+            replayQueue.Clear();
         }
 
         private void exitBtn_Click(object sender, RoutedEventArgs e)
@@ -329,7 +322,9 @@ namespace CourseWork
 
         private void undoBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (undoStack.Count > 0)
+            // Stops the program from trying to pop the top value off the stack 'undoStack'
+            // When there is nothing stored on the stack
+            if (undoStack.Count != 0)
             {
                 string undoMove = undoStack.Pop();
 
@@ -337,8 +332,14 @@ namespace CourseWork
             }
             else
             {
+                NewGame();
                 MessageBox.Show("This is the start of the game....");
             }
+
+            
+
+            RefreshBoard();
+            return;
         }
 
         private void resetBtn_Click(object sender, RoutedEventArgs e)
