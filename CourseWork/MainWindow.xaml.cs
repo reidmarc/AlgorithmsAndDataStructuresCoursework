@@ -35,6 +35,10 @@ namespace CourseWork
         public const string playerOne = "X";
         public const string playerTwo = "O";
 
+
+        string positions;
+        string positionsTemp;
+
         int firstClickY;
         int firstClickX;
 
@@ -55,6 +59,7 @@ namespace CourseWork
             InitializeComponent();
 
             player1Turn = NewGame();
+            StoreTheMovePositions();
             RefreshBoard();
             turnTxtBlock.Text = "Player X";
         }
@@ -69,48 +74,172 @@ namespace CourseWork
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    positionsArray[i, j] = "UNPLAYABLESQUARE";
+                    positionsArray[i, j] = "#";
                 }
             }
 
 
 
-            //// Player 2 starting positions            
-            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
-            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
+            // Player 2 starting positions            
+            positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
 
-            //// Blank starting squares            
-            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
+            // Blank starting squares            
+            positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
 
-            //// Player 1 starting positions
-            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
-            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
+            // Player 1 starting positions
+            positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
 
 
             ///////////////////////////// FOR TESTING PURPOSES ONLY /////////////////////////////
 
 
-            positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
-            positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
-            positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
-            positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
-            positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
+            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
+            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
+            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
 
-            positionsArray[7, 0] = playerOne;
-            positionsArray[5, 2] = playerTwo;
-            positionsArray[3, 4] = playerTwo;
-            positionsArray[1, 6] = playerTwo;
-            positionsArray[1, 4] = playerTwo; 
+            //positionsArray[7, 0] = playerOne;
+            //positionsArray[5, 2] = playerTwo;
+            //positionsArray[3, 4] = playerTwo;
+            //positionsArray[1, 6] = playerTwo;
+            //positionsArray[1, 4] = playerTwo; 
 
             return true;
 
         }
+
+        private void StoreTheMovePositions()
+        {   
+            // Loops through the 2D array and outputs the strings to a varible then concatenates them with a comma inbetween each value.
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    positionsTemp = positionsArray[i, j];
+
+                    // Replaces the tiles that have no content with a symbol
+                    if (positionsTemp.Equals(string.Empty))
+                    {
+                        positionsTemp = "-";
+                    }
+
+                    // Stops the string from starting with a comma
+                    if (i.Equals(0) && j.Equals(0))
+                    {
+                        positions = positionsTemp;
+                    }
+                    else
+                    {
+                        positions = string.Concat(string.Concat(positions, ","), positionsTemp);
+                    }
+                }
+            }
+
+
+            // Sets the last value of the string according to whose turn it is
+            if (player1Turn.Equals(true))
+            {
+                positions = string.Concat(string.Concat(positions, ","), "X");
+            }
+            else
+            {
+                positions = string.Concat(string.Concat(positions, ","), "O");
+            }
+
+
+            undoStack.Push(positions);
+            replayQueue.Enqueue(positions);
+        }
+
+        public void RetrieveTheMovePositions(string positionsOfPieces)
+        {
+            string[] savedPositions = positionsOfPieces.Split(',');
+
+            // Replaces the '-' with string.empty like it was before being saved
+            for (int i = 0; i < savedPositions.Length; i++)
+            {
+                if (savedPositions[i].Equals("-"))
+                {
+                    savedPositions[i] = string.Empty;
+                }
+            }
+
+            if (savedPositions[63].Equals("O"))
+            {
+                player1Turn = true;
+                turnTxtBlock.Text = "Player X";
+            }
+            else
+            {
+                player1Turn = false;
+                turnTxtBlock.Text = "Player O";
+            }
+
+            canMove = false;
+            firstClickY = 0;
+            firstClickX = 0;
+
+            positionsArray[0, 1] = savedPositions[1];
+            positionsArray[0, 3] = savedPositions[3];
+            positionsArray[0, 5] = savedPositions[5];
+            positionsArray[0, 7] = savedPositions[7];
+
+            positionsArray[1, 0] = savedPositions[8];
+            positionsArray[1, 2] = savedPositions[10];
+            positionsArray[1, 4] = savedPositions[12];
+            positionsArray[1, 6] = savedPositions[14];
+
+            positionsArray[2, 1] = savedPositions[17];
+            positionsArray[2, 3] = savedPositions[19];
+            positionsArray[2, 5] = savedPositions[21];
+            positionsArray[2, 7] = savedPositions[23];
+
+            positionsArray[3, 0] = savedPositions[24];
+            positionsArray[3, 2] = savedPositions[26];
+            positionsArray[3, 4] = savedPositions[28];
+            positionsArray[3, 6] = savedPositions[30];
+
+            positionsArray[4, 1] = savedPositions[33];
+            positionsArray[4, 3] = savedPositions[35];
+            positionsArray[4, 5] = savedPositions[37];
+            positionsArray[4, 7] = savedPositions[39];
+
+            positionsArray[5, 0] = savedPositions[40];
+            positionsArray[5, 2] = savedPositions[42];
+            positionsArray[5, 4] = savedPositions[44];
+            positionsArray[5, 6] = savedPositions[46];
+
+            positionsArray[6, 1] = savedPositions[49];
+            positionsArray[6, 3] = savedPositions[51];
+            positionsArray[6, 5] = savedPositions[53];
+            positionsArray[6, 7] = savedPositions[55];
+
+            positionsArray[7, 0] = savedPositions[56];
+            positionsArray[7, 2] = savedPositions[58];
+            positionsArray[7, 4] = savedPositions[60];
+            positionsArray[7, 6] = savedPositions[62];
+
+            RefreshBoard();
+
+            return;
+
+
+
+            
+
+
+        }
+
+
 
         private void RefreshBoard()
         {
@@ -153,9 +282,7 @@ namespace CourseWork
             POS70.Content = positionsArray[7, 0];
             POS72.Content = positionsArray[7, 2];
             POS74.Content = positionsArray[7, 4];
-            POS76.Content = positionsArray[7, 6];
-
-
+            POS76.Content = positionsArray[7, 6];            
         }
 
         private void ClearTheBoard()
@@ -204,11 +331,13 @@ namespace CourseWork
         {
             if (undoStack.Count > 0)
             {
-                MessageBox.Show(undoStack.Peek().ToString());
+                string undoMove = undoStack.Pop();
+
+                RetrieveTheMovePositions(undoMove);
             }
             else
             {
-                return;
+                MessageBox.Show("This is the start of the game....");
             }
         }
 
@@ -387,6 +516,7 @@ namespace CourseWork
 
         #endregion
 
+        #region Movement
 
         private void PlayerMove(int y, int x, string player)
         {
@@ -429,23 +559,15 @@ namespace CourseWork
                             turnTxtBlock.Text = "Player O";
                         }
 
-                        
+                        StoreTheMovePositions();
                         RefreshBoard();
-                        
-                    }
-                    else
-                    {
-                        MessageBox.Show("You must remove the piece available");
-                        player1Turn = true;
-                    }
-
-                    canMove = false;
-                    y = 0;
-                    x = 0;
-                    firstClickY = 0;
-                    firstClickX = 0;
-                    return;
-                    
+                        canMove = false;
+                        y = 0;
+                        x = 0;
+                        firstClickY = 0;
+                        firstClickX = 0;
+                        return;
+                    } 
                 }
 
                 if (playerOb.CanAPieceBeCapturedLeft(firstClickY, firstClickX, positionsArray, player).Equals(true))
@@ -462,35 +584,22 @@ namespace CourseWork
                         // Sets the square clicked second to now show the player one piece
                         positionsArray[y, x] = player;
 
-
-
                         if ((playerOb.CanAPieceBeCapturedRight(y, x, positionsArray, player)).Equals(false) && (playerOb.CanAPieceBeCapturedLeft(y, x, positionsArray, player)).Equals(false))
                         {
                             player1Turn = false;
                             turnTxtBlock.Text = "Player O";                            
                         }
 
-
+                        StoreTheMovePositions();
                         RefreshBoard();
-                        
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("You must remove the piece available");
-                        player1Turn = true;
-                    }
-
-                    canMove = false;
-                    y = 0;
-                    x = 0;
-                    firstClickY = 0;
-                    firstClickX = 0;
-                    return;
-                }
-                    
-                            
-
+                        canMove = false;
+                        y = 0;
+                        x = 0;
+                        firstClickY = 0;
+                        firstClickX = 0;
+                        return;
+                    }                     
+                }   
 
                 if (positionsArray[y, x].Equals(string.Empty))
                 {   
@@ -499,6 +608,7 @@ namespace CourseWork
                     {
                         player1Turn = false;
                         turnTxtBlock.Text = "Player O";
+                        StoreTheMovePositions();
                         RefreshBoard();
                         y = 0;
                         x = 0;
@@ -535,22 +645,15 @@ namespace CourseWork
                                 turnTxtBlock.Text = "Player X";                                
                             }
 
-
+                            StoreTheMovePositions();
                             RefreshBoard();
-                            
-                        }
-                        else
-                        {
-                            MessageBox.Show("You must remove the piece available");
-                            player1Turn = false;
-                        }
-
-                        canMove = false;
-                        y = 0;
-                        x = 0;
-                        firstClickY = 0;
-                        firstClickX = 0;
-                        return;
+                            canMove = false;
+                            y = 0;
+                            x = 0;
+                            firstClickY = 0;
+                            firstClickX = 0;
+                            return;
+                        }  
                     }
 
 
@@ -573,21 +676,16 @@ namespace CourseWork
                                 player1Turn = true;
                                 turnTxtBlock.Text = "Player X";                                
                             }
-                            RefreshBoard();
-                            
-                        }
-                        else
-                        {
-                            MessageBox.Show("You must remove the piece available");
-                            player1Turn = false;
-                        }
 
-                        canMove = false;
-                        y = 0;
-                        x = 0;
-                        firstClickY = 0;
-                        firstClickX = 0;
-                        return;  
+                            StoreTheMovePositions();
+                            RefreshBoard();
+                            canMove = false;
+                            y = 0;
+                            x = 0;
+                            firstClickY = 0;
+                            firstClickX = 0;
+                            return;
+                        }        
                     }
 
 
@@ -598,6 +696,7 @@ namespace CourseWork
                         {              
                             player1Turn = true;
                             turnTxtBlock.Text = "Player X";
+                            StoreTheMovePositions();
                             RefreshBoard();
                             y = 0;
                             x = 0;
@@ -609,7 +708,9 @@ namespace CourseWork
                     }
                 }
             }
-        }        
+        }
+
+        #endregion
     }
 }
 
