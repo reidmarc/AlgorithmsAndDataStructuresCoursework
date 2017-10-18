@@ -74,8 +74,8 @@
 
         <Button x:Name="resetBtn" Content="Reset Turn" HorizontalAlignment="Left" Margin="815,571,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="resetBtn_Click"/>
 
-        <Button x:Name="restartBtn" Content="Restart" HorizontalAlignment="Left" Margin="815,712,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="restartBtn_Click"/>
-        <Button x:Name="exitBtn" Content="Exit the App" HorizontalAlignment="Left" Margin="815,759,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="exitBtn_Click"/>
+        <Button x:Name="restartBtn" Content="Restart Game" HorizontalAlignment="Left" Margin="815,712,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="restartBtn_Click"/>
+        <Button x:Name="exitBtn" Content="Exit Application" HorizontalAlignment="Left" Margin="815,759,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="exitBtn_Click"/>
 
         <Separator HorizontalAlignment="Left" Height="28" Margin="397,391,-211,0" VerticalAlignment="Top" Width="806" RenderTransformOrigin="0.5,0.5" Foreground="Black" Background="Black">
             <Separator.RenderTransform>

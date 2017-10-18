@@ -43,6 +43,8 @@ namespace CourseWork
 
             MessageBoxResult yesOrNo = MessageBox.Show("Are you sure you want to reset your turn?", "Reset Player " + player + "'s Turn?", MessageBoxButton.YesNo);
 
+            player = string.Empty;
+
             if (yesOrNo == MessageBoxResult.Yes)
             {
                 return canMove = false;                
@@ -58,7 +60,7 @@ namespace CourseWork
         {
             string player = string.Empty;           
 
-            if (player1Turn.Equals(false))
+            if (player1Turn.Equals(true))
             {
                 player = playerOne;               
             }
@@ -68,6 +70,8 @@ namespace CourseWork
             }
 
             MessageBoxResult yesOrNo = MessageBox.Show("Are you sure you want to end your turn?", "End Player " + player + "'s Turn?", MessageBoxButton.YesNo);
+
+            player = string.Empty;
 
             if (yesOrNo == MessageBoxResult.Yes)
             {
@@ -94,7 +98,20 @@ namespace CourseWork
             }
         }
 
+        public bool RestartGameVerification()
+        {
+            MessageBoxResult yesOrNo = MessageBox.Show("Are you sure you want to restart the game?\nIt will end the current game.", "Restart the game?", MessageBoxButton.YesNo);
 
+            if (yesOrNo == MessageBoxResult.Yes)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
 
 
     }
