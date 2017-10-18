@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace CourseWork
 {
-    class Player
+    public class Player
     { 
         #region Basic Movement
 

@@ -58,17 +58,26 @@
 
         </Grid>
 
+        <!-- TextBlock to display which players turn it is -->
         <TextBlock x:Name="turnTxtBlock" HorizontalAlignment="Left" Margin="825,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" FontSize="20" Height="40"/>
 
-        <Button x:Name="endBtn" Content="End Turn" HorizontalAlignment="Left" Margin="825,506,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="endBtn_Click"/>
+        <!-- UndoRedoReplay Buttons -->
+        <Button x:Name="undoBtn" Content="Undo" HorizontalAlignment="Left" Margin="815,55,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="undoBtn_Click"/>
+        <Button x:Name="redoBtn" Content="Redo" HorizontalAlignment="Left" Margin="815,102,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="redoBtn_Click" />
+        <Button x:Name="replayBtn" Content="Replay" HorizontalAlignment="Left" Margin="815,149,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="replayBtn_Click" />
 
-        <Button x:Name="resetBtn" Content="Reset Turn" HorizontalAlignment="Left" Margin="825,459,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="resetBtn_Click"/>
 
-        <Button x:Name="undoBtn" Content="Undo" HorizontalAlignment="Left" Margin="825,55,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="undoBtn_Click"/>
-        <Button x:Name="clrBtn" Content="Restart" HorizontalAlignment="Left" Margin="825,649,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="clrBtn_Click"/>
-        <Button x:Name="exitBtn" Content="Exit the App" HorizontalAlignment="Left" Margin="825,696,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="exitBtn_Click"/>
 
-        <Separator HorizontalAlignment="Left" Height="28" Margin="400,388,-208,0" VerticalAlignment="Top" Width="800" RenderTransformOrigin="0.5,0.5" Foreground="Black" Background="Black">
+
+
+        <Button x:Name="endBtn" Content="End Turn" HorizontalAlignment="Left" Margin="815,618,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="endBtn_Click"/>
+
+        <Button x:Name="resetBtn" Content="Reset Turn" HorizontalAlignment="Left" Margin="815,571,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="resetBtn_Click"/>
+
+        <Button x:Name="restartBtn" Content="Restart" HorizontalAlignment="Left" Margin="815,712,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="restartBtn_Click"/>
+        <Button x:Name="exitBtn" Content="Exit the App" HorizontalAlignment="Left" Margin="815,759,0,0" VerticalAlignment="Top" Width="110" Height="42" Click="exitBtn_Click"/>
+
+        <Separator HorizontalAlignment="Left" Height="28" Margin="397,391,-211,0" VerticalAlignment="Top" Width="806" RenderTransformOrigin="0.5,0.5" Foreground="Black" Background="Black">
             <Separator.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

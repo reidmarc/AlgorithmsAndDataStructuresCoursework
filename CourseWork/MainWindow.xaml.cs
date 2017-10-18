@@ -23,6 +23,7 @@ namespace CourseWork
         #region Variables / Objects / Collections
 
         Player playerOb = new Player();
+        UserVerification userVerification = new UserVerification();
 
         // 2D array to map store the piece locations
         string[,] positionsArray = new string[8, 8];
@@ -298,27 +299,7 @@ namespace CourseWork
 
         #region Event Handlers
 
-        private void clrBtn_Click(object sender, RoutedEventArgs e)
-        {
-            // Clears the board and resets the pieces
-            ClearTheBoard();
-
-            // Sets it back to player 1's turn
-            player1Turn = true;
-
-            // Sets the textbox to Player X indicating who's turn it is
-            turnTxtBlock.Text = "Player X";
-
-            undoStack.Clear();
-            redoStack.Clear();
-            replayQueue.Clear();
-        }
-
-        private void exitBtn_Click(object sender, RoutedEventArgs e)
-        {
-            // Shuts down the application
-            Application.Current.Shutdown();
-        }
+        #region UndoRedoReplay Click Events
 
         private void undoBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -336,65 +317,101 @@ namespace CourseWork
                 MessageBox.Show("This is the start of the game....");
             }
 
-            
-
             RefreshBoard();
             return;
         }
 
-        private void resetBtn_Click(object sender, RoutedEventArgs e)
+        private void redoBtn_Click(object sender, RoutedEventArgs e)
         {
-            canMove = false;
-            return;
+
         }
 
-        private void endBtn_Click(object sender, RoutedEventArgs e)
+        private void replayBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (player1Turn.Equals(true))
+            if (userVerification.ReplayGameVerification().Equals(true))
             {
-                player1Turn = false;
-                turnTxtBlock.Text = "Player O";
+                MessageBox.Show("GAME IS REPLAYED......TESTING");
             }
             else
             {
-                player1Turn = true;
-                turnTxtBlock.Text = "Player X";
+                return;
             }
+        }
 
-            canMove = false;
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+        private void restartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Clears the board and resets the pieces
+            ClearTheBoard();
+
+            // Sets it back to player 1's turn
+            player1Turn = true;
+
+            // Sets the textbox to Player X indicating who's turn it is
+            turnTxtBlock.Text = "Player X";
+
+            undoStack.Clear();
+            redoStack.Clear();
+            replayQueue.Clear();
+        }
+
+        private void exitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Exits the application
+            userVerification.ExitApplicationVerification();
+        }
+
+        
+
+        // Click event which calls the method ResetMoveVerification() which clicked
+        private void resetBtn_Click(object sender, RoutedEventArgs e)
+        {
+            userVerification.ResetMoveVerification(player1Turn, canMove, playerOne, playerTwo);
+        }
+
+        private void endBtn_Click(object sender, RoutedEventArgs e)
+        { 
+            if(userVerification.EndMoveVerification(player1Turn, playerOne, playerTwo).Equals(true))
+            {
+                string player;
+
+                canMove = false;
+
+                if (player1Turn.Equals(false))
+                {
+                    player = playerOne;
+                }
+                else
+                {
+                    player = playerTwo;
+                }
+
+                turnTxtBlock.Text = "Player " + player + "";
+
+            }
+            
             return;
         }
 
-        private int ConvertButtonNameToIntY(string buttonClicked)
-        {
-            // Stores the 2 digit value in a Char Array
-            var singleDigit = buttonClicked.ToCharArray();
-
-            // Removes the first number as the Y co-ord
-            string yPosString = singleDigit[0].ToString(); 
-
-            // Converts the string to an int
-            int yPos;            
-            Int32.TryParse(yPosString, out yPos);
-            return yPos;        }
-
-        private int ConvertButtonNameToIntX(string buttonClicked)
-        {
-            // Stores the 2 digit value in a Char Array
-            var singleDigit = buttonClicked.ToCharArray();
-
-            // Removes the second number as the X co-ord
-            string xPosString = singleDigit[1].ToString();
-
-            int xPos;
-            Int32.TryParse(xPosString, out xPos);
-            return xPos;
-        }
+        
 
         private void Playable_Square_Click(object sender, RoutedEventArgs e)
         {
             bool forcedCapture = false;
-            int count = 0;
+            
+
+            // A list to store the potential 'takes' that must be chosen from
             List<int> listOfForcedMoves = new List<int>();
 
             var button = (Button)sender;
@@ -423,7 +440,7 @@ namespace CourseWork
                                     int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
                                     listOfForcedMoves.Add(potentialMove);
 
-                                    count = count + 1;
+                                    
                                     forcedCapture = true;
                                 }
                                 if (playerOb.CanAPieceBeCapturedLeft(i, j, positionsArray, playerOne).Equals(true))
@@ -432,7 +449,7 @@ namespace CourseWork
                                     listOfForcedMoves.Add(potentialMove);
 
 
-                                    count = count + 1;
+                                    
                                     forcedCapture = true;
                                 }
                             }
@@ -475,7 +492,7 @@ namespace CourseWork
                                     int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
                                     listOfForcedMoves.Add(potentialMove);
 
-                                    count = count + 1;
+                                    
                                     forcedCapture = true;
                                 }
                                 if (playerOb.CanAPieceBeCapturedLeft(i, j, positionsArray, playerTwo).Equals(true))
@@ -484,7 +501,7 @@ namespace CourseWork
                                     listOfForcedMoves.Add(potentialMove);
 
 
-                                    count = count + 1;
+                                    
                                     forcedCapture = true;
                                 }
                             }
@@ -711,7 +728,37 @@ namespace CourseWork
             }
         }
 
+
+        private int ConvertButtonNameToIntY(string buttonClicked)
+        {
+            // Stores the 2 digit value in a Char Array
+            var singleDigit = buttonClicked.ToCharArray();
+
+            // Removes the first number as the Y co-ord
+            string yPosString = singleDigit[0].ToString();
+
+            // Converts the string to an int
+            int yPos;
+            Int32.TryParse(yPosString, out yPos);
+            return yPos;
+        }
+
+        private int ConvertButtonNameToIntX(string buttonClicked)
+        {
+            // Stores the 2 digit value in a Char Array
+            var singleDigit = buttonClicked.ToCharArray();
+
+            // Removes the second number as the X co-ord
+            string xPosString = singleDigit[1].ToString();
+
+            int xPos;
+            Int32.TryParse(xPosString, out xPos);
+            return xPos;
+        }
+
         #endregion
+
+        
     }
 }
 
