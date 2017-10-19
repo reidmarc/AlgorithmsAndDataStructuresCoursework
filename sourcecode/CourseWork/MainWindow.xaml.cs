@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,6 +38,9 @@ namespace CourseWork
 
         int firstClickY;
         int firstClickX;
+
+        int counterReplayOne = 0;
+        int counterReplayTwo = 0;
 
         bool player1Turn;
 
@@ -79,35 +83,35 @@ namespace CourseWork
 
 
 
-            // Player 2 starting positions            
-            positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
-            positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
+            //// Player 2 starting positions            
+            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
 
-            // Blank starting squares            
-            positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
+            //// Blank starting squares            
+            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
 
-            // Player 1 starting positions
-            positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
-            positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
+            //// Player 1 starting positions
+            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
 
 
             /////////////////////////////// FOR TESTING PURPOSES ONLY /////////////////////////////
 
 
-            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
-            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
-            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
-            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
-            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
+            positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
+            positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
+            positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
 
-            //positionsArray[7, 6] = playerOne;
-            //positionsArray[0, 1] = playerTwo;
+            positionsArray[7, 6] = playerOne;
+            positionsArray[0, 1] = playerTwo;
             //positionsArray[3, 4] = playerTwo;
             //positionsArray[1, 6] = playerTwo;
             //positionsArray[1, 4] = playerTwo;
@@ -157,7 +161,7 @@ namespace CourseWork
             POS70.Content = positionsArray[7, 0];
             POS72.Content = positionsArray[7, 2];
             POS74.Content = positionsArray[7, 4];
-            POS76.Content = positionsArray[7, 6];            
+            POS76.Content = positionsArray[7, 6]; 
         }
 
         private void ClearTheBoard()
@@ -187,7 +191,7 @@ namespace CourseWork
         #region UndoRedoReplay Click Events
 
         private void undoBtn_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             if (undoRedoReplay.RetrieveTheUndoMovePositions(positionsArray, player1Turn).Equals(true))
             {
                 canMove = false;
@@ -195,8 +199,7 @@ namespace CourseWork
                 firstClickX = 0;
                 turnTxtBlock.Text = undoRedoReplay.turnTxtBlock;
                 player1Turn = undoRedoReplay.player1TurnUndo;
-            }           
-
+            }  
             RefreshBoard();
             return;
         }
@@ -217,9 +220,134 @@ namespace CourseWork
 
         private void replayBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (userVerification.ReplayGameVerification().Equals(true))
+            
+
+            if (counterReplayOne > 0 || userVerification.ReplayGameVerification().Equals(true))
             {
-                MessageBox.Show("GAME IS REPLAYED......TESTING");
+                counterReplayOne = counterReplayOne + 1;
+               
+                undoRedoReplay.RetrieveTheReplayMovePositions(positionsArray);
+                
+
+                int milliseconds = 500;
+                Thread.Sleep(milliseconds);
+
+                
+                undoBtn.IsEnabled = false;
+                redoBtn.IsEnabled = false;
+                resetBtn.IsEnabled = false;
+                endBtn.IsEnabled = false;
+
+                //POS01.IsEnabled = false;
+                //POS03.IsEnabled = false;
+                //POS05.IsEnabled = false;
+                //POS07.IsEnabled = false;
+
+                //POS10.IsEnabled = false;
+                //POS12.IsEnabled = false;
+                //POS14.IsEnabled = false;
+                //POS16.IsEnabled = false;
+
+                //POS21.IsEnabled = false;
+                //POS23.IsEnabled = false;
+                //POS25.IsEnabled = false;
+                //POS27.IsEnabled = false;
+
+                //POS30.IsEnabled = false;
+                //POS32.IsEnabled = false;
+                //POS34.IsEnabled = false;
+                //POS36.IsEnabled = false;
+
+                //POS41.IsEnabled = false; 
+                //POS43.IsEnabled = false;
+                //POS45.IsEnabled = false;
+                //POS47.IsEnabled = false;
+
+                //POS50.IsEnabled = false;
+                //POS52.IsEnabled = false;
+                //POS54.IsEnabled = false;
+                //POS56.IsEnabled = false;
+
+                //POS61.IsEnabled = false;
+                //POS63.IsEnabled = false;
+                //POS65.IsEnabled = false;
+                //POS67.IsEnabled = false;
+
+                //POS70.IsEnabled = false;
+                //POS72.IsEnabled = false;
+                //POS74.IsEnabled = false;
+                //POS76.IsEnabled = false;
+
+
+
+
+                if (undoRedoReplay.replayQueue.Count.Equals(0))
+                {
+                    counterReplayTwo = counterReplayTwo + 1;
+
+                    
+
+                    if (counterReplayTwo > 1)
+                    {
+                        MessageBox.Show("There are no more moves to be 'replayed'");
+
+                        undoBtn.IsEnabled = true;
+                        redoBtn.IsEnabled = true;
+                        resetBtn.IsEnabled = true;
+                        endBtn.IsEnabled = true;
+
+                        
+
+                        //POS01.IsEnabled = true; 
+                        //POS03.IsEnabled = true;
+                        //POS05.IsEnabled = true;
+                        //POS07.IsEnabled = true;
+                                          
+                        //POS10.IsEnabled = true;
+                        //POS12.IsEnabled = true;
+                        //POS14.IsEnabled = true;
+                        //POS16.IsEnabled = true;
+                                          
+                        //POS21.IsEnabled = true;
+                        //POS23.IsEnabled = true;
+                        //POS25.IsEnabled = true;
+                        //POS27.IsEnabled = true;
+                                          
+                        //POS30.IsEnabled = true;
+                        //POS32.IsEnabled = true;
+                        //POS34.IsEnabled = true;
+                        //POS36.IsEnabled = true;
+                                          
+                        //POS41.IsEnabled = true;
+                        //POS43.IsEnabled = true;
+                        //POS45.IsEnabled = true;
+                        //POS47.IsEnabled = true;
+                                          
+                        //POS50.IsEnabled = true;
+                        //POS52.IsEnabled = true;
+                        //POS54.IsEnabled = true;
+                        //POS56.IsEnabled = true;
+                                          
+                        //POS61.IsEnabled = true;
+                        //POS63.IsEnabled = true;
+                        //POS65.IsEnabled = true;
+                        //POS67.IsEnabled = true;
+                                          
+                        //POS70.IsEnabled = true;
+                        //POS72.IsEnabled = true;
+                        //POS74.IsEnabled = true;
+                        //POS76.IsEnabled = true;
+                    }
+                }
+
+                canMove = false;
+                firstClickY = 0;
+                firstClickX = 0;
+                turnTxtBlock.Text = undoRedoReplay.turnTxtBlock;
+                player1Turn = undoRedoReplay.player1TurnUndo;
+
+                RefreshBoard();
+
             }
             else
             {
@@ -245,6 +373,11 @@ namespace CourseWork
 
                 // Sets the textbox to Player X indicating who's turn it is
                 turnTxtBlock.Text = "Player X";
+
+                undoBtn.IsEnabled = true;
+                redoBtn.IsEnabled = true;
+                resetBtn.IsEnabled = true;
+                endBtn.IsEnabled = true;
             }
             else
             {

@@ -20,6 +20,7 @@ namespace CourseWork
         string positions;
         string positionsTemp;
 
+        #region Storing Moves As Strings
 
         public void StoreTheMovePositions(string[,] positionsArray, bool player1Turn)
         {
@@ -64,10 +65,11 @@ namespace CourseWork
 
             // Enqueues the string 'positions' in the queue 'replayQueue'
             replayQueue.Enqueue(positions);
-            
-            
-            
         }
+
+        #endregion
+
+        #region Displaying Moves From The Undo Stack
 
         public bool RetrieveTheUndoMovePositions(string[,] positionsArray, bool player1Turn)
         {
@@ -118,6 +120,10 @@ namespace CourseWork
             }
         }
 
+        #endregion
+
+        #region Displaying Moves From The Redo Stack
+
         public bool RetrieveTheRedoMovePositions(string[,] positionsArray)
         {
 
@@ -165,10 +171,53 @@ namespace CourseWork
             }
         }
 
-        public void RetrieveTheReplayMovePositions()
+        #endregion
+
+        #region Displaying Moves From The Replay Queue
+
+        public void RetrieveTheReplayMovePositions(string[,] positionsArray)
         {
 
+            // Stops the program from trying to dequeue the first value off the queue 'replayQueue'
+            // When there is nothing stored on the stack
+            if (replayQueue.Count > 0)
+            {   
+                string positionsOfPieces = replayQueue.Dequeue();                
+
+                string[] savedPositions = positionsOfPieces.Split(',');
+
+                // Replaces the '-' with string.empty like it was before being saved
+                for (int i = 0; i < savedPositions.Length; i++)
+                {
+                    if (savedPositions[i].Equals("-"))
+                    {
+                        savedPositions[i] = string.Empty;
+                    }
+                }
+
+                if (savedPositions[64].Equals("X"))
+                {
+                    player1TurnUndo = true;
+                    turnTxtBlock = "Player X";
+                }
+                else
+                {
+                    player1TurnUndo = false;
+                    turnTxtBlock = "Player O";
+                }
+                UpdateTheBoard(positionsArray, savedPositions);                
+                return;  
+            }
+            else
+            {                
+                return;
+            }
+            
         }
+
+        #endregion
+
+        #region Updating The Board With New Values
 
         private void UpdateTheBoard(string [,]positionsArray, string []savedPositions)
         {
@@ -211,6 +260,8 @@ namespace CourseWork
             positionsArray[7, 2] = savedPositions[58];
             positionsArray[7, 4] = savedPositions[60];
             positionsArray[7, 6] = savedPositions[62];
-        }       
+        }
+
+        #endregion
     }
 }
