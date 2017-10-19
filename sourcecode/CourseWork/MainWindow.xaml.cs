@@ -56,6 +56,7 @@ namespace CourseWork
             player1Turn = NewGame();            
             RefreshBoard();
             turnTxtBlock.Text = "Player X";
+            undoRedoReplay.StoreTheMovePositions(positionsArray, player1Turn);
         }
 
         #endregion
@@ -78,35 +79,35 @@ namespace CourseWork
 
 
 
-            //// Player 2 starting positions            
-            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
-            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
-
-            //// Blank starting squares            
-            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
-
-            //// Player 1 starting positions
-            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
-            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
-
-
-            ///////////////////////////// FOR TESTING PURPOSES ONLY /////////////////////////////
-
-
+            // Player 2 starting positions            
             positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
             positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
+            positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = playerTwo;
+
+            // Blank starting squares            
             positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
+            positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = string.Empty;
+
+            // Player 1 starting positions
             positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
             positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
+            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = playerOne;
 
-            positionsArray[7, 6] = playerOne;
-            positionsArray[0, 1] = playerTwo;
+
+            /////////////////////////////// FOR TESTING PURPOSES ONLY /////////////////////////////
+
+
+            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
+            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
+            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
+            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
+            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
+            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
+            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
+            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = string.Empty;
+
+            //positionsArray[7, 6] = playerOne;
+            //positionsArray[0, 1] = playerTwo;
             //positionsArray[3, 4] = playerTwo;
             //positionsArray[1, 6] = playerTwo;
             //positionsArray[1, 4] = playerTwo;
@@ -194,11 +195,7 @@ namespace CourseWork
                 firstClickX = 0;
                 turnTxtBlock.Text = undoRedoReplay.turnTxtBlock;
                 player1Turn = undoRedoReplay.player1TurnUndo;
-            }
-            else
-            {
-                NewGame();
-            }
+            }           
 
             RefreshBoard();
             return;
@@ -353,7 +350,7 @@ namespace CourseWork
 
                         if (listOfForcedMoves.Contains(potentialMoveCheck))
                         {
-                            PlayerMove(yPos, xPos, playerOne);
+                            PlayerMove(yPos, xPos, playerOne);                            
                             return;
                         }
                         else
@@ -365,7 +362,7 @@ namespace CourseWork
                     } 
                 }
 
-                PlayerMove(yPos, xPos, playerOne);
+                PlayerMove(yPos, xPos, playerOne);                
             }
             else
             {
@@ -384,6 +381,7 @@ namespace CourseWork
 
                                     
                                     forcedCapture = true;
+                                    
                                 }
                                 if (playerOb.CanAPieceBeCapturedLeft(i, j, positionsArray, playerTwo).Equals(true))
                                 {
@@ -405,7 +403,7 @@ namespace CourseWork
 
                         if (listOfForcedMoves.Contains(potentialMoveCheck))
                         {
-                            PlayerMove(yPos, xPos, playerTwo);
+                            PlayerMove(yPos, xPos, playerTwo);                            
                             return;
                         }
                         else
@@ -417,7 +415,7 @@ namespace CourseWork
                     }
                 }
 
-                PlayerMove(yPos, xPos, playerTwo);
+                PlayerMove(yPos, xPos, playerTwo);                
 
             }
         }
@@ -435,7 +433,7 @@ namespace CourseWork
                 firstClickY = y;
                 firstClickX = x;
                 canMove = true;
-                undoRedoReplay.StoreTheMovePositions(positionsArray, player1Turn, false);
+                
                 return;
             }
 
@@ -462,6 +460,8 @@ namespace CourseWork
 
                         // Sets the square clicked second to now show the player one piece
                         positionsArray[y, x] = player;
+
+                        undoRedoReplay.StoreTheMovePositions(positionsArray, player1Turn);
 
                         if ((playerOb.CanAPieceBeCapturedRight(y, x, positionsArray, player)).Equals(false) && (playerOb.CanAPieceBeCapturedLeft(y, x, positionsArray, player)).Equals(false))
                         {
@@ -494,13 +494,15 @@ namespace CourseWork
                         // Sets the square clicked second to now show the player one piece
                         positionsArray[y, x] = player;
 
+                        undoRedoReplay.StoreTheMovePositions(positionsArray, player1Turn);
+
                         if ((playerOb.CanAPieceBeCapturedRight(y, x, positionsArray, player)).Equals(false) && (playerOb.CanAPieceBeCapturedLeft(y, x, positionsArray, player)).Equals(false))
                         {
                             player1Turn = false;
                             turnTxtBlock.Text = "Player O";                            
                         }
 
-                        //undoRedoReplay.StoreTheMovePositions();
+                        
                         RefreshBoard();
                         canMove = false;
                         y = 0;
@@ -516,9 +518,9 @@ namespace CourseWork
                     // Basic Movement
                     if ((playerOb.MovementRight(firstClickY, firstClickX, y, x, positionsArray, player).Equals(true)) || (playerOb.MovementLeft(firstClickY, firstClickX, y, x, positionsArray, player).Equals(true)))
                     {
+                        undoRedoReplay.StoreTheMovePositions(positionsArray, player1Turn);
                         player1Turn = false;
-                        turnTxtBlock.Text = "Player O";
-                        //undoRedoReplay.StoreTheMovePositions();
+                        turnTxtBlock.Text = "Player O";                        
                         RefreshBoard();
                         y = 0;
                         x = 0;
@@ -549,13 +551,15 @@ namespace CourseWork
                             // Sets the square clicked second to now show the player one piece
                             positionsArray[y, x] = player;
 
+                            undoRedoReplay.StoreTheMovePositions(positionsArray, player1Turn);
+
                             if ((playerOb.CanAPieceBeCapturedRight(y, x, positionsArray, player)).Equals(false) && (playerOb.CanAPieceBeCapturedLeft(y, x, positionsArray, player)).Equals(false))
                             {
                                 player1Turn = true;
                                 turnTxtBlock.Text = "Player X";                                
                             }
 
-                            //undoRedoReplay.StoreTheMovePositions();
+                            
                             RefreshBoard();
                             canMove = false;
                             y = 0;
@@ -581,13 +585,15 @@ namespace CourseWork
                             // Sets the square clicked second to now show the player one piece
                             positionsArray[y, x] = player;
 
+                            undoRedoReplay.StoreTheMovePositions(positionsArray, player1Turn);
+
                             if ((playerOb.CanAPieceBeCapturedRight(y, x, positionsArray, player)).Equals(false) && (playerOb.CanAPieceBeCapturedLeft(y, x, positionsArray, player)).Equals(false))
                             {
                                 player1Turn = true;
                                 turnTxtBlock.Text = "Player X";                                
                             }
 
-                            //undoRedoReplay.StoreTheMovePositions();
+                            
                             RefreshBoard();
                             canMove = false;
                             y = 0;
@@ -603,10 +609,11 @@ namespace CourseWork
                     {
                         // Basic Movement
                         if ((playerOb.MovementRight(firstClickY, firstClickX, y, x, positionsArray, player).Equals(true)) || (playerOb.MovementLeft(firstClickY, firstClickX, y, x, positionsArray, player).Equals(true)))
-                        {              
+                        {
+                            undoRedoReplay.StoreTheMovePositions(positionsArray, player1Turn);
                             player1Turn = true;
                             turnTxtBlock.Text = "Player X";
-                            //undoRedoReplay.StoreTheMovePositions();
+                            
                             RefreshBoard();
                             y = 0;
                             x = 0;

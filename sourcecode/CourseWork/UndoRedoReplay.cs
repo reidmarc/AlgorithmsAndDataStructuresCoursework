@@ -21,7 +21,7 @@ namespace CourseWork
         string positionsTemp;
 
 
-        public void StoreTheMovePositions(string[,] positionsArray, bool player1Turn, bool forRedo)
+        public void StoreTheMovePositions(string[,] positionsArray, bool player1Turn)
         {
             // Loops through the 2D array and outputs the strings to a varible then concatenates them with a comma inbetween each value.
             for (int i = 0; i < 8; i++)
@@ -58,43 +58,32 @@ namespace CourseWork
                 positions = string.Concat(string.Concat(positions, ","), "O");
             }
 
-            if (forRedo.Equals(false))
-            {
-                // Pushes the string 'positions' on to the stack 'undoStack'
-                undoStack.Push(positions);
+            
+            // Pushes the string 'positions' on to the stack 'undoStack'
+            undoStack.Push(positions);
 
-                // Enqueues the string 'positions' in the queue 'replayQueue'
-                replayQueue.Enqueue(positions);
-            }
-            else
-            {
-                // Pushes the string 'positions' on to the stack 'undoStack'
-                redoStack.Push(positions);
-            }
+            // Enqueues the string 'positions' in the queue 'replayQueue'
+            replayQueue.Enqueue(positions);
+            
+            
             
         }
 
         public bool RetrieveTheUndoMovePositions(string[,] positionsArray, bool player1Turn)
         {
-            
-
             // Stops the program from trying to pop the top value off the stack 'undoStack'
             // When there is nothing stored on the stack
-            if (undoStack.Count != 0)
-            {
-                if (redoStack.Count.Equals(0))
-                {
-                    StoreTheMovePositions(positionsArray, player1Turn, true);
-                }
-
-
-
+            if (undoStack.Count > 1)
+            {   
                 string positionsOfPieces = undoStack.Pop();
 
-                // this is a step a head....
+                
                 redoStack.Push(positionsOfPieces);
 
-                string[] savedPositions = positionsOfPieces.Split(',');
+
+                string positionsOfPiecesNow = undoStack.Peek();
+
+                string[] savedPositions = positionsOfPiecesNow.Split(',');
 
                 // Replaces the '-' with string.empty like it was before being saved
                 for (int i = 0; i < savedPositions.Length; i++)
@@ -124,7 +113,7 @@ namespace CourseWork
             }
             else
             {                
-                MessageBox.Show("This is the start of the game....");
+                MessageBox.Show("There are no more move to 'undo'");
                 return false;
             }
         }
@@ -134,11 +123,12 @@ namespace CourseWork
 
             // Stops the program from trying to pop the top value off the stack 'undoStack'
             // When there is nothing stored on the stack
-            if (redoStack.Count != 0)
+            if (redoStack.Count > 0)
             {
                 string positionsOfPieces = redoStack.Pop();
 
                 undoStack.Push(positionsOfPieces);
+                
 
                 string[] savedPositions = positionsOfPieces.Split(',');
 
@@ -170,7 +160,7 @@ namespace CourseWork
             }
             else
             {
-                MessageBox.Show("You must first Undo a move to then Redo a move.....");
+                MessageBox.Show("There are no more moves to 'redo'");
                 return false;
             }
         }
