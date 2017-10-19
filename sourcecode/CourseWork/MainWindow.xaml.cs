@@ -238,45 +238,45 @@ namespace CourseWork
                 resetBtn.IsEnabled = false;
                 endBtn.IsEnabled = false;
 
-                //POS01.IsEnabled = false;
-                //POS03.IsEnabled = false;
-                //POS05.IsEnabled = false;
-                //POS07.IsEnabled = false;
+                POS01.IsEnabled = false;
+                POS03.IsEnabled = false;
+                POS05.IsEnabled = false;
+                POS07.IsEnabled = false;
 
-                //POS10.IsEnabled = false;
-                //POS12.IsEnabled = false;
-                //POS14.IsEnabled = false;
-                //POS16.IsEnabled = false;
+                POS10.IsEnabled = false;
+                POS12.IsEnabled = false;
+                POS14.IsEnabled = false;
+                POS16.IsEnabled = false;
 
-                //POS21.IsEnabled = false;
-                //POS23.IsEnabled = false;
-                //POS25.IsEnabled = false;
-                //POS27.IsEnabled = false;
+                POS21.IsEnabled = false;
+                POS23.IsEnabled = false;
+                POS25.IsEnabled = false;
+                POS27.IsEnabled = false;
 
-                //POS30.IsEnabled = false;
-                //POS32.IsEnabled = false;
-                //POS34.IsEnabled = false;
-                //POS36.IsEnabled = false;
+                POS30.IsEnabled = false;
+                POS32.IsEnabled = false;
+                POS34.IsEnabled = false;
+                POS36.IsEnabled = false;
 
-                //POS41.IsEnabled = false; 
-                //POS43.IsEnabled = false;
-                //POS45.IsEnabled = false;
-                //POS47.IsEnabled = false;
+                POS41.IsEnabled = false;
+                POS43.IsEnabled = false;
+                POS45.IsEnabled = false;
+                POS47.IsEnabled = false;
 
-                //POS50.IsEnabled = false;
-                //POS52.IsEnabled = false;
-                //POS54.IsEnabled = false;
-                //POS56.IsEnabled = false;
+                POS50.IsEnabled = false;
+                POS52.IsEnabled = false;
+                POS54.IsEnabled = false;
+                POS56.IsEnabled = false;
 
-                //POS61.IsEnabled = false;
-                //POS63.IsEnabled = false;
-                //POS65.IsEnabled = false;
-                //POS67.IsEnabled = false;
+                POS61.IsEnabled = false;
+                POS63.IsEnabled = false;
+                POS65.IsEnabled = false;
+                POS67.IsEnabled = false;
 
-                //POS70.IsEnabled = false;
-                //POS72.IsEnabled = false;
-                //POS74.IsEnabled = false;
-                //POS76.IsEnabled = false;
+                POS70.IsEnabled = false;
+                POS72.IsEnabled = false;
+                POS74.IsEnabled = false;
+                POS76.IsEnabled = false;
 
 
 
@@ -296,47 +296,47 @@ namespace CourseWork
                         resetBtn.IsEnabled = true;
                         endBtn.IsEnabled = true;
 
-                        
 
-                        //POS01.IsEnabled = true; 
-                        //POS03.IsEnabled = true;
-                        //POS05.IsEnabled = true;
-                        //POS07.IsEnabled = true;
-                                          
-                        //POS10.IsEnabled = true;
-                        //POS12.IsEnabled = true;
-                        //POS14.IsEnabled = true;
-                        //POS16.IsEnabled = true;
-                                          
-                        //POS21.IsEnabled = true;
-                        //POS23.IsEnabled = true;
-                        //POS25.IsEnabled = true;
-                        //POS27.IsEnabled = true;
-                                          
-                        //POS30.IsEnabled = true;
-                        //POS32.IsEnabled = true;
-                        //POS34.IsEnabled = true;
-                        //POS36.IsEnabled = true;
-                                          
-                        //POS41.IsEnabled = true;
-                        //POS43.IsEnabled = true;
-                        //POS45.IsEnabled = true;
-                        //POS47.IsEnabled = true;
-                                          
-                        //POS50.IsEnabled = true;
-                        //POS52.IsEnabled = true;
-                        //POS54.IsEnabled = true;
-                        //POS56.IsEnabled = true;
-                                          
-                        //POS61.IsEnabled = true;
-                        //POS63.IsEnabled = true;
-                        //POS65.IsEnabled = true;
-                        //POS67.IsEnabled = true;
-                                          
-                        //POS70.IsEnabled = true;
-                        //POS72.IsEnabled = true;
-                        //POS74.IsEnabled = true;
-                        //POS76.IsEnabled = true;
+
+                        POS01.IsEnabled = true;
+                        POS03.IsEnabled = true;
+                        POS05.IsEnabled = true;
+                        POS07.IsEnabled = true;
+
+                        POS10.IsEnabled = true;
+                        POS12.IsEnabled = true;
+                        POS14.IsEnabled = true;
+                        POS16.IsEnabled = true;
+
+                        POS21.IsEnabled = true;
+                        POS23.IsEnabled = true;
+                        POS25.IsEnabled = true;
+                        POS27.IsEnabled = true;
+
+                        POS30.IsEnabled = true;
+                        POS32.IsEnabled = true;
+                        POS34.IsEnabled = true;
+                        POS36.IsEnabled = true;
+
+                        POS41.IsEnabled = true;
+                        POS43.IsEnabled = true;
+                        POS45.IsEnabled = true;
+                        POS47.IsEnabled = true;
+
+                        POS50.IsEnabled = true;
+                        POS52.IsEnabled = true;
+                        POS54.IsEnabled = true;
+                        POS56.IsEnabled = true;
+
+                        POS61.IsEnabled = true;
+                        POS63.IsEnabled = true;
+                        POS65.IsEnabled = true;
+                        POS67.IsEnabled = true;
+
+                        POS70.IsEnabled = true;
+                        POS72.IsEnabled = true;
+                        POS74.IsEnabled = true;
+                        POS76.IsEnabled = true;
                     }
                 }
 
