@@ -20,21 +20,13 @@ namespace CourseWork
 
             // 2D array to map store the piece locations
             string[,] positionsArray = new string[8, 8];
-
-
-            //const string playerOne = "X";
-            //const string playerTwo = "O";
-            //const string playerOneKing = "Ẍ"; // Ӿ Ӝ Ẍ
-            //const string playerTwoKing = "Ӧ"; // Ѻ Ӫ Ӧ  
+            
 
             int yOne;
             int xOne;
 
             int yTwo;
-            int xTwo;
-
-            //int counterReplayOne = 0;
-            //int counterReplayTwo = 0;
+            int xTwo;            
 
             bool player1Turn = true;           
 
@@ -137,7 +129,7 @@ namespace CourseWork
                             {
                                 string[] savedPositions = undoRedoReplay.DisplayTheUndoMovePositions(positionsArray);
 
-                                if (savedPositions[64].Equals("X"))
+                                if (savedPositions[64].Equals(" X "))
                                 {
                                     player1Turn = true;                                    
                                 }
@@ -172,7 +164,7 @@ namespace CourseWork
                             {
                                 string[] savedPositions = undoRedoReplay.DisplayTheRedoMovePositions(positionsArray);
 
-                                if (savedPositions[64].Equals("X"))
+                                if (savedPositions[64].Equals(" X "))
                                 {
                                     player1Turn = true;                                    
                                 }
@@ -251,7 +243,7 @@ namespace CourseWork
                                 {
                                     string[] savedPositions = undoRedoReplay.DisplayTheReplayMovePositions(positionsArray);
 
-                                    if (savedPositions[64].Equals("X"))
+                                    if (savedPositions[64].Equals(" X "))
                                     {
                                         player1Turn = true;
                                     }

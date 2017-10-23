@@ -34,7 +34,7 @@ namespace CourseWork
                     positionsTemp = positionsArray[i, j];
 
                     // Replaces the tiles that have no content with a symbol
-                    if (positionsTemp.Equals(" "))
+                    if (positionsTemp.Equals("   "))
                     {
                         positionsTemp = "-";
                     }
@@ -54,11 +54,11 @@ namespace CourseWork
             // Sets the last value of the string according to whose turn it is
             if (player1Turn.Equals(true))
             {
-                positions = string.Concat(string.Concat(positions, ","), "X");
+                positions = string.Concat(string.Concat(positions, ","), " X ");
             }
             else
             {
-                positions = string.Concat(string.Concat(positions, ","), "O");
+                positions = string.Concat(string.Concat(positions, ","), " O ");
             }
 
 
@@ -88,7 +88,7 @@ namespace CourseWork
             {
                 if (savedPositions[i].Equals("-"))
                 {
-                    savedPositions[i] = " ";
+                    savedPositions[i] = "   ";
                 }
             }
 
@@ -116,7 +116,7 @@ namespace CourseWork
             {
                 if (savedPositions[i].Equals("-"))
                 {
-                    savedPositions[i] = " ";
+                    savedPositions[i] = "   ";
                 }
             }         
 
@@ -138,7 +138,7 @@ namespace CourseWork
                 {
                     if (savedPositions[i].Equals("-"))
                     {
-                        savedPositions[i] = " ";
+                        savedPositions[i] = "   ";
                     }
                 }               
                 

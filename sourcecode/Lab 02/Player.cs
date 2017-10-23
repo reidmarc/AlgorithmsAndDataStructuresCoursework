@@ -10,9 +10,9 @@ namespace CourseWork
     {
         #region Variables / Objects / Collections
 
-        const string playerOne = "X";
-        const string playerTwo = "O";
-        const string noMansLand = " ";
+        const string playerOne = " X ";
+        const string playerTwo = " O ";
+        const string noMansLand = "   ";
 
         #endregion
 
@@ -481,22 +481,8 @@ namespace CourseWork
                         //turnTxtBlock.Text = "Player X";   
                         return;
                     }
-                }
-                
+                }                
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
