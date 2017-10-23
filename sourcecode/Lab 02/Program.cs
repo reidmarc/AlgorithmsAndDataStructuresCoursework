@@ -18,6 +18,8 @@ namespace CourseWork
             Player playerOb = new Player();            
             UndoRedoReplay undoRedoReplay = new UndoRedoReplay();
 
+
+
             // 2D array to map store the piece locations
             string[,] positionsArray = new string[8, 8];
             
@@ -33,6 +35,12 @@ namespace CourseWork
             bool endGame = true;
 
             #endregion
+
+
+
+
+
+
 
             theBoard.NewGame(positionsArray);
 
@@ -55,8 +63,6 @@ namespace CourseWork
                 yTwo = 0;
                 xTwo = 0;
             }
-
-
 
             while (endGame)
             {
@@ -127,6 +133,9 @@ namespace CourseWork
 
                             // Displays the current board
                             theBoard.DisplayTheBoard(positionsArray, player1Turn);
+
+                            // Checks if there is a winner
+                            endGame = theBoard.IsThereAWinner();
 
 
 
@@ -315,9 +324,6 @@ namespace CourseWork
 
             // Closes the application
             Environment.Exit(0);
-
-
-
         }        
     }
 }

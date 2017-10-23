@@ -8,7 +8,7 @@ namespace CourseWork
 {
     public class Player
     {
-        #region Variables / Objects / Collections
+        #region Variables
 
         const string playerOne = " X ";
         const string playerTwo = " O ";
@@ -182,25 +182,69 @@ namespace CourseWork
             }
             else
             {
+                // Movement Up Right
+                // To stop the if statement recieving an out of bounds exception
+                if (yOne > 0 && xOne < 7)
+                {
+                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
+                    {
+                        positionsArray[yOne, xOne] = noMansLand;
+                        positionsArray[yTwo, xTwo] = playerTwoKing;
+                        return true;
+                    }
 
+                }
 
-                // Player 2 login here
-                return false;
+                // Movement Down Right
+                // To stop the if statement recieving an out of bounds exception
+                if (yOne < 7 && xOne < 7)
+                {
+                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
+                    {
+                        positionsArray[yOne, xOne] = noMansLand;
+                        positionsArray[yTwo, xTwo] = playerTwoKing;
+                        return true;
+                    }
+                }
 
+                // Movement Up Left
+                // To stop the if statement recieving an out of bounds exception
+                if (yOne > 0 && xOne > 0)
+                {
+                    // Check if player 1 can move left
+                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
+                    {
+                        positionsArray[yOne, xOne] = noMansLand;
+                        positionsArray[yTwo, xTwo] = playerTwoKing;
+                        return true;
+                    }
+                }
 
-
-
-
-
-
-
-
+                // Movement Down Left
+                // To stop the if statement recieving an out of bounds exception
+                if (yOne < 7 && xOne > 0)
+                {
+                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
+                    {
+                        positionsArray[yOne, xOne] = noMansLand;
+                        positionsArray[yTwo, xTwo] = playerTwoKing;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
         #endregion
 
-        #region Removing Pieces Checks
+        #region Pre Move Checks
 
         public void ForcedCaptureCheck(ref bool player1Turn, string[,] positionsArray, int yOne, int xOne, int yTwo, int xTwo)
         {
@@ -451,22 +495,22 @@ namespace CourseWork
             if (player1Turn.Equals(true))
             {
                 // Checks Up Right 
-                if ((yOne > 1 && xOne < 6) && ((positionsArray[(yOne - 1), (xOne + 1)].Equals(playerTwo) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
+                if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(playerTwo) || positionsArray[(yOne - 1), (xOne + 1)].Equals(playerTwoKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
                 {
                     return true;
                 }
                 // Checks Down Right
-                if ((yOne < 6 && xOne < 6) && ((positionsArray[(yOne + 1), (xOne + 1)].Equals(playerTwo) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
+                if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(playerTwo) || positionsArray[(yOne + 1), (xOne + 1)].Equals(playerTwoKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
                 {
                     return true;
                 }
                 // Checks Up Left
-                if ((yOne > 1 && xOne > 1) && ((positionsArray[(yOne - 1), (xOne - 1)].Equals(playerTwo) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
+                if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(playerTwo) || positionsArray[(yOne - 1), (xOne - 1)].Equals(playerTwoKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
                 {
                     return true;
                 }
                 // Checks Down Left
-                if ((yOne < 6 && xOne > 1) && ((positionsArray[(yOne + 1), (xOne - 1)].Equals(playerTwo) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
+                if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(playerTwo) || positionsArray[(yOne + 1), (xOne - 1)].Equals(playerTwoKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
                 {
                     return true;
                 }
@@ -478,22 +522,22 @@ namespace CourseWork
             else
             {
                 // Checks Up Right 
-                if ((yOne > 1 && xOne < 6) && ((positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOne) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
+                if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
                 {
                     return true;
                 }
                 // Checks Down Right
-                if ((yOne < 6 && xOne < 6) && ((positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOne) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
+                if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
                 {
                     return true;
                 }
                 // Checks Up Left
-                if ((yOne > 1 && xOne > 1) && ((positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOne) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
+                if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
                 {
                     return true;
                 }
                 // Checks Down Left
-                if ((yOne < 6 && xOne > 1) && ((positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOne) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
+                if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
                 {
                     return true;
                 }
@@ -504,12 +548,51 @@ namespace CourseWork
             }
         }
 
+        // Method checks that the first co-ords entered contain a piece belonging to the player attempting to play their turn
+        public bool PlayerCheck(int yOne, int xOne, string[,] positionsArray, bool player1Turn)
+        {
+            if (player1Turn.Equals(true))
+            {
+                if (!positionsArray[yOne, xOne].Equals(" X ") && !positionsArray[yOne, xOne].Equals("|X|"))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (!positionsArray[yOne, xOne].Equals(" O ") && !positionsArray[yOne, xOne].Equals("|O|"))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        // Method converts normal pieces into Kings, when the normal pieces land on the last row
+        public void IsItAKing(int yTwo, int xTwo, string[,] positionsArrays, ref bool player1Turn)
+        {
+            if (yTwo.Equals(0) && (xTwo.Equals(1) || xTwo.Equals(3) || xTwo.Equals(5) || xTwo.Equals(7)))
+            {
+                if (positionsArrays[yTwo, xTwo].Equals(" X "))
+                {
+                    positionsArrays[yTwo, xTwo] = "|X|";
+                    player1Turn = false;
+                }
+            }
+            if (yTwo.Equals(7) && (xTwo.Equals(0) || xTwo.Equals(2) || xTwo.Equals(4) || xTwo.Equals(6)))
+            {
+                if (positionsArrays[yTwo, xTwo].Equals(" O "))
+                {
+                    positionsArrays[yTwo, xTwo] = "|O|";
+                    player1Turn = true;
+                }
+            }
+        }
+
         #endregion
 
-        
-
-
-
+        #region Advanced Movement
 
         private void PlayerMove(int yOne, int xOne, int yTwo, int xTwo, string[,] positionsArray, ref bool player1Turn)
         {  
@@ -531,7 +614,7 @@ namespace CourseWork
                         // Sets the square clicked second to now show the player one piece
                         positionsArray[yTwo, xTwo] = playerOne;                        
 
-                        if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
+                        if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                         {
                             player1Turn = false;                            
                         } 
@@ -552,9 +635,9 @@ namespace CourseWork
                         positionsArray[(yOne - 1), (xOne - 1)] = noMansLand;
 
                         // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerOne;                        
+                        positionsArray[yTwo, xTwo] = playerOne;
 
-                        if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
+                        if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                         {
                             player1Turn = false;
                         }
@@ -617,10 +700,12 @@ namespace CourseWork
                         // Sets the square clicked second to now show the player one piece
                         positionsArray[yTwo, xTwo] = playerOneKing;
                     }
+
+                    if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
+                    {
+                        player1Turn = false;
+                    }
                 }
-
-
-
 
                 if (positionsArray[yTwo, xTwo].Equals(noMansLand))
                 {
@@ -649,9 +734,9 @@ namespace CourseWork
                         positionsArray[(yOne + 1), (xOne + 1)] = noMansLand;
 
                         // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerTwo;                        
+                        positionsArray[yTwo, xTwo] = playerTwo;
 
-                        if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
+                        if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                         {
                             player1Turn = true;                            
                         }
@@ -673,9 +758,9 @@ namespace CourseWork
                         positionsArray[(yOne + 1), (xOne - 1)] = noMansLand;
 
                         // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerTwo;                        
+                        positionsArray[yTwo, xTwo] = playerTwo;
 
-                        if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
+                        if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                         {
                             player1Turn = true;                            
                         }
@@ -739,14 +824,17 @@ namespace CourseWork
                         positionsArray[yTwo, xTwo] = playerTwoKing;
                     }
 
-
+                    if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
+                    {
+                        player1Turn = true;
+                    }
                 }
 
 
                 if (positionsArray[yTwo, xTwo].Equals(noMansLand))
                 {
                     // Basic Movement
-                    if ((MovementRight(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)) || (MovementLeft(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)))
+                    if ((MovementRight(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)) || (MovementLeft(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)) || (MovementKing(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)))
                     {                        
                         player1Turn = true;                          
                         return;
@@ -755,46 +843,6 @@ namespace CourseWork
             }  
         }
 
-        // Method checks that the first co-ords entered contain a piece belonging to the player attempting to play their turn
-        public bool PlayerCheck(int yOne, int xOne, string[,] positionsArray, bool player1Turn)
-        {
-            if (player1Turn.Equals(true))
-            {
-                if (!positionsArray[yOne, xOne].Equals(" X ") && !positionsArray[yOne, xOne].Equals("|X|"))
-                {
-                    return false;
-                }                
-            }
-            else
-            {
-                if (!positionsArray[yOne, xOne].Equals(" O ") && !positionsArray[yOne, xOne].Equals("|O|"))
-                {
-                    return false;
-                }                
-            }
-
-            return true;
-        }
-
-        // Method converts normal pieces into Kings, when the normal pieces land on the last row
-        public void IsItAKing(int yTwo, int xTwo, string[,] positionsArrays, ref bool player1Turn)
-        {
-            if (yTwo.Equals(0) && (xTwo.Equals(1) || xTwo.Equals(3) || xTwo.Equals(5) || xTwo.Equals(7)))
-            {
-                if (positionsArrays[yTwo, xTwo].Equals(" X "))
-                {
-                    positionsArrays[yTwo, xTwo] = "|X|";
-                    player1Turn = false;
-                }
-            }
-            if (yTwo.Equals(7) && (xTwo.Equals(0) || xTwo.Equals(2) || xTwo.Equals(4) || xTwo.Equals(6)))
-            {
-                if (positionsArrays[yTwo, xTwo].Equals(" O "))
-                {
-                    positionsArrays[yTwo, xTwo] = "|O|";
-                    player1Turn = true;
-                }
-            }  
-        }
+        #endregion        
     }
 }

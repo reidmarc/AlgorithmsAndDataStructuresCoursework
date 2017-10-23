@@ -187,11 +187,11 @@ namespace CourseWork
             positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
             positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = "   ";
 
-            positionsArray[1, 4] = " X ";
-            positionsArray[1, 2] = " O ";
+            positionsArray[1, 2] = "|X|";
+            positionsArray[2, 1] = "|O|";
             //positionsArray[2, 1] = " X ";
-            //positionsArray[1, 4] = " X ";
-            //positionsArray[6, 5] = " O ";
+            //positionsArray[5, 4] = " X ";
+            //positionsArray[6, 5] = "|O|";
 
 
 
@@ -254,12 +254,43 @@ namespace CourseWork
                         playerTwoKingCounter = playerTwoKingCounter + 1;
 
                     }
-
                 }
+            }           
+        }
+
+        public bool IsThereAWinner()
+        {
+            if ((playerOneCounter + playerOneKingCounter).Equals(0))
+            {
+                Console.Clear();
+                for (int i = 0; i < 1000; i++)
+                {
+                    Console.WriteLine("Player O is the winner!! GG\n");
+                    Console.WriteLine("                            Player O is the winner!! GG\n");
+                    Console.WriteLine("                                                        Player O is the winner!! GG\n");
+                }
+                Console.ReadKey();
+                return false;
+
             }
+
+            if ((playerTwoCounter + playerTwoKingCounter).Equals(0))
+            {
+                Console.Clear();
+                for (int i = 0; i < 1000; i++)
+                {
+                    Console.WriteLine("Player X is the winner!! GG\n");
+                    Console.WriteLine("                            Player X is the winner!! GG\n");
+                    Console.WriteLine("                                                        Player X is the winner!! GG\n");
+                }
+                Console.ReadKey();
+                return false;
+            }
+
+            return true;
+        
         }
 
         #endregion
-
     }
 }
