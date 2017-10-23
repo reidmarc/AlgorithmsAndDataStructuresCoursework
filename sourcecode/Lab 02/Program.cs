@@ -15,7 +15,7 @@ namespace CourseWork
             #region Variables / Objects / Collections
 
             TheBoard theBoard = new TheBoard();
-            Player playerOb = new Player();
+            Player playerOb = new Player();            
             UndoRedoReplay undoRedoReplay = new UndoRedoReplay();
 
             // 2D array to map store the piece locations
@@ -98,6 +98,15 @@ namespace CourseWork
                             Console.WriteLine("Please enter the X Co-Ordinate of the piece you want to move:");
                             Int32.TryParse(Console.ReadLine(), out xOne);
 
+                            if (playerOb.PlayerCheck(yOne, xOne, positionsArray, player1Turn).Equals(false))
+                            {
+                                Console.Clear();
+                                theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                Console.WriteLine("You must select a piece that belongs to you.");
+                                Console.ReadKey();
+                                break;
+                            }
+
                             Console.Clear();
                             theBoard.DisplayTheBoard(positionsArray, player1Turn);
 
@@ -108,6 +117,10 @@ namespace CourseWork
                             Int32.TryParse(Console.ReadLine(), out xTwo);
 
                             playerOb.ForcedCaptureCheck(ref player1Turn, positionsArray, yOne, xOne, yTwo, xTwo);
+
+                            // If a piece has just been converted into a king, this method ends the turn for that player.
+                            playerOb.IsItAKing(yTwo, xTwo, positionsArray, ref player1Turn);
+                            
 
                             // Stores the current state of the board
                             undoRedoReplay.StoreTheMovePositionsUndoRedo(positionsArray, player1Turn);
