@@ -37,7 +37,10 @@ namespace CourseWork
             // Sets the width and height of the console window
             int width = (Console.LargestWindowWidth - 100);
             int height = (Console.LargestWindowHeight - 10);            
-            Console.SetWindowSize(width, height);            
+            Console.SetWindowSize(width, height);
+
+            // Set the position of the console window to the top left
+            Console.SetWindowPosition(0, 0);
         }
 
         #endregion
