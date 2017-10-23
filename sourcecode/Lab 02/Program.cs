@@ -12,6 +12,9 @@ namespace CourseWork
     {     
         static void Main(string[] args)
         {
+
+          
+
             #region Variables / Objects / Collections
 
             TheBoard theBoard = new TheBoard();
@@ -28,18 +31,23 @@ namespace CourseWork
             int xOne;
 
             int yTwo;
-            int xTwo;            
+            int xTwo;
+
+            int gameMode = 0;
+            int gameModeSelection = 0;
 
             bool player1Turn = true;           
 
             bool endGame = true;
+            bool notMadeChoice = true;
 
             #endregion
 
+            // Console settings
+            theBoard.ConsoleSettings();
 
 
-
-
+            StartingMenu();
 
 
             theBoard.NewGame(positionsArray);
@@ -47,7 +55,7 @@ namespace CourseWork
             // Stores the current state of the board
             undoRedoReplay.StoreTheMovePositionsUndoRedo(positionsArray, player1Turn);
 
-            theBoard.ConsoleSettings();
+           
 
             void NewGamePrep()
             {
@@ -74,13 +82,14 @@ namespace CourseWork
                 // Displays the menu
                 Console.WriteLine("Menu\n" +                    
                     "\nPress [1] to take a turn." +
-                    "\t\t\tPress [4] to reset a turn." +
+                    "\t\t\tPress [5] to reset a turn." +
                     "\nPress [2] to undo a move." +
-                    "\t\t\tPress [5] to end a turn." +
+                    "\t\t\tPress [6] to end a turn." +
                     "\nPress [3] to redo a move." +
-                    "\t\t\tPress [6] to restart the game." +
-                    "\nPress [7] to replay the game." +
-                    "\t\t\tPress [0] to exit the application.\n\n");
+                    "\t\t\tPress [7] to restart the game." +
+                    "\nPress [4] to replay the game." +
+                    "\t\t\tPress [8] to return to the starting menu.\n" +
+                    "\t\t\t\t\t\tPress [0] to exit the application.\n\n");
                
 
                 
@@ -208,44 +217,8 @@ namespace CourseWork
                             break;                        
                         }
 
-                    // Reset a turn
-                    case 4:
-                        {
-                            yOne = 0;
-                            xOne = 0;
-                            yTwo = 0;
-                            xTwo = 0;
-                            theBoard.DisplayTheBoard(positionsArray, player1Turn);
-                            break;
-                        }
-                    //End a turn
-                    case 5:
-                        {
-                            if (player1Turn.Equals(true))
-                            {
-                                player1Turn = false;
-                            }
-                            else
-                            {
-                                player1Turn = true;
-                            }
-
-                            theBoard.DisplayTheBoard(positionsArray, player1Turn);
-                            break;
-                        }
-
-                    // Restart game
-                    case 6:
-                        {
-                            theBoard.NewGame(positionsArray);
-
-                            NewGamePrep();
-                            
-                            break;
-                        }
-
                     // Replay a game
-                    case 7:
+                    case 4:
                         {
                             // Gets the number for how many times to loop
                             int numReplays = undoRedoReplay.replayQueue.Count;
@@ -257,7 +230,7 @@ namespace CourseWork
                                 int milliseconds = 2000;
                                 Thread.Sleep(milliseconds);
 
-                               
+
 
                                 // Stops the program from trying to dequeue the first value off the queue 'replayQueue'
                                 // When there is nothing stored on the stack
@@ -293,7 +266,7 @@ namespace CourseWork
                             Console.WriteLine("The replay has ended, a new game will begin.");
                             Console.ReadKey();
 
-                            
+
 
                             theBoard.NewGame(positionsArray);
                             NewGamePrep();
@@ -302,6 +275,52 @@ namespace CourseWork
 
                             break;
                         }
+
+
+                    // Reset a turn
+                    case 5:
+                        {
+                            yOne = 0;
+                            xOne = 0;
+                            yTwo = 0;
+                            xTwo = 0;
+                            theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                            break;
+                        }
+                    //End a turn
+                    case 6:
+                        {
+                            if (player1Turn.Equals(true))
+                            {
+                                player1Turn = false;
+                            }
+                            else
+                            {
+                                player1Turn = true;
+                            }
+
+                            theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                            break;
+                        }
+
+                    // Restart game
+                    case 7:
+                        {
+                            theBoard.NewGame(positionsArray);
+
+                            NewGamePrep();
+                            
+                            break;
+                        }
+
+                    // Return to starting menu
+                    case 8:
+                        {
+                            StartingMenu();
+                            break;
+                        }
+
+                    
 
                     // Exit game
                     case 0:
@@ -324,6 +343,89 @@ namespace CourseWork
 
             // Closes the application
             Environment.Exit(0);
+
+            #region Starting Menu
+
+            void StartingMenu()
+            {
+
+                Console.WriteLine("\n" +
+                    "   ___  _                  _                          \n" +
+                    "  / __\\| |__    ___   ___ | | __ ___  _ __  ___      \n" +
+                    " / /   | '_ \\  / _ \\ / __|| |/ // _ \\| '__|/ __|   \n" +
+                    "/ /___ | | | ||  __/| (__ |   <|  __/| |   \\__ \\    \n" +
+                    "\\____/ |_| |_| \\___| \\___||_|\\_\\\\___||_|   |___/\n" +
+                    "" +
+                    "" +
+                    "                                                         ___  _                  _                          \n" +
+                    "                                                        / __\\| |__    ___   ___ | | __ ___  _ __  ___      \n" +
+                    "                                                       / /   | '_ \\  / _ \\ / __|| |/ // _ \\| '__|/ __|   \n" +
+                    "                                                      / /___ | | | ||  __/| (__ |   <|  __/| |   \\__ \\    \n" +
+                    "                                                      \\____/ |_| |_| \\___| \\___||_|\\_\\\\___||_|   |___/\n" +
+                    "");
+                Console.ReadKey();
+
+                Console.WriteLine("                                                                               By Marc Reid [03001588]");
+                Console.ReadKey();
+
+
+
+
+                while (notMadeChoice)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Game Modes Available:\n\n[1] - Human vs Human\n[2] - Human vs AI\n[3] - AI vs AI\n[4] - To quit the game\n\nPlease select a game mode.");
+
+
+                    Int32.TryParse(Console.ReadLine(), out gameMode);
+
+
+
+                    switch (gameMode)
+                    {
+                        case 1:
+                            {
+                                gameModeSelection = 1;
+                                notMadeChoice = false; ;
+                                break;
+                            }
+
+                        case 2:
+                            {
+                                gameModeSelection = 2;
+                                notMadeChoice = false;
+                                break;
+                            }
+
+                        case 3:
+                            {
+                                gameModeSelection = 3;
+                                notMadeChoice = false;
+                                break;
+                            }
+
+                        case 4:
+                            {
+                                // Closes the application
+                                Environment.Exit(0);
+                                break;
+                            }
+
+                        default:
+                            {
+                                Console.Clear();
+                                Console.Beep();
+                                notMadeChoice = true;
+                                Console.WriteLine("Please make sure the number you select is on the menu.");
+                                Console.ReadKey();
+                                break;
+                            }
+
+                    }
+                }
+            }
+
+            #endregion
         }        
     }
 }
