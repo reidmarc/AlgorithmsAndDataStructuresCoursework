@@ -551,22 +551,29 @@ namespace CourseWork
         // Method checks that the first co-ords entered contain a piece belonging to the player attempting to play their turn
         public bool PlayerCheck(int yOne, int xOne, string[,] positionsArray, bool player1Turn)
         {
-            if (player1Turn.Equals(true))
+            try
             {
-                if (!positionsArray[yOne, xOne].Equals(" X ") && !positionsArray[yOne, xOne].Equals("|X|"))
+                if (player1Turn.Equals(true))
                 {
-                    return false;
+                    if (!positionsArray[yOne, xOne].Equals(" X ") && !positionsArray[yOne, xOne].Equals("|X|"))
+                    {
+                        return false;
+                    }
                 }
-            }
-            else
-            {
-                if (!positionsArray[yOne, xOne].Equals(" O ") && !positionsArray[yOne, xOne].Equals("|O|"))
+                else
                 {
-                    return false;
+                    if (!positionsArray[yOne, xOne].Equals(" O ") && !positionsArray[yOne, xOne].Equals("|O|"))
+                    {
+                        return false;
+                    }
                 }
-            }
 
-            return true;
+                return true;
+            }
+            catch
+            {
+
+            }
         }
 
         // Method converts normal pieces into Kings, when the normal pieces land on the last row

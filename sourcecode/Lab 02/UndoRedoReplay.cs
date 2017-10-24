@@ -25,7 +25,7 @@ namespace CourseWork
         #region Storing Moves As Strings   
 
         public void StoreTheMovePositionsUndoRedo(string[,] positionsArray, bool player1Turn)
-        {
+        { 
             // Loops through the 2D array and outputs the strings to a varible then concatenates them with a comma inbetween each value.
             for (int i = 0; i < 8; i++)
             {
@@ -33,11 +33,11 @@ namespace CourseWork
                 {
                     positionsTemp = positionsArray[i, j];
 
-                    // Replaces the tiles that have no content with a symbol
-                    if (positionsTemp.Equals("   "))
-                    {
-                        positionsTemp = "-";
-                    }
+                    //// Replaces the tiles that have no content with a symbol
+                    //if (positionsTemp.Equals("   "))
+                    //{
+                    //    positionsTemp = "-";
+                    //}
 
                     // Stops the string from starting with a comma
                     if (i.Equals(0) && j.Equals(0))
@@ -83,14 +83,14 @@ namespace CourseWork
 
             string[] savedPositions = positionsOfPiecesNow.Split(',');
 
-            // Replaces the '-' with string.empty like it was before being saved
-            for (int i = 0; i < savedPositions.Length; i++)
-            {
-                if (savedPositions[i].Equals("-"))
-                {
-                    savedPositions[i] = "   ";
-                }
-            }
+            //// Replaces the '-' with string.empty like it was before being saved
+            //for (int i = 0; i < savedPositions.Length; i++)
+            //{
+            //    if (savedPositions[i].Equals("-"))
+            //    {
+            //        savedPositions[i] = "   ";
+            //    }
+            //}
 
             
 
@@ -111,14 +111,14 @@ namespace CourseWork
 
             string[] savedPositions = positionsOfPieces.Split(',');
 
-            // Replaces the '-' with string.empty like it was before being saved
-            for (int i = 0; i < savedPositions.Length; i++)
-            {
-                if (savedPositions[i].Equals("-"))
-                {
-                    savedPositions[i] = "   ";
-                }
-            }         
+            //// Replaces the '-' with string.empty like it was before being saved
+            //for (int i = 0; i < savedPositions.Length; i++)
+            //{
+            //    if (savedPositions[i].Equals("-"))
+            //    {
+            //        savedPositions[i] = "   ";
+            //    }
+            //}         
 
             return savedPositions; 
         }
@@ -133,14 +133,14 @@ namespace CourseWork
 
                 string[] savedPositions = positionsOfPieces.Split(',');
 
-                // Replaces the '-' with string.empty like it was before being saved
-                for (int i = 0; i < savedPositions.Length; i++)
-                {
-                    if (savedPositions[i].Equals("-"))
-                    {
-                        savedPositions[i] = "   ";
-                    }
-                }               
+                //// Replaces the '-' with string.empty like it was before being saved
+                //for (int i = 0; i < savedPositions.Length; i++)
+                //{
+                //    if (savedPositions[i].Equals("-"))
+                //    {
+                //        savedPositions[i] = "   ";
+                //    }
+                //}               
                 
                 return savedPositions;   
         }

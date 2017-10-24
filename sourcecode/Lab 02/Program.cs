@@ -11,10 +11,7 @@ namespace CourseWork
     class Program
     {     
         static void Main(string[] args)
-        {
-
-          
-
+        { 
             #region Variables / Objects / Collections
 
             TheBoard theBoard = new TheBoard();
@@ -47,9 +44,83 @@ namespace CourseWork
             theBoard.ConsoleSettings();
 
 
-            StartingMenu();
+            //StartingMenu();
+            Console.WriteLine("\n" +
+                    "   ___  _                  _                          \n" +
+                    "  / __\\| |__    ___   ___ | | __ ___  _ __  ___      \n" +
+                    " / /   | '_ \\  / _ \\ / __|| |/ // _ \\| '__|/ __|   \n" +
+                    "/ /___ | | | ||  __/| (__ |   <|  __/| |   \\__ \\    \n" +
+                    "\\____/ |_| |_| \\___| \\___||_|\\_\\\\___||_|   |___/\n" +
+                    "" +
+                    "" +
+                    "                                                         ___  _                  _                          \n" +
+                    "                                                        / __\\| |__    ___   ___ | | __ ___  _ __  ___      \n" +
+                    "                                                       / /   | '_ \\  / _ \\ / __|| |/ // _ \\| '__|/ __|   \n" +
+                    "                                                      / /___ | | | ||  __/| (__ |   <|  __/| |   \\__ \\    \n" +
+                    "                                                      \\____/ |_| |_| \\___| \\___||_|\\_\\\\___||_|   |___/\n" +
+                    "");
+            Console.ReadKey();
+
+            Console.WriteLine("                                                                               By Marc Reid [03001588]");
+            Console.ReadKey();
 
 
+
+
+            while (notMadeChoice)
+            {
+                Console.Clear();
+                Console.WriteLine("Game Modes Available:\n\n[1] - Human vs Human\n[2] - Human vs AI\n[3] - AI vs AI\n[4] - To quit the game\n\nPlease select a game mode.");
+
+
+                Int32.TryParse(Console.ReadLine(), out gameMode);
+
+
+
+                switch (gameMode)
+                {
+                    case 1:
+                        {
+                            gameModeSelection = 1;
+                            notMadeChoice = false; ;
+                            break;
+                        }
+
+                    case 2:
+                        {
+                            gameModeSelection = 2;
+                            notMadeChoice = false;
+                            break;
+                        }
+
+                    case 3:
+                        {
+                            gameModeSelection = 3;
+                            notMadeChoice = false;
+                            break;
+                        }
+
+                    case 4:
+                        {
+                            // Closes the application
+                            Environment.Exit(0);
+                            break;
+                        }
+
+                    default:
+                        {
+                            Console.Clear();
+                            Console.Beep();
+                            notMadeChoice = true;
+                            Console.WriteLine("Please make sure the number you select is on the menu.");
+                            Console.ReadKey();
+                            break;
+                        }
+
+                }
+            }            
+
+            // Loads the starting positions and the board
             theBoard.NewGame(positionsArray);
 
             // Stores the current state of the board
@@ -57,22 +128,9 @@ namespace CourseWork
 
            
 
-            void NewGamePrep()
-            {
-                // Clears the stacks and queues, so they are ready to record another game
-                undoRedoReplay.undoStack.Clear();
-                undoRedoReplay.redoStack.Clear();
-                undoRedoReplay.replayQueue.Clear();
+           
 
-                // Stores the current state of the board
-                undoRedoReplay.StoreTheMovePositionsUndoRedo(positionsArray, player1Turn);
-                yOne = 0;
-                xOne = 0;
-                yTwo = 0;
-                xTwo = 0;
-            }
-
-            while (endGame)
+            while(endGame)
             {
                 Console.Clear();
 
@@ -219,9 +277,19 @@ namespace CourseWork
 
                     // Replay a game
                     case 4:
-                        {
+                        {    
                             // Gets the number for how many times to loop
                             int numReplays = undoRedoReplay.replayQueue.Count;
+
+
+
+                            if (undoRedoReplay.replayQueue.Count.Equals(1))
+                            {
+                                Console.WriteLine("You must play some moves first, before being able to replay.");
+                                Console.ReadKey();
+                                break;
+                            }
+
 
 
                             for (int i = 0; i < numReplays; i++)
@@ -234,7 +302,7 @@ namespace CourseWork
 
                                 // Stops the program from trying to dequeue the first value off the queue 'replayQueue'
                                 // When there is nothing stored on the stack
-                                if (undoRedoReplay.replayQueue.Count > 0)
+                                if (undoRedoReplay.replayQueue.Count > 1)
                                 {
                                     string[] savedPositions = undoRedoReplay.DisplayTheReplayMovePositions(positionsArray);
 
@@ -263,16 +331,25 @@ namespace CourseWork
                                 }
                             }
 
+                           
+                            
                             Console.WriteLine("The replay has ended, a new game will begin.");
                             Console.ReadKey();
 
 
 
                             theBoard.NewGame(positionsArray);
-                            NewGamePrep();
 
-
-
+                            //NewGamePrep();
+                            //Clears the stacks and queues, so they are ready to record another game
+                            undoRedoReplay.undoStack.Clear();
+                            undoRedoReplay.redoStack.Clear();
+                            undoRedoReplay.replayQueue.Clear();                            
+                            
+                            yOne = 0;
+                            xOne = 0;
+                            yTwo = 0;
+                            xTwo = 0;
                             break;
                         }
 
@@ -308,7 +385,18 @@ namespace CourseWork
                         {
                             theBoard.NewGame(positionsArray);
 
-                            NewGamePrep();
+                            //NewGamePrep();
+                            //Clears the stacks and queues, so they are ready to record another game
+                            undoRedoReplay.undoStack.Clear();
+                            undoRedoReplay.redoStack.Clear();
+                            undoRedoReplay.replayQueue.Clear();
+
+                            // Stores the current state of the board
+                            undoRedoReplay.StoreTheMovePositionsUndoRedo(positionsArray, player1Turn);
+                            yOne = 0;
+                            xOne = 0;
+                            yTwo = 0;
+                            xTwo = 0;
                             
                             break;
                         }
@@ -316,7 +404,7 @@ namespace CourseWork
                     // Return to starting menu
                     case 8:
                         {
-                            StartingMenu();
+                            //StartingMenu();
                             break;
                         }
 
@@ -344,86 +432,86 @@ namespace CourseWork
             // Closes the application
             Environment.Exit(0);
 
-            #region Starting Menu
+            #region Starting Menu   
 
-            void StartingMenu()
-            {
+            //void StartingMenu()
+            //{
 
-                Console.WriteLine("\n" +
-                    "   ___  _                  _                          \n" +
-                    "  / __\\| |__    ___   ___ | | __ ___  _ __  ___      \n" +
-                    " / /   | '_ \\  / _ \\ / __|| |/ // _ \\| '__|/ __|   \n" +
-                    "/ /___ | | | ||  __/| (__ |   <|  __/| |   \\__ \\    \n" +
-                    "\\____/ |_| |_| \\___| \\___||_|\\_\\\\___||_|   |___/\n" +
-                    "" +
-                    "" +
-                    "                                                         ___  _                  _                          \n" +
-                    "                                                        / __\\| |__    ___   ___ | | __ ___  _ __  ___      \n" +
-                    "                                                       / /   | '_ \\  / _ \\ / __|| |/ // _ \\| '__|/ __|   \n" +
-                    "                                                      / /___ | | | ||  __/| (__ |   <|  __/| |   \\__ \\    \n" +
-                    "                                                      \\____/ |_| |_| \\___| \\___||_|\\_\\\\___||_|   |___/\n" +
-                    "");
-                Console.ReadKey();
+            //    Console.WriteLine("\n" +
+            //        "   ___  _                  _                          \n" +
+            //        "  / __\\| |__    ___   ___ | | __ ___  _ __  ___      \n" +
+            //        " / /   | '_ \\  / _ \\ / __|| |/ // _ \\| '__|/ __|   \n" +
+            //        "/ /___ | | | ||  __/| (__ |   <|  __/| |   \\__ \\    \n" +
+            //        "\\____/ |_| |_| \\___| \\___||_|\\_\\\\___||_|   |___/\n" +
+            //        "" +
+            //        "" +
+            //        "                                                         ___  _                  _                          \n" +
+            //        "                                                        / __\\| |__    ___   ___ | | __ ___  _ __  ___      \n" +
+            //        "                                                       / /   | '_ \\  / _ \\ / __|| |/ // _ \\| '__|/ __|   \n" +
+            //        "                                                      / /___ | | | ||  __/| (__ |   <|  __/| |   \\__ \\    \n" +
+            //        "                                                      \\____/ |_| |_| \\___| \\___||_|\\_\\\\___||_|   |___/\n" +
+            //        "");
+            //    Console.ReadKey();
 
-                Console.WriteLine("                                                                               By Marc Reid [03001588]");
-                Console.ReadKey();
-
-
-
-
-                while (notMadeChoice)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Game Modes Available:\n\n[1] - Human vs Human\n[2] - Human vs AI\n[3] - AI vs AI\n[4] - To quit the game\n\nPlease select a game mode.");
-
-
-                    Int32.TryParse(Console.ReadLine(), out gameMode);
+            //    Console.WriteLine("                                                                               By Marc Reid [03001588]");
+            //    Console.ReadKey();
 
 
 
-                    switch (gameMode)
-                    {
-                        case 1:
-                            {
-                                gameModeSelection = 1;
-                                notMadeChoice = false; ;
-                                break;
-                            }
 
-                        case 2:
-                            {
-                                gameModeSelection = 2;
-                                notMadeChoice = false;
-                                break;
-                            }
+            //    while (notMadeChoice)
+            //    {
+            //        Console.Clear();
+            //        Console.WriteLine("Game Modes Available:\n\n[1] - Human vs Human\n[2] - Human vs AI\n[3] - AI vs AI\n[4] - To quit the game\n\nPlease select a game mode.");
 
-                        case 3:
-                            {
-                                gameModeSelection = 3;
-                                notMadeChoice = false;
-                                break;
-                            }
 
-                        case 4:
-                            {
-                                // Closes the application
-                                Environment.Exit(0);
-                                break;
-                            }
+            //        Int32.TryParse(Console.ReadLine(), out gameMode);
 
-                        default:
-                            {
-                                Console.Clear();
-                                Console.Beep();
-                                notMadeChoice = true;
-                                Console.WriteLine("Please make sure the number you select is on the menu.");
-                                Console.ReadKey();
-                                break;
-                            }
 
-                    }
-                }
-            }
+
+            //        switch (gameMode)
+            //        {
+            //            case 1:
+            //                {
+            //                    gameModeSelection = 1;
+            //                    notMadeChoice = false; ;
+            //                    break;
+            //                }
+
+            //            case 2:
+            //                {
+            //                    gameModeSelection = 2;
+            //                    notMadeChoice = false;
+            //                    break;
+            //                }
+
+            //            case 3:
+            //                {
+            //                    gameModeSelection = 3;
+            //                    notMadeChoice = false;
+            //                    break;
+            //                }
+
+            //            case 4:
+            //                {
+            //                    // Closes the application
+            //                    Environment.Exit(0);
+            //                    break;
+            //                }
+
+            //            default:
+            //                {
+            //                    Console.Clear();
+            //                    Console.Beep();
+            //                    notMadeChoice = true;
+            //                    Console.WriteLine("Please make sure the number you select is on the menu.");
+            //                    Console.ReadKey();
+            //                    break;
+            //                }
+
+            //        }
+            //    }
+            //}
 
             #endregion
         }        
