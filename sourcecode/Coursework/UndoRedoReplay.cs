@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseWork
+namespace Coursework
 {
-    class UndoRedoReplay
+    public class UndoRedoReplay
     {
         #region variables   
 
@@ -15,7 +15,7 @@ namespace CourseWork
         public Stack<string> undoStack = new Stack<string>();
         public Stack<string> redoStack = new Stack<string>();
         public Queue<string> replayQueue = new Queue<string>();
-       
+
 
         string positions;
         string positionsTemp;
@@ -25,7 +25,7 @@ namespace CourseWork
         #region Storing Moves As Strings   
 
         public void StoreTheMovePositionsUndoRedo(string[,] positionsArray, bool player1Turn)
-        { 
+        {
             // Loops through the 2D array and outputs the strings to a varible then concatenates them with a comma inbetween each value.
             for (int i = 0; i < 8; i++)
             {
@@ -74,7 +74,7 @@ namespace CourseWork
         #region Displaying Moves From The Undo Stack
 
         public string[] DisplayTheUndoMovePositions(string[,] positionsArray)
-        {            
+        {
             string positionsOfPieces = undoStack.Pop();
 
             redoStack.Push(positionsOfPieces);
@@ -92,10 +92,10 @@ namespace CourseWork
             //    }
             //}
 
-            
 
-            return savedPositions;           
-            
+
+            return savedPositions;
+
         }
 
         #endregion
@@ -120,7 +120,7 @@ namespace CourseWork
             //    }
             //}         
 
-            return savedPositions; 
+            return savedPositions;
         }
 
         #endregion
@@ -128,21 +128,21 @@ namespace CourseWork
         #region Displaying Moves From The Replay Queue
 
         public string[] DisplayTheReplayMovePositions(string[,] positionsArray)
-        {            
-                string positionsOfPieces = replayQueue.Dequeue();
+        {
+            string positionsOfPieces = replayQueue.Dequeue();
 
-                string[] savedPositions = positionsOfPieces.Split(',');
+            string[] savedPositions = positionsOfPieces.Split(',');
 
-                //// Replaces the '-' with string.empty like it was before being saved
-                //for (int i = 0; i < savedPositions.Length; i++)
-                //{
-                //    if (savedPositions[i].Equals("-"))
-                //    {
-                //        savedPositions[i] = "   ";
-                //    }
-                //}               
-                
-                return savedPositions;   
+            //// Replaces the '-' with string.empty like it was before being saved
+            //for (int i = 0; i < savedPositions.Length; i++)
+            //{
+            //    if (savedPositions[i].Equals("-"))
+            //    {
+            //        savedPositions[i] = "   ";
+            //    }
+            //}               
+
+            return savedPositions;
         }
 
         #endregion  

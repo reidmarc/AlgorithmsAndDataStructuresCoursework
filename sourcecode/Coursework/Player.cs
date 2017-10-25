@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseWork
+namespace Coursework
 {
     public class Player
     {
@@ -23,7 +23,7 @@ namespace CourseWork
 
         private bool MovementRight(int yOne, int xOne, int yTwo, int xTwo, string[,] positionsArray, ref bool player1Turn)
         {
-            
+
             if (player1Turn)
             {
                 // To stop the if statement recieving an out of bounds exception
@@ -132,7 +132,7 @@ namespace CourseWork
                         positionsArray[yTwo, xTwo] = playerOneKing;
                         return true;
                     }
-                                       
+
                 }
 
                 // Movement Down Right
@@ -144,7 +144,7 @@ namespace CourseWork
                         positionsArray[yOne, xOne] = noMansLand;
                         positionsArray[yTwo, xTwo] = playerOneKing;
                         return true;
-                    }                    
+                    }
                 }
 
                 // Movement Up Left
@@ -157,7 +157,7 @@ namespace CourseWork
                         positionsArray[yOne, xOne] = noMansLand;
                         positionsArray[yTwo, xTwo] = playerOneKing;
                         return true;
-                    }                    
+                    }
                 }
 
                 // Movement Down Left
@@ -250,7 +250,7 @@ namespace CourseWork
         {
             // Boolean value which represents whether there is a forced capture move or not
             bool forcedCapture = false;
-            
+
 
 
             // A list to store the potential 'takes' that must be chosen from
@@ -261,21 +261,21 @@ namespace CourseWork
             // If 'true' then it adds that piece of player 1's to a list, which stores all the forced moves
             // Available to player 1, that they must selected from.
             if (player1Turn)
-            {   
+            {
                 for (int i = 0; i < 8; i++)
                 {
                     for (int j = 0; j < 8; j++)
                     {
                         if ((positionsArray[i, j]).Contains(playerOne) || (positionsArray[i, j]).Contains(playerOneKing))
                         {
-                            if ((CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true)) || 
-                                (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)) || 
+                            if ((CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true)) ||
+                                (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)) ||
                                 (CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true)))
                             {
                                 int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
                                 listOfForcedMoves.Add(potentialMove);
                                 forcedCapture = true;
-                            }                            
+                            }
                         }
                     }
                 }
@@ -284,7 +284,7 @@ namespace CourseWork
                 {
 
                     int potentialMoveCheck = Convert.ToInt32(string.Format("{0}{1}", yOne, xOne));
-                    
+
 
 
                     // Checks that the destination co-ords to the up right are the correct ones to perform the forced 'take'
@@ -347,7 +347,7 @@ namespace CourseWork
                                 listOfForcedMoves.Add(potentialMove);
                                 forcedCapture = true;
                             }
-                                            
+
                         }
                     }
                 }
@@ -400,7 +400,7 @@ namespace CourseWork
         public bool CanAPieceBeCapturedRight(int yOne, int xOne, string[,] positionsArray, ref bool player1Turn)
         {
             if (player1Turn)
-            {               
+            {
                 // To stop the if statement recieving an out of bounds exception
                 if (yOne > 1 && xOne < 6)
                 {
@@ -414,7 +414,7 @@ namespace CourseWork
                     {
                         return false;
                     }
-                }                
+                }
                 else
                 {
                     return false;
@@ -422,7 +422,7 @@ namespace CourseWork
             }
             else
             {
-               
+
                 // To stop the if statement recieving an out of bounds exception
                 if (yOne < 6 && xOne < 6)
                 {
@@ -431,12 +431,12 @@ namespace CourseWork
                     if (positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOne) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))
                     {
                         return true;
-                    }                    
+                    }
                     else
                     {
                         return false;
                     }
-                }                
+                }
                 else
                 {
                     return false;
@@ -453,7 +453,7 @@ namespace CourseWork
                 {
                     // Check if player 1 can remove a player 2 piece to the left
                     // If it can then it is still player 1's turn
-                    if (positionsArray[(yOne - 1), (xOne - 1)].Equals(playerTwo)  && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))
+                    if (positionsArray[(yOne - 1), (xOne - 1)].Equals(playerTwo) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))
                     {
                         return true;
                     }
@@ -546,35 +546,30 @@ namespace CourseWork
                     return false;
                 }
             }
-        }
-
+        }        
+        
         // Method checks that the first co-ords entered contain a piece belonging to the player attempting to play their turn
         public bool PlayerCheck(int yOne, int xOne, string[,] positionsArray, bool player1Turn)
         {
-            try
+            // implement a try catch
+            if (player1Turn.Equals(true))
             {
-                if (player1Turn.Equals(true))
+                if (!positionsArray[yOne, xOne].Equals(" X ") && !positionsArray[yOne, xOne].Equals("|X|"))
                 {
-                    if (!positionsArray[yOne, xOne].Equals(" X ") && !positionsArray[yOne, xOne].Equals("|X|"))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-                else
-                {
-                    if (!positionsArray[yOne, xOne].Equals(" O ") && !positionsArray[yOne, xOne].Equals("|O|"))
-                    {
-                        return false;
-                    }
-                }
-
-                return true;
             }
-            catch
+            else
             {
-
+                if (!positionsArray[yOne, xOne].Equals(" O ") && !positionsArray[yOne, xOne].Equals("|O|"))
+                {
+                    return false;
+                }
             }
+
+            return true;
         }
+    
 
         // Method converts normal pieces into Kings, when the normal pieces land on the last row
         public void IsItAKing(int yTwo, int xTwo, string[,] positionsArrays, ref bool player1Turn)
@@ -602,7 +597,7 @@ namespace CourseWork
         #region Advanced Movement
 
         private void PlayerMove(int yOne, int xOne, int yTwo, int xTwo, string[,] positionsArray, ref bool player1Turn)
-        {  
+        {
             // Player 1 Movement Logic
             if (player1Turn)
             {
@@ -619,19 +614,19 @@ namespace CourseWork
                         positionsArray[(yOne - 1), (xOne + 1)] = noMansLand;
 
                         // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerOne;                        
+                        positionsArray[yTwo, xTwo] = playerOne;
 
                         if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                         {
-                            player1Turn = false;                            
-                        } 
+                            player1Turn = false;
+                        }
 
                         return;
                     }
                 }
 
                 if (CanAPieceBeCapturedLeft(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
-                {   
+                {
                     // Checks if removing a piece to the left is the move made
                     if ((yOne - 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
                     {
@@ -719,7 +714,7 @@ namespace CourseWork
                     // Basic Movement
                     if ((MovementRight(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)) || (MovementLeft(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)) || (MovementKing(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)))
                     {
-                        player1Turn = false;                                               
+                        player1Turn = false;
                         return;
                     }
 
@@ -728,7 +723,7 @@ namespace CourseWork
             // Player 2's movement logic
             else
             {
-                
+
                 if (CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
                 {
                     // Checks if removing a piece to the right is the move made
@@ -745,7 +740,7 @@ namespace CourseWork
 
                         if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                         {
-                            player1Turn = true;                            
+                            player1Turn = true;
                         }
 
                         return;
@@ -769,9 +764,9 @@ namespace CourseWork
 
                         if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                         {
-                            player1Turn = true;                            
+                            player1Turn = true;
                         }
-                        
+
                         return;
                     }
                 }
@@ -842,12 +837,12 @@ namespace CourseWork
                 {
                     // Basic Movement
                     if ((MovementRight(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)) || (MovementLeft(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)) || (MovementKing(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)))
-                    {                        
-                        player1Turn = true;                          
+                    {
+                        player1Turn = true;
                         return;
                     }
-                }                
-            }  
+                }
+            }
         }
 
         #endregion        
