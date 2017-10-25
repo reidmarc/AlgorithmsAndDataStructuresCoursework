@@ -26,15 +26,22 @@ namespace Coursework
 
             if (player1Turn)
             {
-                // To stop the if statement recieving an out of bounds exception
-                if (yOne > 0 && xOne < 7)
+                if ((positionsArray[yOne, xOne]).Equals(playerOne))
                 {
-                    // Check if player 1 can move right
-                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
+                    // To stop the if statement recieving an out of bounds exception
+                    if (yOne > 0 && xOne < 7)
                     {
-                        positionsArray[yOne, xOne] = noMansLand;
-                        positionsArray[yTwo, xTwo] = playerOne;
-                        return true;
+                        // Check if player 1 can move right
+                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
+                        {
+                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yTwo, xTwo] = playerOne;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
@@ -48,20 +55,27 @@ namespace Coursework
             }
             else
             {
-                // To stop the if statement recieving an out of bounds exception
-                if (yOne < 7 && xOne < 7)
+                if ((positionsArray[yOne, xOne]).Equals(playerTwo))
                 {
-                    // Check if player 2 can move right
-                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
+                    // To stop the if statement recieving an out of bounds exception
+                    if (yOne < 7 && xOne < 7)
                     {
-                        positionsArray[yOne, xOne] = noMansLand;
-                        positionsArray[yTwo, xTwo] = playerTwo;
-                        return true;
+                        // Check if player 2 can move right
+                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
+                        {
+                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yTwo, xTwo] = playerTwo;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
                         return false;
-                    }
+                    } 
                 }
                 else
                 {
@@ -74,15 +88,23 @@ namespace Coursework
         {
             if (player1Turn)
             {
-                // To stop the if statement recieving an out of bounds exception
-                if (yOne > 0 && xOne > 0)
+                if ((positionsArray[yOne, xOne]).Equals(playerOne))
                 {
-                    // Check if player 1 can move left
-                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
+
+                    // To stop the if statement recieving an out of bounds exception
+                    if (yOne > 0 && xOne > 0)
                     {
-                        positionsArray[yOne, xOne] = noMansLand;
-                        positionsArray[yTwo, xTwo] = playerOne;
-                        return true;
+                        // Check if player 1 can move left
+                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
+                        {
+                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yTwo, xTwo] = playerOne;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
@@ -96,15 +118,22 @@ namespace Coursework
             }
             else
             {
-                // To stop the if statement recieving an out of bounds exception
-                if (yOne < 7 && xOne > 0)
+                if ((positionsArray[yOne, xOne]).Equals(playerTwo))
                 {
-                    // Check if player 2 can move left                    
-                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
+                    // To stop the if statement recieving an out of bounds exception
+                    if (yOne < 7 && xOne > 0)
                     {
-                        positionsArray[yOne, xOne] = noMansLand;
-                        positionsArray[yTwo, xTwo] = playerTwo;
-                        return true;
+                        // Check if player 2 can move left                    
+                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
+                        {
+                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yTwo, xTwo] = playerTwo;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
@@ -122,53 +151,61 @@ namespace Coursework
         {
             if (player1Turn.Equals(true))
             {
-                // Movement Up Right
-                // To stop the if statement recieving an out of bounds exception
-                if (yOne > 0 && xOne < 7)
+                if ((positionsArray[yOne, xOne]).Equals(playerOneKing))
                 {
-                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
+
+                    // Movement Up Right
+                    // To stop the if statement recieving an out of bounds exception
+                    if (yOne > 0 && xOne < 7)
                     {
-                        positionsArray[yOne, xOne] = noMansLand;
-                        positionsArray[yTwo, xTwo] = playerOneKing;
-                        return true;
+                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
+                        {
+                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yTwo, xTwo] = playerOneKing;
+                            return true;
+                        }
+
                     }
 
-                }
-
-                // Movement Down Right
-                // To stop the if statement recieving an out of bounds exception
-                if (yOne < 7 && xOne < 7)
-                {
-                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
+                    // Movement Down Right
+                    // To stop the if statement recieving an out of bounds exception
+                    if (yOne < 7 && xOne < 7)
                     {
-                        positionsArray[yOne, xOne] = noMansLand;
-                        positionsArray[yTwo, xTwo] = playerOneKing;
-                        return true;
+                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
+                        {
+                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yTwo, xTwo] = playerOneKing;
+                            return true;
+                        }
                     }
-                }
 
-                // Movement Up Left
-                // To stop the if statement recieving an out of bounds exception
-                if (yOne > 0 && xOne > 0)
-                {
-                    // Check if player 1 can move left
-                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
+                    // Movement Up Left
+                    // To stop the if statement recieving an out of bounds exception
+                    if (yOne > 0 && xOne > 0)
                     {
-                        positionsArray[yOne, xOne] = noMansLand;
-                        positionsArray[yTwo, xTwo] = playerOneKing;
-                        return true;
+                        // Check if player 1 can move left
+                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
+                        {
+                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yTwo, xTwo] = playerOneKing;
+                            return true;
+                        }
                     }
-                }
 
-                // Movement Down Left
-                // To stop the if statement recieving an out of bounds exception
-                if (yOne < 7 && xOne > 0)
-                {
-                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
+                    // Movement Down Left
+                    // To stop the if statement recieving an out of bounds exception
+                    if (yOne < 7 && xOne > 0)
                     {
-                        positionsArray[yOne, xOne] = noMansLand;
-                        positionsArray[yTwo, xTwo] = playerOneKing;
-                        return true;
+                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
+                        {
+                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yTwo, xTwo] = playerOneKing;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
@@ -182,53 +219,60 @@ namespace Coursework
             }
             else
             {
-                // Movement Up Right
-                // To stop the if statement recieving an out of bounds exception
-                if (yOne > 0 && xOne < 7)
+                if ((positionsArray[yOne, xOne]).Equals(playerTwoKing))
                 {
-                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
+                    // Movement Up Right
+                    // To stop the if statement recieving an out of bounds exception
+                    if (yOne > 0 && xOne < 7)
                     {
-                        positionsArray[yOne, xOne] = noMansLand;
-                        positionsArray[yTwo, xTwo] = playerTwoKing;
-                        return true;
+                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
+                        {
+                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                            return true;
+                        }
+
                     }
 
-                }
-
-                // Movement Down Right
-                // To stop the if statement recieving an out of bounds exception
-                if (yOne < 7 && xOne < 7)
-                {
-                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
+                    // Movement Down Right
+                    // To stop the if statement recieving an out of bounds exception
+                    if (yOne < 7 && xOne < 7)
                     {
-                        positionsArray[yOne, xOne] = noMansLand;
-                        positionsArray[yTwo, xTwo] = playerTwoKing;
-                        return true;
+                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
+                        {
+                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                            return true;
+                        }
                     }
-                }
 
-                // Movement Up Left
-                // To stop the if statement recieving an out of bounds exception
-                if (yOne > 0 && xOne > 0)
-                {
-                    // Check if player 1 can move left
-                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
+                    // Movement Up Left
+                    // To stop the if statement recieving an out of bounds exception
+                    if (yOne > 0 && xOne > 0)
                     {
-                        positionsArray[yOne, xOne] = noMansLand;
-                        positionsArray[yTwo, xTwo] = playerTwoKing;
-                        return true;
+                        // Check if player 1 can move left
+                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
+                        {
+                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                            return true;
+                        }
                     }
-                }
 
-                // Movement Down Left
-                // To stop the if statement recieving an out of bounds exception
-                if (yOne < 7 && xOne > 0)
-                {
-                    if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
+                    // Movement Down Left
+                    // To stop the if statement recieving an out of bounds exception
+                    if (yOne < 7 && xOne > 0)
                     {
-                        positionsArray[yOne, xOne] = noMansLand;
-                        positionsArray[yTwo, xTwo] = playerTwoKing;
-                        return true;
+                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
+                        {
+                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
@@ -319,6 +363,7 @@ namespace Coursework
                     {
                         Console.Beep();
                         Console.WriteLine("You must 'take' your opponents piece");
+                        Console.ReadKey();
                         return;
                     }
                 }
@@ -551,7 +596,7 @@ namespace Coursework
         // Method checks that the first co-ords entered contain a piece belonging to the player attempting to play their turn
         public bool PlayerCheck(int yOne, int xOne, string[,] positionsArray, bool player1Turn)
         {
-            // implement a try catch
+            
             if (player1Turn.Equals(true))
             {
                 if (!positionsArray[yOne, xOne].Equals(" X ") && !positionsArray[yOne, xOne].Equals("|X|"))
