@@ -290,6 +290,97 @@ namespace Coursework
 
         #region Pre Move Checks
 
+        public bool IsThereAnyValidMoves(string[,] positionsArray, bool player1Turn)
+        {
+            int yOne = 0;
+            int xOne = 0;
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (player1Turn.Equals(true))
+                    {
+                        if ((positionsArray[i, j]).Equals(" X "))
+                        {
+
+                        }
+                        if ((positionsArray[i, j]).Equals("|X|"))
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        if (positionsArray[i, j].Equals(playerTwo))
+                        {
+                            yOne = i;
+                            xOne = j;
+
+                            // Checks Down Right for a 'capture'
+                            if (CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true))
+                            {                                
+                                return true;
+                            }
+                            // Checks Down Left for a 'capture'
+                            if (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true))
+                            {                                
+                                return true;
+                            }
+
+                            // Checks Down Left for an empty tile
+                            if (MovementLeft(i, j, (i + 1), (j - 1), positionsArray, ref player1Turn).Equals(true))
+                            {
+                                return true;
+                            }
+
+                            // Checks Down Right for an empty tile
+                            if (MovementKing(i, j, (i + 1), (j + 1), positionsArray, ref player1Turn).Equals(true))
+                            {
+                                return true;
+                            }
+                        }
+                        if (positionsArray[i, j].Equals(playerTwoKing))
+                        {
+                            if (CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
+                            {
+                                return true;
+                            }
+
+                            // Checks Down Left for an empty tile
+                            if (MovementKing(i ,j ,(i+1) ,(j-1) , positionsArray,ref player1Turn).Equals(true))
+                            {
+                                return true;
+                            }
+
+                            // Checks Down Right for an empty tile
+                            if (MovementKing(i, j, (i + 1), (j + 1), positionsArray, ref player1Turn).Equals(true))
+                            {
+                                return true;
+                            }
+
+                            // Checks Up Right for an empty tile
+                            if (MovementKing(i, j, (i - 1), (j - 1), positionsArray, ref player1Turn).Equals(true))
+                            {
+                                return true;
+                            }
+
+                            // Checks Up Left for an empty tile
+                            if (MovementKing(i, j, (i - 1), (j - 1), positionsArray, ref player1Turn).Equals(true))
+                            {
+                                return true;
+                            }                            
+                        }
+                    }
+                }
+            }
+            return false;
+
+
+        }
+
+
+
         public void ForcedCaptureCheck(ref bool player1Turn, string[,] positionsArray, int yOne, int xOne, int yTwo, int xTwo)
         {
             // Boolean value which represents whether there is a forced capture move or not

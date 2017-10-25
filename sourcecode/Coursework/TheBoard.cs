@@ -17,6 +17,9 @@ namespace Coursework
         int playerOneKingCounter = 0;
         int playerTwoKingCounter = 0;
 
+        int fastTick = 150;
+        int slowTick = 300;
+
         string stringPlayerOneCounter;
         string stringPlayerTwoCounter;
         string stringPlayerOneKingCounter;
@@ -233,62 +236,69 @@ namespace Coursework
         #region End Game Method
 
         public bool IsThereAWinner()
-        {
-            int fastTick = 150;
-            int slowTick = 300;
-
-
+        {         
             if ((playerOneCounter + playerOneKingCounter).Equals(0))
             {
-                for (int j = 0; j < 5; j++)
-                {
-                    Console.Clear();
-                    Thread.Sleep(slowTick);
-                    Console.WriteLine(theWinnerIs);
-                    Thread.Sleep(slowTick);
-                }
-
-                for (int i = 0; i < 5; i++)
-                {
-                    Console.Clear();
-                    Thread.Sleep(fastTick);
-                    Console.WriteLine(playerO);
-                    Thread.Sleep(fastTick);
-                }
-
-                Console.Clear();
-                Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", theWinnerIs, playerO);
-                Console.ReadKey();
+                PlayerOWinningMessage();
                 return false;
-
             }
 
             if ((playerTwoCounter + playerTwoKingCounter).Equals(0))
             {
-                for (int j = 0; j < 5; j++)
-                {
-                    Console.Clear();
-                    Thread.Sleep(slowTick);
-                    Console.WriteLine(theWinnerIs);
-                    Thread.Sleep(slowTick);
-                }
-
-                for (int i = 0; i < 5; i++)
-                {
-                    Console.Clear();
-                    Thread.Sleep(fastTick);
-                    Console.WriteLine(playerX);
-                    Thread.Sleep(fastTick);
-                }
-
-                Console.Clear();
-                Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", theWinnerIs, playerX);
-                Console.ReadKey();
+                PlayerXWinningMessage();
                 return false;
             }
 
             return true;
 
+        }  
+        
+        public void PlayerXWinningMessage()
+        {  
+            for (int j = 0; j < 5; j++)
+            {
+                Console.Clear();
+                Thread.Sleep(slowTick);
+                Console.WriteLine(theWinnerIs);
+                Thread.Sleep(slowTick);
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Clear();
+                Thread.Sleep(fastTick);
+                Console.WriteLine(playerX);
+                Thread.Sleep(fastTick);
+            }
+
+            Console.Clear();
+            Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", theWinnerIs, playerX);
+            Console.ReadKey();
+            
+        }
+
+        public void PlayerOWinningMessage()
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                Console.Clear();
+                Thread.Sleep(slowTick);
+                Console.WriteLine(theWinnerIs);
+                Thread.Sleep(slowTick);
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Clear();
+                Thread.Sleep(fastTick);
+                Console.WriteLine(playerO);
+                Thread.Sleep(fastTick);
+            }
+
+            Console.Clear();
+            Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", theWinnerIs, playerO);
+            Console.ReadKey();
+            
         }
 
         #endregion

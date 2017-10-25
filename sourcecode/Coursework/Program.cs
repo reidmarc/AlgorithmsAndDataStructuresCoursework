@@ -179,6 +179,9 @@ namespace Coursework
                                     Console.Clear();
                                     theBoard.DisplayTheBoard(positionsArray, player1Turn);
 
+
+                                   
+
                                     if (gameModeSelection.Equals(2) && player1Turn.Equals(false))
                                     {
 
@@ -244,6 +247,19 @@ namespace Coursework
                                     xOne = 0;
                                     yTwo = 0;
                                     xTwo = 0;
+
+
+                                    if (playerOb.IsThereAnyValidMoves(positionsArray, player1Turn).Equals(false))
+                                    {
+                                        if (player1Turn.Equals(true))
+                                        {
+                                            theBoard.PlayerOWinningMessage();
+                                        }
+                                        else
+                                        {
+                                            theBoard.PlayerXWinningMessage();
+                                        }
+                                    }
 
                                 }
                                 catch (Exception ex)
