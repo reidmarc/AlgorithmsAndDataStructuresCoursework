@@ -145,9 +145,8 @@ namespace Coursework
                     "\t\t\tPress [6] to end a turn." +
                     "\nPress [3] to redo a move." +
                     "\t\t\tPress [7] to restart the game." +
-                    "\nPress [4] to replay the game." +
-                    "\t\t\tPress [8] to return to the starting menu.\n" +
-                    "\t\t\t\t\t\tPress [0] to exit the application.\n\n");
+                    "\nPress [4] to replay the game." +                    
+                    "\t\t\tPress [0] to exit the application.\n\n");
 
 
 
@@ -407,16 +406,7 @@ namespace Coursework
                             xTwo = 0;
 
                             break;
-                        }
-
-                    // Return to starting menu
-                    case 8:
-                        {
-                            //StartingMenu();
-                            break;
-                        }
-
-
+                        }  
 
                     // Exit game
                     case 0:
