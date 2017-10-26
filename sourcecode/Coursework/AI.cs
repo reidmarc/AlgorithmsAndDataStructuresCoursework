@@ -25,7 +25,7 @@ namespace Coursework
         int randomNumberGenCounter = 0;
         int randomMoveCounter = 0;
         int getMoveCounter = 0;
-       
+
 
 
 
@@ -52,37 +52,41 @@ namespace Coursework
                             {
                                 if (aiPlayer.CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
                                 {
-                                    yOne = i;
-                                    xOne = j;
+                                    KingCapture(i, j, ref yTwo, ref xTwo, positionsArray, playerOne, playerOneKing);
+                                    
 
-                                    // Checks Up Right 
-                                    if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
-                                    {
-                                        yTwo = yOne - 2;
-                                        xTwo = xOne + 2;
-                                        return;
-                                    }
-                                    // Checks Up Left
-                                    if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
-                                    {
-                                        yTwo = yOne - 2;
-                                        xTwo = xOne - 2;
-                                        return;
-                                    }
-                                    // Checks Down Right
-                                    if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
-                                    {
-                                        yTwo = yOne + 2;
-                                        xTwo = xOne + 2;
-                                        return;
-                                    }
-                                    // Checks Down Left
-                                    if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
-                                    {
-                                        yTwo = yOne + 2;
-                                        xTwo = xOne - 2;
-                                        return;
-                                    }
+
+                                    //yOne = i;
+                                    //xOne = j;
+
+                                    //// Checks Up Right 
+                                    //if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
+                                    //{
+                                    //    yTwo = yOne - 2;
+                                    //    xTwo = xOne + 2;
+                                    //    return;
+                                    //}
+                                    //// Checks Up Left
+                                    //if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
+                                    //{
+                                    //    yTwo = yOne - 2;
+                                    //    xTwo = xOne - 2;
+                                    //    return;
+                                    //}
+                                    //// Checks Down Right
+                                    //if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
+                                    //{
+                                    //    yTwo = yOne + 2;
+                                    //    xTwo = xOne + 2;
+                                    //    return;
+                                    //}
+                                    //// Checks Down Left
+                                    //if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
+                                    //{
+                                    //    yTwo = yOne + 2;
+                                    //    xTwo = xOne - 2;
+                                    //    return;
+                                    //}
                                 }
                             }
                         }
@@ -95,21 +99,24 @@ namespace Coursework
                         {
                             if (positionsArray[i, j].Equals(playerTwo))
                             {
-                                yOne = i;
-                                xOne = j;
+                                NormalCapture(i, j, ref yTwo, ref xTwo, positionsArray, ref player1Turn);
+                                
 
-                                if ((yOne < 6 && xOne < 6) && (aiPlayer.CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true)))
-                                {
-                                    yTwo = i + 2;
-                                    xTwo = j + 2;
-                                    return;
-                                }
-                                if ((yOne < 6 && xOne > 1) && (aiPlayer.CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)))
-                                {
-                                    yTwo = i + 2;
-                                    xTwo = j - 2;
-                                    return;
-                                }
+                                //yOne = i;
+                                //xOne = j;
+
+                                //if ((yOne < 6 && xOne < 6) && (aiPlayer.CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true)))
+                                //{
+                                //    yTwo = i + 2;
+                                //    xTwo = j + 2;
+                                //    return;
+                                //}
+                                //if ((yOne < 6 && xOne > 1) && (aiPlayer.CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)))
+                                //{
+                                //    yTwo = i + 2;
+                                //    xTwo = j - 2;
+                                //    return;
+                                //}
                             }
                         }
                     }
@@ -126,125 +133,134 @@ namespace Coursework
                                 yOne = i;
                                 xOne = j;
 
-                                downLeft = false;
-                                downRight = false;
-                                upRight = false;
-                                upLeft = false;
-
-
-                                // Checks Down Left for an empty tile
-                                if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
+                                if (KingLegalMove(i, j, ref yTwo, ref xTwo, positionsArray).Equals(true))
                                 {
-                                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                                    downLeft = true;
+                                    return;
                                 }
-                                // Checks Down Right for an empty tile
-                                if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(noMansLand)))
-                                {
-                                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                                    downRight = true;
-                                }
-                                // Checks Up Right for an empty tile
-                                if ((yOne > 0 && xOne < 7) && (positionsArray[(yOne - 1), (xOne + 1)].Equals(noMansLand)))
-                                {
-                                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                                    upRight = true;
-                                }
-                                // Checks Up Left for an empty tile
-                                if ((yOne > 0 && xOne > 0) && (positionsArray[(yOne - 1), (xOne - 1)].Equals(noMansLand)))
-                                {
-                                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                                    upLeft = true;
-                                }
+                                
+
+                                //yOne = i;
+                                //xOne = j;
+
+                                //downLeft = false;
+                                //downRight = false;
+                                //upRight = false;
+                                //upLeft = false;
 
 
-                                // If the king found on the board can legally move in 1 of the 4 directions
-                                // The counter 'randomNumberGenCounter' will be a value from 1 to 4
-                                if (randomNumberGenCounter > 0)
-                                {
-                                    // set the int random to a randomly generated number between 1 and The counter ('randomNumberGenCounter' + 1)
-                                    int random = rng.Next(1, (randomNumberGenCounter + 1));
+                                //// Checks Down Left for an empty tile
+                                //if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
+                                //{
+                                //    randomNumberGenCounter = randomNumberGenCounter + 1;
+                                //    downLeft = true;
+                                //}
+                                //// Checks Down Right for an empty tile
+                                //if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(noMansLand)))
+                                //{
+                                //    randomNumberGenCounter = randomNumberGenCounter + 1;
+                                //    downRight = true;
+                                //}
+                                //// Checks Up Right for an empty tile
+                                //if ((yOne > 0 && xOne < 7) && (positionsArray[(yOne - 1), (xOne + 1)].Equals(noMansLand)))
+                                //{
+                                //    randomNumberGenCounter = randomNumberGenCounter + 1;
+                                //    upRight = true;
+                                //}
+                                //// Checks Up Left for an empty tile
+                                //if ((yOne > 0 && xOne > 0) && (positionsArray[(yOne - 1), (xOne - 1)].Equals(noMansLand)))
+                                //{
+                                //    randomNumberGenCounter = randomNumberGenCounter + 1;
+                                //    upLeft = true;
+                                //}
 
-                                    //Creates a list to store the numbers added to the list by the following loop
-                                    List<int> rngList = new List<int>();
 
-                                    // Adds the numbers from 1 to the value for 'randomNumberGenCounter' to the list
-                                    for (int w = 0; w < randomNumberGenCounter; w++)
-                                    {
-                                        rngList.Add(w + 1);
-                                    }
+                                //// If the king found on the board can legally move in 1 of the 4 directions
+                                //// The counter 'randomNumberGenCounter' will be a value from 1 to 4
+                                //if (randomNumberGenCounter > 0)
+                                //{
+                                //    // set the int random to a randomly generated number between 1 and The counter ('randomNumberGenCounter' + 1)
+                                //    int random = rng.Next(1, (randomNumberGenCounter + 1));
+
+                                //    //Creates a list to store the numbers added to the list by the following loop
+                                //    List<int> rngList = new List<int>();
+
+                                //    // Adds the numbers from 1 to the value for 'randomNumberGenCounter' to the list
+                                //    for (int w = 0; w < randomNumberGenCounter; w++)
+                                //    {
+                                //        rngList.Add(w + 1);
+                                //    }
 
 
 
-                                    // If when checking which direction the king could move, the boolean value was changed to true
-                                    // The app will enter this 'IF' statement and check if the value stored in the list[randomMoveCounter] is equal
-                                    // To the randomly generated number 'random', if it is then the values yTwo and xTwo are changed to allow the king to move down left
-                                    // If the move is available but the value stored in the list[randomMoveCounter] is not equal to the randomly generated number 'random'
-                                    // Then the value for randomMoveCounter will increase by 1 and the app will check the next move available
-                                    if (downLeft.Equals(true))
-                                    {
-                                        if ((rngList[randomMoveCounter]).Equals(random))
-                                        {
-                                            yTwo = yOne + 1;
-                                            xTwo = xOne - 1;
+                                //    // If when checking which direction the king could move, the boolean value was changed to true
+                                //    // The app will enter this 'IF' statement and check if the value stored in the list[randomMoveCounter] is equal
+                                //    // To the randomly generated number 'random', if it is then the values yTwo and xTwo are changed to allow the king to move down left
+                                //    // If the move is available but the value stored in the list[randomMoveCounter] is not equal to the randomly generated number 'random'
+                                //    // Then the value for randomMoveCounter will increase by 1 and the app will check the next move available
+                                //    if (downLeft.Equals(true))
+                                //    {
+                                //        if ((rngList[randomMoveCounter]).Equals(random))
+                                //        {
+                                //            yTwo = yOne + 1;
+                                //            xTwo = xOne - 1;
 
-                                            rngList.Clear();
-                                            randomNumberGenCounter = 0;
-                                            randomMoveCounter = 0;
+                                //            rngList.Clear();
+                                //            randomNumberGenCounter = 0;
+                                //            randomMoveCounter = 0;
 
-                                            return;
-                                        }
-                                        randomMoveCounter = randomMoveCounter + 1;
-                                    }
+                                //            return;
+                                //        }
+                                //        randomMoveCounter = randomMoveCounter + 1;
+                                //    }
 
-                                    if (downRight.Equals(true))
-                                    {
-                                        if (rngList[randomMoveCounter].Equals(random))
-                                        {
-                                            yTwo = yOne + 1;
-                                            xTwo = xOne + 1;
+                                //    if (downRight.Equals(true))
+                                //    {
+                                //        if (rngList[randomMoveCounter].Equals(random))
+                                //        {
+                                //            yTwo = yOne + 1;
+                                //            xTwo = xOne + 1;
 
-                                            rngList.Clear();
-                                            randomNumberGenCounter = 0;
-                                            randomMoveCounter = 0;
+                                //            rngList.Clear();
+                                //            randomNumberGenCounter = 0;
+                                //            randomMoveCounter = 0;
 
-                                            return;
-                                        }
-                                        randomMoveCounter = randomMoveCounter + 1;
-                                    }
+                                //            return;
+                                //        }
+                                //        randomMoveCounter = randomMoveCounter + 1;
+                                //    }
 
-                                    if (upRight.Equals(true))
-                                    {
-                                        if (rngList[randomMoveCounter].Equals(random))
-                                        {
-                                            yTwo = yOne - 1;
-                                            xTwo = xOne + 1;
+                                //    if (upRight.Equals(true))
+                                //    {
+                                //        if (rngList[randomMoveCounter].Equals(random))
+                                //        {
+                                //            yTwo = yOne - 1;
+                                //            xTwo = xOne + 1;
 
-                                            rngList.Clear();
-                                            randomNumberGenCounter = 0;
-                                            randomMoveCounter = 0;
+                                //            rngList.Clear();
+                                //            randomNumberGenCounter = 0;
+                                //            randomMoveCounter = 0;
 
-                                            return;
-                                        }
-                                        randomMoveCounter = randomMoveCounter + 1;
-                                    }
+                                //            return;
+                                //        }
+                                //        randomMoveCounter = randomMoveCounter + 1;
+                                //    }
 
-                                    if (upLeft.Equals(true))
-                                    {
-                                        if (rngList[randomMoveCounter].Equals(random))
-                                        {
-                                            yTwo = yOne - 1;
-                                            xTwo = xOne - 1;
+                                //    if (upLeft.Equals(true))
+                                //    {
+                                //        if (rngList[randomMoveCounter].Equals(random))
+                                //        {
+                                //            yTwo = yOne - 1;
+                                //            xTwo = xOne - 1;
 
-                                            rngList.Clear();
-                                            randomNumberGenCounter = 0;
-                                            randomMoveCounter = 0;
+                                //            rngList.Clear();
+                                //            randomNumberGenCounter = 0;
+                                //            randomMoveCounter = 0;
 
-                                            return;
-                                        }
-                                    }
+                                //            return;
+                                //        }
+                                //    }
 
-                                }
+                                //}
 
                             }
                         }
@@ -261,82 +277,91 @@ namespace Coursework
                                 yOne = i;
                                 xOne = j;
 
-                                downLeft = false;
-                                downRight = false;
-                                upRight = false;
-                                upLeft = false;
-
-
-                                // Checks Down Left for an empty tile
-                                if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
-                                {
-                                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                                    downLeft = true;
+                                if (NormalLegalMove(ref yOne, ref xOne, ref yTwo, ref xTwo, positionsArray).Equals(true))
+                                {                                   
+                                    return;
                                 }
-                                // Checks Down Right for an empty tile
-                                if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(noMansLand)))
-                                {
-                                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                                    downRight = true;
-                                }
+                                
+
+                                //yOne = i;
+                                //xOne = j;
+
+                                //downLeft = false;
+                                //downRight = false;
+                                //upRight = false;
+                                //upLeft = false;
+
+
+                                //// Checks Down Left for an empty tile
+                                //if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
+                                //{
+                                //    randomNumberGenCounter = randomNumberGenCounter + 1;
+                                //    downLeft = true;
+                                //}
+                                //// Checks Down Right for an empty tile
+                                //if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(noMansLand)))
+                                //{
+                                //    randomNumberGenCounter = randomNumberGenCounter + 1;
+                                //    downRight = true;
+                                //}
 
 
 
-                                // If the piece found on the board can legally move in 1 of the 2 directions
-                                // The counter 'randomNumberGenCounter' will be a value from 1 to 2
-                                if (randomNumberGenCounter > 0)
-                                {
-                                    // set the int random to a randomly generated number between 1 and The counter ('randomNumberGenCounter' + 1)
-                                    int random = rng.Next(1, (randomNumberGenCounter + 1));
+                                //// If the piece found on the board can legally move in 1 of the 2 directions
+                                //// The counter 'randomNumberGenCounter' will be a value from 1 to 2
+                                //if (randomNumberGenCounter > 0)
+                                //{
+                                //    // set the int random to a randomly generated number between 1 and The counter ('randomNumberGenCounter' + 1)
+                                //    int random = rng.Next(1, (randomNumberGenCounter + 1));
 
-                                    //Creates a list to store the numbers added to the list by the following loop
-                                    List<int> rngList = new List<int>();
+                                //    //Creates a list to store the numbers added to the list by the following loop
+                                //    List<int> rngList = new List<int>();
 
-                                    // Adds the numbers from 1 to the value for 'randomNumberGenCounter' to the list
-                                    for (int w = 0; w < randomNumberGenCounter; w++)
-                                    {
-                                        rngList.Add(w + 1);
-                                    }
+                                //    // Adds the numbers from 1 to the value for 'randomNumberGenCounter' to the list
+                                //    for (int w = 0; w < randomNumberGenCounter; w++)
+                                //    {
+                                //        rngList.Add(w + 1);
+                                //    }
 
 
 
-                                    // If when checking which direction the piece could move, the boolean value was changed to true
-                                    // The app will enter this 'IF' statement and check if the value stored in the list[randomMoveCounter] is equal
-                                    // To the randomly generated number 'random', if it is then the values yTwo and xTwo are changed to allow the piece to move down left
-                                    // If the move is available but the value stored in the list[randomMoveCounter] is not equal to the randomly generated number 'random'
-                                    // Then the value for randomMoveCounter will increase by 1 and the app will check the next move available
-                                    if (downLeft.Equals(true))
-                                    {
-                                        if ((rngList[randomMoveCounter]).Equals(random))
-                                        {
-                                            yTwo = yOne + 1;
-                                            xTwo = xOne - 1;
+                                //    // If when checking which direction the piece could move, the boolean value was changed to true
+                                //    // The app will enter this 'IF' statement and check if the value stored in the list[randomMoveCounter] is equal
+                                //    // To the randomly generated number 'random', if it is then the values yTwo and xTwo are changed to allow the piece to move down left
+                                //    // If the move is available but the value stored in the list[randomMoveCounter] is not equal to the randomly generated number 'random'
+                                //    // Then the value for randomMoveCounter will increase by 1 and the app will check the next move available
+                                //    if (downLeft.Equals(true))
+                                //    {
+                                //        if ((rngList[randomMoveCounter]).Equals(random))
+                                //        {
+                                //            yTwo = yOne + 1;
+                                //            xTwo = xOne - 1;
 
-                                            rngList.Clear();
-                                            randomNumberGenCounter = 0;
-                                            randomMoveCounter = 0;
+                                //            rngList.Clear();
+                                //            randomNumberGenCounter = 0;
+                                //            randomMoveCounter = 0;
 
-                                            return;
-                                        }
-                                        randomMoveCounter = randomMoveCounter + 1;
-                                    }
+                                //            return;
+                                //        }
+                                //        randomMoveCounter = randomMoveCounter + 1;
+                                //    }
 
-                                    if (downRight.Equals(true))
-                                    {
-                                        if (rngList[randomMoveCounter].Equals(random))
-                                        {
-                                            yTwo = yOne + 1;
-                                            xTwo = xOne + 1;
+                                //    if (downRight.Equals(true))
+                                //    {
+                                //        if (rngList[randomMoveCounter].Equals(random))
+                                //        {
+                                //            yTwo = yOne + 1;
+                                //            xTwo = xOne + 1;
 
-                                            rngList.Clear();
-                                            randomNumberGenCounter = 0;
-                                            randomMoveCounter = 0;
+                                //            rngList.Clear();
+                                //            randomNumberGenCounter = 0;
+                                //            randomMoveCounter = 0;
 
-                                            return;
-                                        }
-                                        randomMoveCounter = randomMoveCounter + 1;
-                                    }
-                                }
+                                //            return;
+                                //        }
+                                //        randomMoveCounter = randomMoveCounter + 1;
+                                //    }
+                                //}
                             }
                         }
                     }
@@ -352,37 +377,40 @@ namespace Coursework
                             {
                                 if (aiPlayer.CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
                                 {
-                                    yOne = i;
-                                    xOne = j;
+                                    KingCapture(i, j, ref yTwo, ref xTwo, positionsArray, playerOne, playerOneKing);
+                                    
 
-                                    // Checks Up Right 
-                                    if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
-                                    {
-                                        yTwo = yOne - 2;
-                                        xTwo = xOne + 2;
-                                        return;
-                                    }
-                                    // Checks Up Left
-                                    if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
-                                    {
-                                        yTwo = yOne - 2;
-                                        xTwo = xOne - 2;
-                                        return;
-                                    }
-                                    // Checks Down Right
-                                    if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
-                                    {
-                                        yTwo = yOne + 2;
-                                        xTwo = xOne + 2;
-                                        return;
-                                    }
-                                    // Checks Down Left
-                                    if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
-                                    {
-                                        yTwo = yOne + 2;
-                                        xTwo = xOne - 2;
-                                        return;
-                                    }
+                                    //yOne = i;
+                                    //xOne = j;
+
+                                    //// Checks Up Right 
+                                    //if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
+                                    //{
+                                    //    yTwo = yOne - 2;
+                                    //    xTwo = xOne + 2;
+                                    //    return;
+                                    //}
+                                    //// Checks Up Left
+                                    //if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
+                                    //{
+                                    //    yTwo = yOne - 2;
+                                    //    xTwo = xOne - 2;
+                                    //    return;
+                                    //}
+                                    //// Checks Down Right
+                                    //if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
+                                    //{
+                                    //    yTwo = yOne + 2;
+                                    //    xTwo = xOne + 2;
+                                    //    return;
+                                    //}
+                                    //// Checks Down Left
+                                    //if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
+                                    //{
+                                    //    yTwo = yOne + 2;
+                                    //    xTwo = xOne - 2;
+                                    //    return;
+                                    //}
                                 }
                             }
                         }
@@ -395,21 +423,24 @@ namespace Coursework
                         {
                             if (positionsArray[i, j].Equals(playerTwo))
                             {
-                                yOne = i;
-                                xOne = j;
+                                NormalCapture(i, j, ref yTwo, ref xTwo, positionsArray, ref player1Turn);
+                                
 
-                                if ((yOne < 6 && xOne < 6) && (aiPlayer.CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true)))
-                                {
-                                    yTwo = i + 2;
-                                    xTwo = j + 2;
-                                    return;
-                                }
-                                if ((yOne < 6 && xOne > 1) && (aiPlayer.CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)))
-                                {
-                                    yTwo = i + 2;
-                                    xTwo = j - 2;
-                                    return;
-                                }
+                                //yOne = i;
+                                //xOne = j;
+
+                                //if ((yOne < 6 && xOne < 6) && (aiPlayer.CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true)))
+                                //{
+                                //    yTwo = i + 2;
+                                //    xTwo = j + 2;
+                                //    return;
+                                //}
+                                //if ((yOne < 6 && xOne > 1) && (aiPlayer.CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)))
+                                //{
+                                //    yTwo = i + 2;
+                                //    xTwo = j - 2;
+                                //    return;
+                                //}
                             }
                         }
                     }
@@ -426,125 +457,134 @@ namespace Coursework
                                 yOne = i;
                                 xOne = j;
 
-                                downLeft = false;
-                                downRight = false;
-                                upRight = false;
-                                upLeft = false;
-
-
-                                // Checks Down Left for an empty tile
-                                if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
+                                if (KingLegalMove(i, j, ref yTwo, ref xTwo, positionsArray).Equals(true))
                                 {
-                                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                                    downLeft = true;
-                                }
-                                // Checks Down Right for an empty tile
-                                if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(noMansLand)))
-                                {
-                                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                                    downRight = true;
-                                }
-                                // Checks Up Right for an empty tile
-                                if ((yOne > 0 && xOne < 7) && (positionsArray[(yOne - 1), (xOne + 1)].Equals(noMansLand)))
-                                {
-                                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                                    upRight = true;
-                                }
-                                // Checks Up Left for an empty tile
-                                if ((yOne > 0 && xOne > 0) && (positionsArray[(yOne - 1), (xOne - 1)].Equals(noMansLand)))
-                                {
-                                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                                    upLeft = true;
+                                    return;
                                 }
 
 
-                                // If the king found on the board can legally move in 1 of the 4 directions
-                                // The counter 'randomNumberGenCounter' will be a value from 1 to 4
-                                if (randomNumberGenCounter > 0)
-                                {
-                                    // set the int random to a randomly generated number between 1 and The counter ('randomNumberGenCounter' + 1)
-                                    int random = rng.Next(1, (randomNumberGenCounter + 1));
+                                //yOne = i;
+                                //xOne = j;
 
-                                    //Creates a list to store the numbers added to the list by the following loop
-                                    List<int> rngList = new List<int>();
-
-                                    // Adds the numbers from 1 to the value for 'randomNumberGenCounter' to the list
-                                    for (int w = 0; w < randomNumberGenCounter; w++)
-                                    {
-                                        rngList.Add(w + 1);
-                                    }
+                                //downLeft = false;
+                                //downRight = false;
+                                //upRight = false;
+                                //upLeft = false;
 
 
+                                //// Checks Down Left for an empty tile
+                                //if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
+                                //{
+                                //    randomNumberGenCounter = randomNumberGenCounter + 1;
+                                //    downLeft = true;
+                                //}
+                                //// Checks Down Right for an empty tile
+                                //if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(noMansLand)))
+                                //{
+                                //    randomNumberGenCounter = randomNumberGenCounter + 1;
+                                //    downRight = true;
+                                //}
+                                //// Checks Up Right for an empty tile
+                                //if ((yOne > 0 && xOne < 7) && (positionsArray[(yOne - 1), (xOne + 1)].Equals(noMansLand)))
+                                //{
+                                //    randomNumberGenCounter = randomNumberGenCounter + 1;
+                                //    upRight = true;
+                                //}
+                                //// Checks Up Left for an empty tile
+                                //if ((yOne > 0 && xOne > 0) && (positionsArray[(yOne - 1), (xOne - 1)].Equals(noMansLand)))
+                                //{
+                                //    randomNumberGenCounter = randomNumberGenCounter + 1;
+                                //    upLeft = true;
+                                //}
 
-                                    // If when checking which direction the king could move, the boolean value was changed to true
-                                    // The app will enter this 'IF' statement and check if the value stored in the list[randomMoveCounter] is equal
-                                    // To the randomly generated number 'random', if it is then the values yTwo and xTwo are changed to allow the king to move down left
-                                    // If the move is available but the value stored in the list[randomMoveCounter] is not equal to the randomly generated number 'random'
-                                    // Then the value for randomMoveCounter will increase by 1 and the app will check the next move available
-                                    if (downLeft.Equals(true))
-                                    {
-                                        if ((rngList[randomMoveCounter]).Equals(random))
-                                        {
-                                            yTwo = yOne + 1;
-                                            xTwo = xOne - 1;
 
-                                            rngList.Clear();
-                                            randomNumberGenCounter = 0;
-                                            randomMoveCounter = 0;
+                                //// If the king found on the board can legally move in 1 of the 4 directions
+                                //// The counter 'randomNumberGenCounter' will be a value from 1 to 4
+                                //if (randomNumberGenCounter > 0)
+                                //{
+                                //    // set the int random to a randomly generated number between 1 and The counter ('randomNumberGenCounter' + 1)
+                                //    int random = rng.Next(1, (randomNumberGenCounter + 1));
 
-                                            return;
-                                        }
-                                        randomMoveCounter = randomMoveCounter + 1;
-                                    }
+                                //    //Creates a list to store the numbers added to the list by the following loop
+                                //    List<int> rngList = new List<int>();
 
-                                    if (downRight.Equals(true))
-                                    {
-                                        if (rngList[randomMoveCounter].Equals(random))
-                                        {
-                                            yTwo = yOne + 1;
-                                            xTwo = xOne + 1;
+                                //    // Adds the numbers from 1 to the value for 'randomNumberGenCounter' to the list
+                                //    for (int w = 0; w < randomNumberGenCounter; w++)
+                                //    {
+                                //        rngList.Add(w + 1);
+                                //    }
 
-                                            rngList.Clear();
-                                            randomNumberGenCounter = 0;
-                                            randomMoveCounter = 0;
 
-                                            return;
-                                        }
-                                        randomMoveCounter = randomMoveCounter + 1;
-                                    }
 
-                                    if (upRight.Equals(true))
-                                    {
-                                        if (rngList[randomMoveCounter].Equals(random))
-                                        {
-                                            yTwo = yOne - 1;
-                                            xTwo = xOne + 1;
+                                //    // If when checking which direction the king could move, the boolean value was changed to true
+                                //    // The app will enter this 'IF' statement and check if the value stored in the list[randomMoveCounter] is equal
+                                //    // To the randomly generated number 'random', if it is then the values yTwo and xTwo are changed to allow the king to move down left
+                                //    // If the move is available but the value stored in the list[randomMoveCounter] is not equal to the randomly generated number 'random'
+                                //    // Then the value for randomMoveCounter will increase by 1 and the app will check the next move available
+                                //    if (downLeft.Equals(true))
+                                //    {
+                                //        if ((rngList[randomMoveCounter]).Equals(random))
+                                //        {
+                                //            yTwo = yOne + 1;
+                                //            xTwo = xOne - 1;
 
-                                            rngList.Clear();
-                                            randomNumberGenCounter = 0;
-                                            randomMoveCounter = 0;
+                                //            rngList.Clear();
+                                //            randomNumberGenCounter = 0;
+                                //            randomMoveCounter = 0;
 
-                                            return;
-                                        }
-                                        randomMoveCounter = randomMoveCounter + 1;
-                                    }
+                                //            return;
+                                //        }
+                                //        randomMoveCounter = randomMoveCounter + 1;
+                                //    }
 
-                                    if (upLeft.Equals(true))
-                                    {
-                                        if (rngList[randomMoveCounter].Equals(random))
-                                        {
-                                            yTwo = yOne - 1;
-                                            xTwo = xOne - 1;
+                                //    if (downRight.Equals(true))
+                                //    {
+                                //        if (rngList[randomMoveCounter].Equals(random))
+                                //        {
+                                //            yTwo = yOne + 1;
+                                //            xTwo = xOne + 1;
 
-                                            rngList.Clear();
-                                            randomNumberGenCounter = 0;
-                                            randomMoveCounter = 0;
+                                //            rngList.Clear();
+                                //            randomNumberGenCounter = 0;
+                                //            randomMoveCounter = 0;
 
-                                            return;
-                                        }
-                                    }
+                                //            return;
+                                //        }
+                                //        randomMoveCounter = randomMoveCounter + 1;
+                                //    }
 
-                                }
+                                //    if (upRight.Equals(true))
+                                //    {
+                                //        if (rngList[randomMoveCounter].Equals(random))
+                                //        {
+                                //            yTwo = yOne - 1;
+                                //            xTwo = xOne + 1;
+
+                                //            rngList.Clear();
+                                //            randomNumberGenCounter = 0;
+                                //            randomMoveCounter = 0;
+
+                                //            return;
+                                //        }
+                                //        randomMoveCounter = randomMoveCounter + 1;
+                                //    }
+
+                                //    if (upLeft.Equals(true))
+                                //    {
+                                //        if (rngList[randomMoveCounter].Equals(random))
+                                //        {
+                                //            yTwo = yOne - 1;
+                                //            xTwo = xOne - 1;
+
+                                //            rngList.Clear();
+                                //            randomNumberGenCounter = 0;
+                                //            randomMoveCounter = 0;
+
+                                //            return;
+                                //        }
+                                //    }
+
+                                //}
 
                             }
                         }
@@ -556,92 +596,374 @@ namespace Coursework
                     {
                         for (int j = 7; j >= 0; j--)
                         {
+
                             if (positionsArray[i, j].Equals(playerTwo))
                             {
                                 yOne = i;
                                 xOne = j;
 
-                                downLeft = false;
-                                downRight = false;
-                                upRight = false;
-                                upLeft = false;
-
-
-                                // Checks Down Left for an empty tile
-                                if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
-                                {
-                                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                                    downLeft = true;
-                                }
-                                // Checks Down Right for an empty tile
-                                if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(noMansLand)))
-                                {
-                                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                                    downRight = true;
+                                if (NormalLegalMove(ref yOne, ref xOne, ref yTwo, ref xTwo, positionsArray).Equals(true))
+                                {                                   
+                                    return;
                                 }
 
 
+                                //yOne = i;
+                                //xOne = j;
 
-                                // If the piece found on the board can legally move in 1 of the 2 directions
-                                // The counter 'randomNumberGenCounter' will be a value from 1 to 2
-                                if (randomNumberGenCounter > 0)
-                                {
-                                    // set the int random to a randomly generated number between 1 and The counter ('randomNumberGenCounter' + 1)
-                                    int random = rng.Next(1, (randomNumberGenCounter + 1));
-
-                                    //Creates a list to store the numbers added to the list by the following loop
-                                    List<int> rngList = new List<int>();
-
-                                    // Adds the numbers from 1 to the value for 'randomNumberGenCounter' to the list
-                                    for (int w = 0; w < randomNumberGenCounter; w++)
-                                    {
-                                        rngList.Add(w + 1);
-                                    }
+                                //downLeft = false;
+                                //downRight = false;
+                                //upRight = false;
+                                //upLeft = false;
 
 
+                                //// Checks Down Left for an empty tile
+                                //if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
+                                //{
+                                //    randomNumberGenCounter = randomNumberGenCounter + 1;
+                                //    downLeft = true;
+                                //}
+                                //// Checks Down Right for an empty tile
+                                //if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(noMansLand)))
+                                //{
+                                //    randomNumberGenCounter = randomNumberGenCounter + 1;
+                                //    downRight = true;
+                                //}
 
-                                    // If when checking which direction the piece could move, the boolean value was changed to true
-                                    // The app will enter this 'IF' statement and check if the value stored in the list[randomMoveCounter] is equal
-                                    // To the randomly generated number 'random', if it is then the values yTwo and xTwo are changed to allow the piece to move down left
-                                    // If the move is available but the value stored in the list[randomMoveCounter] is not equal to the randomly generated number 'random'
-                                    // Then the value for randomMoveCounter will increase by 1 and the app will check the next move available
-                                    if (downLeft.Equals(true))
-                                    {
-                                        if ((rngList[randomMoveCounter]).Equals(random))
-                                        {
-                                            yTwo = yOne + 1;
-                                            xTwo = xOne - 1;
 
-                                            rngList.Clear();
-                                            randomNumberGenCounter = 0;
-                                            randomMoveCounter = 0;
 
-                                            return;
-                                        }
-                                        randomMoveCounter = randomMoveCounter + 1;
-                                    }
+                                //// If the piece found on the board can legally move in 1 of the 2 directions
+                                //// The counter 'randomNumberGenCounter' will be a value from 1 to 2
+                                //if (randomNumberGenCounter > 0)
+                                //{
+                                //    // set the int random to a randomly generated number between 1 and The counter ('randomNumberGenCounter' + 1)
+                                //    int random = rng.Next(1, (randomNumberGenCounter + 1));
 
-                                    if (downRight.Equals(true))
-                                    {
-                                        if (rngList[randomMoveCounter].Equals(random))
-                                        {
-                                            yTwo = yOne + 1;
-                                            xTwo = xOne + 1;
+                                //    //Creates a list to store the numbers added to the list by the following loop
+                                //    List<int> rngList = new List<int>();
 
-                                            rngList.Clear();
-                                            randomNumberGenCounter = 0;
-                                            randomMoveCounter = 0;
+                                //    // Adds the numbers from 1 to the value for 'randomNumberGenCounter' to the list
+                                //    for (int w = 0; w < randomNumberGenCounter; w++)
+                                //    {
+                                //        rngList.Add(w + 1);
+                                //    }
 
-                                            return;
-                                        }
-                                        randomMoveCounter = randomMoveCounter + 1;
-                                    }
-                                }
+
+
+                                //    // If when checking which direction the piece could move, the boolean value was changed to true
+                                //    // The app will enter this 'IF' statement and check if the value stored in the list[randomMoveCounter] is equal
+                                //    // To the randomly generated number 'random', if it is then the values yTwo and xTwo are changed to allow the piece to move down left
+                                //    // If the move is available but the value stored in the list[randomMoveCounter] is not equal to the randomly generated number 'random'
+                                //    // Then the value for randomMoveCounter will increase by 1 and the app will check the next move available
+                                //    if (downLeft.Equals(true))
+                                //    {
+                                //        if ((rngList[randomMoveCounter]).Equals(random))
+                                //        {
+                                //            yTwo = yOne + 1;
+                                //            xTwo = xOne - 1;
+
+                                //            rngList.Clear();
+                                //            randomNumberGenCounter = 0;
+                                //            randomMoveCounter = 0;
+
+                                //            return;
+                                //        }
+                                //        randomMoveCounter = randomMoveCounter + 1;
+                                //    }
+
+                                //    if (downRight.Equals(true))
+                                //    {
+                                //        if (rngList[randomMoveCounter].Equals(random))
+                                //        {
+                                //            yTwo = yOne + 1;
+                                //            xTwo = xOne + 1;
+
+                                //            rngList.Clear();
+                                //            randomNumberGenCounter = 0;
+                                //            randomMoveCounter = 0;
+
+                                //            return;
+                                //        }
+                                //        randomMoveCounter = randomMoveCounter + 1;
+                                //    }
+                                //}
                             }
                         }
                     }
                 }
             }
         }
+
+        #region Private Methods
+
+        private void KingCapture(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray, string player, string king)
+        {
+            // Checks Up Right 
+            if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(player) || positionsArray[(yOne - 1), (xOne + 1)].Equals(king)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
+            {
+                yTwo = yOne - 2;
+                xTwo = xOne + 2;
+                return;
+            }
+            // Checks Up Left
+            if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(player) || positionsArray[(yOne - 1), (xOne - 1)].Equals(king)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
+            {
+                yTwo = yOne - 2;
+                xTwo = xOne - 2;
+                return;
+            }
+            // Checks Down Right
+            if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(player) || positionsArray[(yOne + 1), (xOne + 1)].Equals(king)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
+            {
+                yTwo = yOne + 2;
+                xTwo = xOne + 2;
+                return;
+            }
+            // Checks Down Left
+            if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(player) || positionsArray[(yOne + 1), (xOne - 1)].Equals(king)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
+            {
+                yTwo = yOne + 2;
+                xTwo = xOne - 2;
+                return;
+            }
+        }
+
+        private void NormalCapture(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray, ref bool player1Turn)
+        {            
+
+            if ((yOne < 6 && xOne < 6) && (aiPlayer.CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
+            {
+                yTwo = yOne + 2;
+                xTwo = xOne + 2;
+                return;
+            }
+            if ((yOne < 6 && xOne > 1) && (aiPlayer.CanAPieceBeCapturedLeft(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
+            {
+                yTwo = yOne + 2;
+                xTwo = xOne - 2;
+                return;
+            }
+
+        }
+
+
+
+
+
+        private bool KingLegalMove(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray)
+        {
+            
+
+            downLeft = false;
+            downRight = false;
+            upRight = false;
+            upLeft = false;
+
+
+            // Checks Down Left for an empty tile
+            if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
+            {
+                randomNumberGenCounter = randomNumberGenCounter + 1;
+                downLeft = true;
+            }
+            // Checks Down Right for an empty tile
+            if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(noMansLand)))
+            {
+                randomNumberGenCounter = randomNumberGenCounter + 1;
+                downRight = true;
+            }
+            // Checks Up Right for an empty tile
+            if ((yOne > 0 && xOne < 7) && (positionsArray[(yOne - 1), (xOne + 1)].Equals(noMansLand)))
+            {
+                randomNumberGenCounter = randomNumberGenCounter + 1;
+                upRight = true;
+            }
+            // Checks Up Left for an empty tile
+            if ((yOne > 0 && xOne > 0) && (positionsArray[(yOne - 1), (xOne - 1)].Equals(noMansLand)))
+            {
+                randomNumberGenCounter = randomNumberGenCounter + 1;
+                upLeft = true;
+            }
+
+
+            // If the king found on the board can legally move in 1 of the 4 directions
+            // The counter 'randomNumberGenCounter' will be a value from 1 to 4
+            if (randomNumberGenCounter > 0)
+            {
+                // set the int random to a randomly generated number between 1 and The counter ('randomNumberGenCounter' + 1)
+                int random = rng.Next(1, (randomNumberGenCounter + 1));
+
+                //Creates a list to store the numbers added to the list by the following loop
+                List<int> rngList = new List<int>();
+
+                // Adds the numbers from 1 to the value for 'randomNumberGenCounter' to the list
+                for (int w = 0; w < randomNumberGenCounter; w++)
+                {
+                    rngList.Add(w + 1);
+                }
+
+
+
+                // If when checking which direction the king could move, the boolean value was changed to true
+                // The app will enter this 'IF' statement and check if the value stored in the list[randomMoveCounter] is equal
+                // To the randomly generated number 'random', if it is then the values yTwo and xTwo are changed to allow the king to move down left
+                // If the move is available but the value stored in the list[randomMoveCounter] is not equal to the randomly generated number 'random'
+                // Then the value for randomMoveCounter will increase by 1 and the app will check the next move available
+                if (downLeft.Equals(true))
+                {
+                    if ((rngList[randomMoveCounter]).Equals(random))
+                    {
+                        yTwo = yOne + 1;
+                        xTwo = xOne - 1;
+
+                        rngList.Clear();
+                        randomNumberGenCounter = 0;
+                        randomMoveCounter = 0;
+
+                        return true;
+                    }
+                    randomMoveCounter = randomMoveCounter + 1;
+                }
+
+                if (downRight.Equals(true))
+                {
+                    if (rngList[randomMoveCounter].Equals(random))
+                    {
+                        yTwo = yOne + 1;
+                        xTwo = xOne + 1;
+
+                        rngList.Clear();
+                        randomNumberGenCounter = 0;
+                        randomMoveCounter = 0;
+
+                        return true;
+                    }
+                    randomMoveCounter = randomMoveCounter + 1;
+                }
+
+                if (upRight.Equals(true))
+                {
+                    if (rngList[randomMoveCounter].Equals(random))
+                    {
+                        yTwo = yOne - 1;
+                        xTwo = xOne + 1;
+
+                        rngList.Clear();
+                        randomNumberGenCounter = 0;
+                        randomMoveCounter = 0;
+
+                        return true;
+                    }
+                    randomMoveCounter = randomMoveCounter + 1;
+                }
+
+                if (upLeft.Equals(true))
+                {
+                    if (rngList[randomMoveCounter].Equals(random))
+                    {
+                        yTwo = yOne - 1;
+                        xTwo = xOne - 1;
+
+                        rngList.Clear();
+                        randomNumberGenCounter = 0;
+                        randomMoveCounter = 0;
+
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private bool NormalLegalMove(ref int yOne, ref int xOne, ref int yTwo, ref int xTwo, string[,]positionsArray)
+        {
+            
+
+            downLeft = false;
+            downRight = false;
+            upRight = false;
+            upLeft = false;
+
+
+            // Checks Down Left for an empty tile
+            if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
+            {
+                randomNumberGenCounter = randomNumberGenCounter + 1;
+                downLeft = true;
+            }
+            // Checks Down Right for an empty tile
+            if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(noMansLand)))
+            {
+                randomNumberGenCounter = randomNumberGenCounter + 1;
+                downRight = true;
+            }
+
+
+
+            // If the piece found on the board can legally move in 1 of the 2 directions
+            // The counter 'randomNumberGenCounter' will be a value from 1 to 2
+            if (randomNumberGenCounter > 0)
+            {
+                // set the int random to a randomly generated number between 1 and The counter ('randomNumberGenCounter' + 1)
+                int random = rng.Next(1, (randomNumberGenCounter + 1));
+
+                //Creates a list to store the numbers added to the list by the following loop
+                List<int> rngList = new List<int>();
+
+                // Adds the numbers from 1 to the value for 'randomNumberGenCounter' to the list
+                for (int w = 0; w < randomNumberGenCounter; w++)
+                {
+                    rngList.Add(w + 1);
+                }
+
+
+
+                // If when checking which direction the piece could move, the boolean value was changed to true
+                // The app will enter this 'IF' statement and check if the value stored in the list[randomMoveCounter] is equal
+                // To the randomly generated number 'random', if it is then the values yTwo and xTwo are changed to allow the piece to move down left
+                // If the move is available but the value stored in the list[randomMoveCounter] is not equal to the randomly generated number 'random'
+                // Then the value for randomMoveCounter will increase by 1 and the app will check the next move available
+                if (downLeft.Equals(true))
+                {
+                    if ((rngList[randomMoveCounter]).Equals(random))
+                    {
+                        yTwo = yOne + 1;
+                        xTwo = xOne - 1;
+
+                        rngList.Clear();
+                        randomNumberGenCounter = 0;
+                        randomMoveCounter = 0;
+
+                        return true;
+                    }
+                    randomMoveCounter = randomMoveCounter + 1;
+                }
+
+                if (downRight.Equals(true))
+                {
+                    if (rngList[randomMoveCounter].Equals(random))
+                    {
+                        yTwo = yOne + 1;
+                        xTwo = xOne + 1;
+
+                        rngList.Clear();
+                        randomNumberGenCounter = 0;
+                        randomMoveCounter = 0;
+
+                        return true;
+                    }
+                    randomMoveCounter = randomMoveCounter + 1;
+                }
+            }
+
+            return false;
+        }
+
+        #endregion
+
+
+
+
     }
 }

@@ -178,9 +178,13 @@ namespace Coursework
                                 {                                    
                                     if (playerOb.AreThereAnyValidMoves(positionsArray, player1Turn).Equals(false))
                                     {
+                                        // Stores the current state of the board
+                                        undoRedoReplay.StoreTheMovePositionsUndoRedo(positionsArray, player1Turn);
+
+
                                         if (player1Turn.Equals(false))
                                         {
-                                            theBoard.PlayerXWinningMessage();                                            
+                                            theBoard.PlayerXWinningMessage();                                           
 
                                             Console.Clear();
                                             theBoard.DisplayTheBoard(positionsArray, player1Turn);
@@ -191,7 +195,6 @@ namespace Coursework
                                         else
                                         {
                                             theBoard.PlayerOWinningMessage();
-
                                             Console.Clear();
                                             theBoard.DisplayTheBoard(positionsArray, player1Turn);
                                             Console.WriteLine("Press enter to return to the menu");
@@ -303,99 +306,13 @@ namespace Coursework
                         // Undo a move
                         case 2:
                             {
-                                // Stops the program from trying to pop the top value off the stack 'undoStack'
-                                // When there is nothing stored on the stack
-                                if (undoRedoReplay.undoStack.Count > 1)
+                                try
                                 {
-                                    string[] savedPositions = undoRedoReplay.DisplayTheUndoMovePositions(positionsArray);
-
-                                    if (savedPositions[64].Equals(" X "))
-                                    {
-                                        player1Turn = true;
-                                    }
-                                    else
-                                    {
-                                        player1Turn = false;
-                                    }
-
-
-                                    theBoard.UpdateTheBoard(positionsArray, savedPositions);
-                                    theBoard.DisplayTheBoard(positionsArray, player1Turn);
-
-
-
-                                }
-                                else
-                                {
-                                    Console.Clear();
-                                    theBoard.DisplayTheBoard(positionsArray, player1Turn);
-                                    Console.WriteLine("There are no more moves to 'Undo'");
-                                    Console.ReadKey();
-                                }
-                                break;
-                            }
-
-                        // Redo a move
-                        case 3:
-                            {
-                                // Stops the program from trying to pop the top value off the stack 'redoStack'
-                                // When there is nothing stored on the stack
-                                if (undoRedoReplay.redoStack.Count > 0)
-                                {
-                                    string[] savedPositions = undoRedoReplay.DisplayTheRedoMovePositions(positionsArray);
-
-                                    if (savedPositions[64].Equals(" X "))
-                                    {
-                                        player1Turn = true;
-                                    }
-                                    else
-                                    {
-                                        player1Turn = false;
-                                    }
-
-                                    theBoard.UpdateTheBoard(positionsArray, savedPositions);
-                                    theBoard.DisplayTheBoard(positionsArray, player1Turn);
-                                }
-                                else
-                                {
-                                    Console.Clear();
-                                    theBoard.DisplayTheBoard(positionsArray, player1Turn);
-                                    Console.WriteLine("There are no more moves to 'Redo'");
-                                    Console.ReadKey();
-                                }
-                                break;
-                            }
-
-                        // Replay a game
-                        case 4:
-                            {
-                                // Gets the number for how many times to loop
-                                int numReplays = undoRedoReplay.replayQueue.Count;
-
-
-
-                                if (undoRedoReplay.replayQueue.Count.Equals(1))
-                                {
-                                    Console.WriteLine("You must play some moves first, before being able to replay.");
-                                    Console.ReadKey();
-                                    break;
-                                }
-
-
-
-                                for (int i = 0; i < numReplays; i++)
-                                {
-                                    // Pauses the app, so you can follow the moves
-                                    int milliseconds = 2000;
-                                    Thread.Sleep(milliseconds);
-
-
-
-                                    // Stops the program from trying to dequeue the first value off the queue 'replayQueue'
+                                    // Stops the program from trying to pop the top value off the stack 'undoStack'
                                     // When there is nothing stored on the stack
-                                    if (undoRedoReplay.replayQueue.Count > 1)
+                                    if (undoRedoReplay.undoStack.Count > 1)
                                     {
-                                        string[] savedPositions = undoRedoReplay.DisplayTheReplayMovePositions(positionsArray);
+                                        string[] savedPositions = undoRedoReplay.DisplayTheUndoMovePositions(positionsArray);
 
                                         if (savedPositions[64].Equals(" X "))
                                         {
@@ -405,10 +322,10 @@ namespace Coursework
                                         {
                                             player1Turn = false;
                                         }
-                                        Console.Clear();
+
+
                                         theBoard.UpdateTheBoard(positionsArray, savedPositions);
                                         theBoard.DisplayTheBoard(positionsArray, player1Turn);
-
 
 
 
@@ -417,29 +334,146 @@ namespace Coursework
                                     {
                                         Console.Clear();
                                         theBoard.DisplayTheBoard(positionsArray, player1Turn);
-                                        Console.WriteLine("There are no more moves to 'Replay'");
+                                        Console.WriteLine("There are no more moves to 'Undo'");
+                                        Console.ReadKey();
+                                    }
+                                    
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine(ex);
+                                    Console.ReadKey();
+                                }
+
+                                break;
+                            }
+
+                        // Redo a move
+                        case 3:
+                            {
+                                try
+                                {
+                                    // Stops the program from trying to pop the top value off the stack 'redoStack'
+                                    // When there is nothing stored on the stack
+                                    if (undoRedoReplay.redoStack.Count > 0)
+                                    {
+                                        string[] savedPositions = undoRedoReplay.DisplayTheRedoMovePositions(positionsArray);
+
+                                        if (savedPositions[64].Equals(" X "))
+                                        {
+                                            player1Turn = true;
+                                        }
+                                        else
+                                        {
+                                            player1Turn = false;
+                                        }
+
+                                        theBoard.UpdateTheBoard(positionsArray, savedPositions);
+                                        theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+                                        theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                        Console.WriteLine("There are no more moves to 'Redo'");
                                         Console.ReadKey();
                                     }
                                 }
+                                catch (Exception ex)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine(ex);
+                                    Console.ReadKey();
+                                }
+
+                                break;
+                            }
+
+                        // Replay a game
+                        case 4:
+                            {
+                                try
+                                {
+                                    // Gets the number for how many times to loop
+                                    int numReplays = undoRedoReplay.replayQueue.Count;
 
 
 
-                                Console.WriteLine("The replay has ended, a new game will begin.");
-                                Console.ReadKey();
+                                    if (undoRedoReplay.replayQueue.Count.Equals(1))
+                                    {
+                                        Console.WriteLine("You must play some moves first, before being able to replay.");
+                                        Console.ReadKey();
+                                        break;
+                                    }
 
 
 
-                                theBoard.NewGame(positionsArray);
-                                
-                                //Clears the stacks and queues, so they are ready to record another game
-                                undoRedoReplay.undoStack.Clear();
-                                undoRedoReplay.redoStack.Clear();
-                                undoRedoReplay.replayQueue.Clear();
+                                    for (int i = 0; i < numReplays; i++)
+                                    {
+                                        // Pauses the app, so you can follow the moves
+                                        int milliseconds = 2000;
+                                        Thread.Sleep(milliseconds);
 
-                                yOne = 0;
-                                xOne = 0;
-                                yTwo = 0;
-                                xTwo = 0;
+
+
+                                        // Stops the program from trying to dequeue the first value off the queue 'replayQueue'
+                                        // When there is nothing stored on the stack
+                                        if (undoRedoReplay.replayQueue.Count > 1)
+                                        {
+                                            string[] savedPositions = undoRedoReplay.DisplayTheReplayMovePositions(positionsArray);
+
+                                            if (savedPositions[64].Equals(" X "))
+                                            {
+                                                player1Turn = true;
+                                            }
+                                            else
+                                            {
+                                                player1Turn = false;
+                                            }
+                                            Console.Clear();
+                                            theBoard.UpdateTheBoard(positionsArray, savedPositions);
+                                            theBoard.DisplayTheBoard(positionsArray, player1Turn);
+
+
+
+
+                                        }
+                                        else
+                                        {
+                                            Console.Clear();
+                                            theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                            Console.WriteLine("There are no more moves to 'Replay'");
+                                            Console.ReadKey();
+                                        }
+                                    }
+
+
+
+                                    Console.WriteLine("The replay has ended, a new game will begin.");
+                                    Console.ReadKey();
+
+
+
+                                    theBoard.NewGame(positionsArray);
+
+                                    //Clears the stacks and queues, so they are ready to record another game
+                                    undoRedoReplay.undoStack.Clear();
+                                    undoRedoReplay.redoStack.Clear();
+                                    undoRedoReplay.replayQueue.Clear();
+
+                                    yOne = 0;
+                                    xOne = 0;
+                                    yTwo = 0;
+                                    xTwo = 0;                                    
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine(ex);
+                                    Console.ReadKey();
+                                }
+
                                 break;
                             }
 
@@ -447,45 +481,74 @@ namespace Coursework
                         // Reset a turn
                         case 5:
                             {
-                                yOne = 0;
-                                xOne = 0;
-                                yTwo = 0;
-                                xTwo = 0;
-                                theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                try
+                                {
+                                    yOne = 0;
+                                    xOne = 0;
+                                    yTwo = 0;
+                                    xTwo = 0;
+                                    theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine(ex);
+                                    Console.ReadKey();
+                                }
+
                                 break;
                             }
                         //End a turn
                         case 6:
                             {
-                                if (player1Turn.Equals(true))
+                                try
                                 {
-                                    player1Turn = false;
+                                    if (player1Turn.Equals(true))
+                                    {
+                                        player1Turn = false;
+                                    }
+                                    else
+                                    {
+                                        player1Turn = true;
+                                    }
+
+                                    theBoard.DisplayTheBoard(positionsArray, player1Turn);
                                 }
-                                else
+                                catch (Exception ex)
                                 {
-                                    player1Turn = true;
+                                    Console.Clear();
+                                    Console.WriteLine(ex);
+                                    Console.ReadKey();
                                 }
 
-                                theBoard.DisplayTheBoard(positionsArray, player1Turn);
                                 break;
                             }
 
                         // Restart game
                         case 7:
                             {
-                                theBoard.NewGame(positionsArray);
-                                
-                                //Clears the stacks and queues, so they are ready to record another game
-                                undoRedoReplay.undoStack.Clear();
-                                undoRedoReplay.redoStack.Clear();
-                                undoRedoReplay.replayQueue.Clear();
+                                try
+                                {
+                                    theBoard.NewGame(positionsArray);
 
-                                // Stores the current state of the board
-                                undoRedoReplay.StoreTheMovePositionsUndoRedo(positionsArray, player1Turn);
-                                yOne = 0;
-                                xOne = 0;
-                                yTwo = 0;
-                                xTwo = 0;
+                                    //Clears the stacks and queues, so they are ready to record another game
+                                    undoRedoReplay.undoStack.Clear();
+                                    undoRedoReplay.redoStack.Clear();
+                                    undoRedoReplay.replayQueue.Clear();
+
+                                    // Stores the current state of the board
+                                    undoRedoReplay.StoreTheMovePositionsUndoRedo(positionsArray, player1Turn);
+                                    yOne = 0;
+                                    xOne = 0;
+                                    yTwo = 0;
+                                    xTwo = 0;
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine(ex);
+                                    Console.ReadKey();
+                                }
 
                                 break;
                             }
