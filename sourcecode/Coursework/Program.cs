@@ -179,8 +179,19 @@ namespace Coursework
                                     Console.Clear();
                                     theBoard.DisplayTheBoard(positionsArray, player1Turn);
 
+                                    //// FIX THIS....
+                                    //if (playerOb.IsThereAnyValidMoves(positionsArray, player1Turn).Equals(false))
+                                    //{
+                                    //    if (player1Turn.Equals(true))
+                                    //    {
+                                    //        theBoard.PlayerOWinningMessage();
+                                    //    }
+                                    //    else
+                                    //    {
+                                    //        theBoard.PlayerXWinningMessage();
+                                    //    }
+                                    //}
 
-                                   
 
                                     if (gameModeSelection.Equals(2) && player1Turn.Equals(false))
                                     {
@@ -216,17 +227,7 @@ namespace Coursework
                                         Console.WriteLine("Please enter the X Co-Ordinate of the tile you want to move your piece to:");
                                         Int32.TryParse(Console.ReadLine(), out xTwo);
 
-                                    }    
-
-                                    
-
-
-                                   
-
-
-
-
-
+                                    } 
 
                                     playerOb.ForcedCaptureCheck(ref player1Turn, positionsArray, yOne, xOne, yTwo, xTwo);
 
@@ -248,18 +249,7 @@ namespace Coursework
                                     yTwo = 0;
                                     xTwo = 0;
 
-
-                                    if (playerOb.IsThereAnyValidMoves(positionsArray, player1Turn).Equals(false))
-                                    {
-                                        if (player1Turn.Equals(true))
-                                        {
-                                            theBoard.PlayerOWinningMessage();
-                                        }
-                                        else
-                                        {
-                                            theBoard.PlayerXWinningMessage();
-                                        }
-                                    }
+                                    
 
                                 }
                                 catch (Exception ex)

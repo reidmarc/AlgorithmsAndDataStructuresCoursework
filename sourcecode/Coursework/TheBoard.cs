@@ -195,6 +195,7 @@ namespace Coursework
             //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
             //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = " O ";
 
+
             //// Blank starting squares            
             //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
             //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = "   ";
@@ -215,11 +216,16 @@ namespace Coursework
             positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
             positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = "   ";
 
-            //positionsArray[5, 2] = " X ";
-            //positionsArray[4, 3] = " O ";
-            //positionsArray[0, 1] = " O ";
-            positionsArray[7, 0] = "|X|";
-            positionsArray[0, 7] = "|O|";
+
+            positionsArray[6, 5] = "|O|";
+            positionsArray[0, 1] = " O ";
+
+
+
+
+
+            positionsArray[7, 6] = " X ";
+
 
 
 

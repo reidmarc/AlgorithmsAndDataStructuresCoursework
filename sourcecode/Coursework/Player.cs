@@ -375,8 +375,6 @@ namespace Coursework
                 }
             }
             return false;
-
-
         }
 
 
@@ -542,7 +540,7 @@ namespace Coursework
                 {
                     // Check if player 1 can remove a player 2 piece to the right
                     // If it can then it is still player 1's turn
-                    if (positionsArray[(yOne - 1), (xOne + 1)].Equals(playerTwo) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))
+                    if ((positionsArray[(yOne - 1), (xOne + 1)].Equals(playerTwo) || positionsArray[(yOne - 1), (xOne + 1)].Equals(playerTwoKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))
                     {
                         return true;
                     }
@@ -557,14 +555,13 @@ namespace Coursework
                 }
             }
             else
-            {
-
+            {             
                 // To stop the if statement recieving an out of bounds exception
                 if (yOne < 6 && xOne < 6)
                 {
                     // Check if player 2 can remove a player 1 piece to the right
                     // If it can then it is still player 2's turn
-                    if (positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOne) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))
+                    if ((positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))
                     {
                         return true;
                     }
@@ -589,7 +586,7 @@ namespace Coursework
                 {
                     // Check if player 1 can remove a player 2 piece to the left
                     // If it can then it is still player 1's turn
-                    if (positionsArray[(yOne - 1), (xOne - 1)].Equals(playerTwo) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))
+                    if ((positionsArray[(yOne - 1), (xOne - 1)].Equals(playerTwo) || positionsArray[(yOne - 1), (xOne - 1)].Equals(playerTwoKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))
                     {
                         return true;
                     }
@@ -609,7 +606,7 @@ namespace Coursework
                 {
                     // Check if player 2 can remove a player 1 piece to the left
                     // If it can then it is still player 2's turn
-                    if (positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOne) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))
+                    if ((positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))
                     {
                         return true;
                     }
