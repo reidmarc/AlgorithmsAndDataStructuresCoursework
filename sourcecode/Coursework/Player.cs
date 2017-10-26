@@ -290,86 +290,190 @@ namespace Coursework
 
         #region Pre Move Checks
 
-        public bool IsThereAnyValidMoves(string[,] positionsArray, bool player1Turn)
-        {
-            int yOne = 0;
-            int xOne = 0;
-
+        public bool AreThereAnyValidMoves(string[,] positionsArray, bool player1Turn)
+        {  
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
-                {
+                {     
                     if (player1Turn.Equals(true))
                     {
-                        if ((positionsArray[i, j]).Equals(" X "))
+                        if ((positionsArray[i, j]).Equals(playerOne))
                         {
+                            // Checks Down Right for a 'capture'
+                            if (CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true))
+                            {
+                                return true;
+                            }
+                            // Checks Down Left for a 'capture'
+                            if (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true))
+                            {
+                                return true;
+                            }
+
+                            // Checks Up Left for an empty tile                            
+                            // To stop the if statement recieving an out of bounds exception
+                            if (i > 0 && j > 0)
+                            {
+                                // Check if player 1 can move left                    
+                                if (positionsArray[(i - 1), (j - 1)].Equals(noMansLand))
+                                {
+                                    return true;
+                                }
+                            }
+
+                            // Checks Up Right for an empty tile                            
+                            // To stop the if statement recieving an out of bounds exception
+                            if (i > 0 && j < 7)
+                            {
+                                // Check if player 1 can move left                    
+                                if (positionsArray[(i - 1), (j + 1)].Equals(noMansLand))
+                                {
+                                    return true;
+                                }
+                            }
+
+
 
                         }
-                        if ((positionsArray[i, j]).Equals("|X|"))
+                        if ((positionsArray[i, j]).Equals(playerOneKing))
                         {
+                            // Movement Up Right
+                            // To stop the if statement recieving an out of bounds exception
+                            if (i > 0 && j < 7)
+                            {
+                                if (positionsArray[(i - 1), (j + 1)].Equals(noMansLand))
+                                {
+                                    return true;
+                                }
 
-                        }
+                            }
+
+                            // Movement Down Right
+                            // To stop the if statement recieving an out of bounds exception
+                            if (i < 7 && j < 7)
+                            {
+                                if (positionsArray[(i + 1), (j + 1)].Equals(noMansLand))
+                                {
+                                    return true;
+                                }
+                            }
+
+                            // Movement Up Left
+                            // To stop the if statement recieving an out of bounds exception
+                            if (i > 0 && j > 0)
+                            {
+                                // Check if player 1 can move left
+                                if (positionsArray[(i - 1), (j - 1)].Equals(noMansLand))
+                                {
+                                    return true;
+                                }
+                            }
+
+                            // Movement Down Left
+                            // To stop the if statement recieving an out of bounds exception
+                            if (i < 7 && j > 0)
+                            {
+                                if (positionsArray[(i + 1), (j - 1)].Equals(noMansLand))
+                                {
+                                    return true;
+                                }
+                            }
+
+                            // Checks All 4 directions for the king
+                            if (CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
+                            {
+                                return true;
+                            }
+                        }                                               
                     }
                     else
                     {
                         if (positionsArray[i, j].Equals(playerTwo))
                         {
-                            yOne = i;
-                            xOne = j;
-
                             // Checks Down Right for a 'capture'
                             if (CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true))
-                            {                                
+                            {
                                 return true;
                             }
                             // Checks Down Left for a 'capture'
                             if (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true))
-                            {                                
-                                return true;
-                            }
-
-                            // Checks Down Left for an empty tile
-                            if (MovementLeft(i, j, (i + 1), (j - 1), positionsArray, ref player1Turn).Equals(true))
                             {
                                 return true;
                             }
 
-                            // Checks Down Right for an empty tile
-                            if (MovementKing(i, j, (i + 1), (j + 1), positionsArray, ref player1Turn).Equals(true))
+                            // Checks Down Left for an empty tile                            
+                            // To stop the if statement recieving an out of bounds exception
+                            if (i < 7 && j > 0)
                             {
-                                return true;
-                            }
+                                // Check if player 2 can move left                    
+                                if (positionsArray[(i + 1), (j - 1)].Equals(noMansLand))
+                                {                                        
+                                    return true;
+                                }                                    
+                            } 
+
+                            // Checks Down Right for an empty tile                            
+                            // To stop the if statement recieving an out of bounds exception
+                            if (i < 7 && j < 7)
+                            {
+                                // Check if player 2 can move left                    
+                                if (positionsArray[(i + 1), (j + 1)].Equals(noMansLand))
+                                {
+                                    return true;
+                                }                                    
+                            }                                
+                                                     
                         }
                         if (positionsArray[i, j].Equals(playerTwoKing))
                         {
+                            // Movement Up Right
+                            // To stop the if statement recieving an out of bounds exception
+                            if (i > 0 && j < 7)
+                            {
+                                if (positionsArray[(i - 1), (j + 1)].Equals(noMansLand))
+                                {                                    
+                                    return true;
+                                }
+
+                            }
+
+                            // Movement Down Right
+                            // To stop the if statement recieving an out of bounds exception
+                            if (i < 7 && j < 7)
+                            {
+                                if (positionsArray[(i + 1), (j + 1)].Equals(noMansLand))
+                                {                                    
+                                    return true;
+                                }
+                            }
+
+                            // Movement Up Left
+                            // To stop the if statement recieving an out of bounds exception
+                            if (i > 0 && j > 0)
+                            {
+                                // Check if player 1 can move left
+                                if (positionsArray[(i - 1), (j - 1)].Equals(noMansLand)) 
+                                {                                   
+                                    return true;
+                                }
+                            }
+
+                            // Movement Down Left
+                            // To stop the if statement recieving an out of bounds exception
+                            if (i < 7 && j > 0)
+                            {
+                                if (positionsArray[(i + 1), (j - 1)].Equals(noMansLand))
+                                {                                    
+                                    return true;
+                                }                                   
+                            }  
+
+                            // Checks All 4 directions for the king
                             if (CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
                             {
                                 return true;
                             }
-
-                            // Checks Down Left for an empty tile
-                            if (MovementKing(i ,j ,(i+1) ,(j-1) , positionsArray,ref player1Turn).Equals(true))
-                            {
-                                return true;
-                            }
-
-                            // Checks Down Right for an empty tile
-                            if (MovementKing(i, j, (i + 1), (j + 1), positionsArray, ref player1Turn).Equals(true))
-                            {
-                                return true;
-                            }
-
-                            // Checks Up Right for an empty tile
-                            if (MovementKing(i, j, (i - 1), (j - 1), positionsArray, ref player1Turn).Equals(true))
-                            {
-                                return true;
-                            }
-
-                            // Checks Up Left for an empty tile
-                            if (MovementKing(i, j, (i - 1), (j - 1), positionsArray, ref player1Turn).Equals(true))
-                            {
-                                return true;
-                            }                            
                         }
                     }
                 }

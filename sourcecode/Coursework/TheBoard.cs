@@ -198,7 +198,7 @@ namespace Coursework
 
             //// Blank starting squares            
             //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = "   ";
+            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] = "  ";
 
             //// Player 1 starting positions
             //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
@@ -217,14 +217,18 @@ namespace Coursework
             positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = "   ";
 
 
-            positionsArray[6, 5] = "|O|";
-            positionsArray[0, 1] = " O ";
+            positionsArray[7, 2] = " X ";
+            //positionsArray[0, 1] = " O ";
 
 
 
 
 
-            positionsArray[7, 6] = " X ";
+            positionsArray[5, 2] = " O ";
+            positionsArray[5, 4] = " O ";
+            positionsArray[4, 1] = " O ";
+                                     
+            positionsArray[4, 5] = " O ";
 
 
 
@@ -245,17 +249,19 @@ namespace Coursework
         {         
             if ((playerOneCounter + playerOneKingCounter).Equals(0))
             {
+                Thread.Sleep(slowTick);
                 PlayerOWinningMessage();
-                return false;
+                return true;
             }
 
             if ((playerTwoCounter + playerTwoKingCounter).Equals(0))
             {
+                Thread.Sleep(slowTick);
                 PlayerXWinningMessage();
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
 
         }  
         

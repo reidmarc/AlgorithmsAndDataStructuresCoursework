@@ -176,22 +176,34 @@ namespace Coursework
                             {
                                 try
                                 {
+                                    //FIX THIS....
+                                    if (playerOb.AreThereAnyValidMoves(positionsArray, player1Turn).Equals(false))
+                                    {
+                                        if (player1Turn.Equals(false))
+                                        {
+                                            theBoard.PlayerXWinningMessage();                                            
+
+                                            Console.Clear();
+                                            theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                            Console.WriteLine("Press enter to return to the menu");
+                                            Console.ReadKey();
+                                            break;                                           
+                                        }
+                                        else
+                                        {
+                                            theBoard.PlayerOWinningMessage();
+
+                                            Console.Clear();
+                                            theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                            Console.WriteLine("Press enter to return to the menu");
+                                            Console.ReadKey();
+                                            break;                                           
+                                        }
+                                    }                                   
+
+
                                     Console.Clear();
-                                    theBoard.DisplayTheBoard(positionsArray, player1Turn);
-
-                                    //// FIX THIS....
-                                    //if (playerOb.IsThereAnyValidMoves(positionsArray, player1Turn).Equals(false))
-                                    //{
-                                    //    if (player1Turn.Equals(true))
-                                    //    {
-                                    //        theBoard.PlayerOWinningMessage();
-                                    //    }
-                                    //    else
-                                    //    {
-                                    //        theBoard.PlayerXWinningMessage();
-                                    //    }
-                                    //}
-
+                                    theBoard.DisplayTheBoard(positionsArray, player1Turn);   
 
                                     if (gameModeSelection.Equals(2) && player1Turn.Equals(false))
                                     {
@@ -239,10 +251,18 @@ namespace Coursework
                                     undoRedoReplay.StoreTheMovePositionsUndoRedo(positionsArray, player1Turn);
 
                                     // Displays the current board
-                                    theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                    theBoard.DisplayTheBoard(positionsArray, player1Turn);     
 
-                                    // Checks if there is a winner
-                                    endGame = theBoard.IsThereAWinner();
+                                    // Checks if there is a winner   
+                                    if (theBoard.IsThereAWinner().Equals(true))
+                                    {
+                                        Console.Clear();
+                                        theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                        Console.WriteLine("Press enter to return to the menu");
+                                        Console.ReadKey();
+
+                                        theBoard.NewGame(positionsArray);                                                                                                            
+                                    }
 
                                     yOne = 0;
                                     xOne = 0;
