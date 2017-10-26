@@ -175,8 +175,7 @@ namespace Coursework
                         case 1:
                             {
                                 try
-                                {
-                                    //FIX THIS....
+                                {                                    
                                     if (playerOb.AreThereAnyValidMoves(positionsArray, player1Turn).Equals(false))
                                     {
                                         if (player1Turn.Equals(false))
@@ -221,6 +220,15 @@ namespace Coursework
                                         Console.WriteLine("Please enter the X Co-Ordinate of the piece you want to move:");
                                         Int32.TryParse(Console.ReadLine(), out xOne);
 
+                                        // Stops any out of range exceptions
+                                        if ((yOne < 0 || yOne > 7) || (xOne < 0 || xOne > 7))
+                                        {
+                                            theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                            Console.WriteLine("You have entered an incorrect co-ordinate.\nPlease enter your co-ordinates again.");
+                                            Console.ReadKey();
+                                            break;
+                                        }
+
                                         if (playerOb.PlayerCheck(yOne, xOne, positionsArray, player1Turn).Equals(false))
                                         {
                                             Console.Clear();
@@ -230,6 +238,7 @@ namespace Coursework
                                             break;
                                         }
 
+                                        // Refreshes the board
                                         Console.Clear();
                                         theBoard.DisplayTheBoard(positionsArray, player1Turn);
 
@@ -240,6 +249,15 @@ namespace Coursework
                                         Int32.TryParse(Console.ReadLine(), out xTwo);
 
                                     } 
+
+                                    // Stops any out of range exceptions
+                                    if ((yTwo < 0 || yTwo > 7) || (xTwo < 0 || xTwo > 7))
+                                    {
+                                        theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                        Console.WriteLine("You have entered an incorrect co-ordinate for the destination tile.\nPlease enter your co-ordinates again.");
+                                        Console.ReadKey();
+                                        break;
+                                    }
 
                                     playerOb.ForcedCaptureCheck(ref player1Turn, positionsArray, yOne, xOne, yTwo, xTwo);
 
