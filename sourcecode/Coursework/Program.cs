@@ -542,6 +542,8 @@ namespace Coursework
                                     xOne = 0;
                                     yTwo = 0;
                                     xTwo = 0;
+
+                                    player1Turn = true;
                                 }
                                 catch (Exception ex)
                                 {

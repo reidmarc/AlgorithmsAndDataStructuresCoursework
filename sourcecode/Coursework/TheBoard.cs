@@ -17,6 +17,11 @@ namespace Coursework
         int playerOneKingCounter = 0;
         int playerTwoKingCounter = 0;
 
+        int playerOneWins = 0;
+        int playerTwoWins = 0;
+        int totalGames = 0;
+    
+
         int fastTick = 150;
         int slowTick = 300;
 
@@ -24,6 +29,10 @@ namespace Coursework
         string stringPlayerTwoCounter;
         string stringPlayerOneKingCounter;
         string stringPlayerTwoKingCounter;
+        string stringPlayerOneWins;
+        string stringPlayerTwoWins;
+        string stringTotalGames;
+
 
         string theBoard;
         public string _player;
@@ -117,6 +126,7 @@ namespace Coursework
             Console.Clear();
             CheckHowManyPiecesRemain(positionsArray);
             FormatScoreOutput();
+            TotalGames();
 
             theBoard = string.Format("" +
                     "     v          ╔╦╦╦╦╦╦╦╦═══════╦╦╦╦╦╦╦╦╦═══════╦╦╦╦╦╦╦╦╦═══════╦╦╦╦╦╦╦╦╦═══════╗    ╔═════════════════╗  \n" +
@@ -140,14 +150,14 @@ namespace Coursework
                     "     v      ║ 4 ╠╬╬╬╬╬╬╬╣  {21}  ╠╬╬╬╬╬╬╬╣  {22}  ╠╬╬╬╬╬╬╬╣  {23}  ╠╬╬╬╬╬╬╬╣  {24}  ║    ╚═════════════════╝ \n" +
                     "     v      ╚═══╬╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ║\n" +
                     "     v          ╠╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╣\n" +
-                    "     v      ╔═══╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣\n" +
-                    "     v      ║ 5 ║  {25}  ╠╬╬╬╬╬╬╬╣  {26}  ╠╬╬╬╬╬╬╬╣  {27}  ╠╬╬╬╬╬╬╬╣  {28}  ╠╬╬╬╬╬╬╬╣\n" +
-                    "     v      ╚═══╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣\n" +
-                    "     v          ╠╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╣\n" +
-                    "     v      ╔═══╬╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ║\n" +
-                    "     v      ║ 6 ╠╬╬╬╬╬╬╬╣  {29}  ╠╬╬╬╬╬╬╬╣  {30}  ╠╬╬╬╬╬╬╬╣  {31}  ╠╬╬╬╬╬╬╬╣  {32}  ║\n" +
-                    "     v      ╚═══╬╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ║\n" +
-                    "     v          ╠╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╣\n" +
+                    "     v      ╔═══╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣    ╔═════════════════╗           \n" +
+                    "     v      ║ 5 ║  {25}  ╠╬╬╬╬╬╬╬╣  {26}  ╠╬╬╬╬╬╬╬╣  {27}  ╠╬╬╬╬╬╬╬╣  {28}  ╠╬╬╬╬╬╬╬╣    ║ Session Info    ║       \n" +
+                    "     v      ╚═══╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣    ╠═════════════════╣           \n" +
+                    "     v          ╠╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╣    ║ X Won - {37}     ║         \n" +
+                    "     v      ╔═══╬╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ║    ║ O Won - {38}     ║         \n" +
+                    "     v      ║ 6 ╠╬╬╬╬╬╬╬╣  {29}  ╠╬╬╬╬╬╬╬╣  {30}  ╠╬╬╬╬╬╬╬╣  {31}  ╠╬╬╬╬╬╬╬╣  {32}  ║    ╠═════════════════╣       \n" +
+                    "     v      ╚═══╬╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ║    ║ Total - {39}    ║     \n" +
+                    "     v          ╠╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╣    ╚═════════════════╝                                   \n" +
                     " v v v v v  ╔═══╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣\n" +
                     "   v v v    ║ 7 ║  {33}  ╠╬╬╬╬╬╬╬╣  {34}  ╠╬╬╬╬╬╬╬╣  {35}  ╠╬╬╬╬╬╬╬╣  {36}  ╠╬╬╬╬╬╬╬╣\n" +
                     "     v      ╚═══╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣\n" +
@@ -170,7 +180,8 @@ namespace Coursework
                         positionsArray[4, 1], positionsArray[4, 3], positionsArray[4, 5], positionsArray[4, 7],
                         positionsArray[5, 0], positionsArray[5, 2], positionsArray[5, 4], positionsArray[5, 6],
                         positionsArray[6, 1], positionsArray[6, 3], positionsArray[6, 5], positionsArray[6, 7],
-                        positionsArray[7, 0], positionsArray[7, 2], positionsArray[7, 4], positionsArray[7, 6]);
+                        positionsArray[7, 0], positionsArray[7, 2], positionsArray[7, 4], positionsArray[7, 6],
+                        stringPlayerOneWins, stringPlayerTwoWins, stringTotalGames);
 
             Console.Write(theBoard);
         }
@@ -286,6 +297,7 @@ namespace Coursework
 
             Console.Clear();
             Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", theWinnerIs, playerX);
+            playerOneWins = playerOneWins + 1;
             Console.ReadKey();
             
         }
@@ -310,6 +322,7 @@ namespace Coursework
 
             Console.Clear();
             Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", theWinnerIs, playerO);
+            playerTwoWins = playerTwoWins + 1;
             Console.ReadKey();
             
         }
@@ -317,6 +330,12 @@ namespace Coursework
         #endregion
 
         #region Private Methods
+
+        private void TotalGames()
+        {
+            totalGames = playerOneWins + playerTwoWins;
+        }
+
 
         private string CheckPlayerTurn(bool player1Turn)
         {
@@ -333,7 +352,7 @@ namespace Coursework
         // Method deals with the outline moving due to the number going from 9 (1 char) to 10 (2 chars)
         private void FormatScoreOutput()
         {
-            if (playerOneCounter < 9)
+            if (playerOneCounter < 10)
             {
                 stringPlayerOneCounter = ("" + playerOneCounter + " ").ToString();
             }
@@ -342,7 +361,7 @@ namespace Coursework
                 stringPlayerOneCounter = playerOneCounter.ToString();
             }
 
-            if (playerTwoCounter < 9)
+            if (playerTwoCounter < 10)
             {
                 stringPlayerTwoCounter = ("" + playerTwoCounter + " ").ToString();
             }
@@ -353,7 +372,7 @@ namespace Coursework
 
 
 
-            if (playerOneKingCounter < 9)
+            if (playerOneKingCounter < 10)
             {
                 stringPlayerOneKingCounter = ("" + playerOneKingCounter + " ");
             }
@@ -362,7 +381,7 @@ namespace Coursework
                 stringPlayerOneKingCounter = playerOneKingCounter.ToString();
             }
 
-            if (playerTwoKingCounter < 9)
+            if (playerTwoKingCounter < 10)
             {
                 stringPlayerTwoKingCounter = ("" + playerTwoKingCounter + " ");
             }
@@ -370,6 +389,112 @@ namespace Coursework
             {
                 stringPlayerTwoKingCounter = playerTwoKingCounter.ToString();
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // If the value for playerOneWins is a single digit or double digit
+            // This statement deals with a formatting issue
+            if (playerOneWins < 10)
+            {
+                stringPlayerOneWins = ("" + playerOneWins + "  ");                
+            }
+            else if ((playerOneWins > 9) && (playerOneWins < 100))
+            {
+                stringPlayerOneWins = ("" + playerOneWins + " ");
+            }
+            else
+            {
+                stringPlayerOneWins = playerOneWins.ToString();
+            }
+
+
+            // If the value for playerTwoWins is a single digit or double digit
+            // This statement deals with a formatting issue
+            if (playerTwoWins < 10)
+            {
+                stringPlayerTwoWins = ("" + playerTwoWins + "  ");
+            }
+            else if ((playerTwoWins > 9) && (playerTwoWins < 100))
+            {
+                stringPlayerTwoWins = ("" + playerTwoWins + " ");
+            }
+            else
+            {
+                stringPlayerTwoWins = playerTwoWins.ToString();
+            }
+
+
+            // If the value for totalGames is a single digit or double digit or triple
+            // This statement deals with a formatting issue
+            if (totalGames < 10)
+            {
+                stringTotalGames = ("" + totalGames + "   ");
+            }
+            else if ((totalGames > 9) && (totalGames < 100))
+            {
+                stringTotalGames = ("" + totalGames + "  ");
+            }
+            else if ((totalGames > 99) && (totalGames < 1000))
+            {
+                stringTotalGames = ("" + totalGames + " ");
+            }
+            else
+            {
+                stringTotalGames = totalGames.ToString();
+            }
+
+
+
+
+
+
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         }
 
