@@ -8,6 +8,8 @@ namespace Coursework
 {
     public class AI
     {
+        #region Variables / Objects
+
         Player aiPlayer = new Player();
         Random rng = new Random();
 
@@ -26,12 +28,10 @@ namespace Coursework
         int randomMoveCounter = 0;
         int getMoveCounter = 0;
 
-
-
+        #endregion
 
         public void GetMove(ref int yOne, ref int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray, ref bool player1Turn)
         {
-
             if (player1Turn)
             {
 
@@ -52,8 +52,13 @@ namespace Coursework
                             {
                                 if (aiPlayer.CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
                                 {
-                                    KingCapture(i, j, ref yTwo, ref xTwo, positionsArray, playerOne, playerOneKing);
-                                    
+                                    yOne = i;
+                                    xOne = j;
+
+                                    if (KingCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, playerOne, playerOneKing).Equals(true))
+                                    {
+                                        return;
+                                    }
 
 
                                     //yOne = i;
@@ -99,7 +104,13 @@ namespace Coursework
                         {
                             if (positionsArray[i, j].Equals(playerTwo))
                             {
-                                NormalCapture(i, j, ref yTwo, ref xTwo, positionsArray, ref player1Turn);
+                                yOne = i;
+                                xOne = j;
+
+                                if (NormalCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, ref player1Turn).Equals(true))
+                                {
+                                    return;
+                                }
                                 
 
                                 //yOne = i;
@@ -133,7 +144,7 @@ namespace Coursework
                                 yOne = i;
                                 xOne = j;
 
-                                if (KingLegalMove(i, j, ref yTwo, ref xTwo, positionsArray).Equals(true))
+                                if (KingLegalMove(yOne, xOne, ref yTwo, ref xTwo, positionsArray).Equals(true))
                                 {
                                     return;
                                 }
@@ -277,7 +288,7 @@ namespace Coursework
                                 yOne = i;
                                 xOne = j;
 
-                                if (NormalLegalMove(ref yOne, ref xOne, ref yTwo, ref xTwo, positionsArray).Equals(true))
+                                if (NormalLegalMove(yOne, xOne, ref yTwo, ref xTwo, positionsArray).Equals(true))
                                 {                                   
                                     return;
                                 }
@@ -377,7 +388,13 @@ namespace Coursework
                             {
                                 if (aiPlayer.CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
                                 {
-                                    KingCapture(i, j, ref yTwo, ref xTwo, positionsArray, playerOne, playerOneKing);
+                                    yOne = i;
+                                    xOne = j;
+
+                                    if (KingCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, playerOne, playerOneKing).Equals(true))
+                                    {
+                                        return;
+                                    }
                                     
 
                                     //yOne = i;
@@ -423,7 +440,13 @@ namespace Coursework
                         {
                             if (positionsArray[i, j].Equals(playerTwo))
                             {
-                                NormalCapture(i, j, ref yTwo, ref xTwo, positionsArray, ref player1Turn);
+                                yOne = i;
+                                xOne = j;
+
+                                if (NormalCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, ref player1Turn).Equals(true))
+                                {
+                                    return;
+                                }
                                 
 
                                 //yOne = i;
@@ -457,7 +480,7 @@ namespace Coursework
                                 yOne = i;
                                 xOne = j;
 
-                                if (KingLegalMove(i, j, ref yTwo, ref xTwo, positionsArray).Equals(true))
+                                if (KingLegalMove(yOne, xOne, ref yTwo, ref xTwo, positionsArray).Equals(true))
                                 {
                                     return;
                                 }
@@ -602,7 +625,7 @@ namespace Coursework
                                 yOne = i;
                                 xOne = j;
 
-                                if (NormalLegalMove(ref yOne, ref xOne, ref yTwo, ref xTwo, positionsArray).Equals(true))
+                                if (NormalLegalMove(yOne, xOne, ref yTwo, ref xTwo, positionsArray).Equals(true))
                                 {                                   
                                     return;
                                 }
@@ -696,64 +719,62 @@ namespace Coursework
 
         #region Private Methods
 
-        private void KingCapture(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray, string player, string king)
+        private bool KingCapture(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray, string player, string king)
         {
             // Checks Up Right 
             if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(player) || positionsArray[(yOne - 1), (xOne + 1)].Equals(king)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
             {
                 yTwo = yOne - 2;
                 xTwo = xOne + 2;
-                return;
+                return true;
             }
             // Checks Up Left
             if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(player) || positionsArray[(yOne - 1), (xOne - 1)].Equals(king)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
             {
                 yTwo = yOne - 2;
                 xTwo = xOne - 2;
-                return;
+                return true;
             }
             // Checks Down Right
             if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(player) || positionsArray[(yOne + 1), (xOne + 1)].Equals(king)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
             {
                 yTwo = yOne + 2;
                 xTwo = xOne + 2;
-                return;
+                return true;
             }
             // Checks Down Left
             if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(player) || positionsArray[(yOne + 1), (xOne - 1)].Equals(king)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
             {
                 yTwo = yOne + 2;
                 xTwo = xOne - 2;
-                return;
+                return true;
             }
+
+            return false;
         }
 
-        private void NormalCapture(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray, ref bool player1Turn)
+        private bool NormalCapture(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray, ref bool player1Turn)
         {            
 
             if ((yOne < 6 && xOne < 6) && (aiPlayer.CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
             {
                 yTwo = yOne + 2;
                 xTwo = xOne + 2;
-                return;
+                return true;
             }
             if ((yOne < 6 && xOne > 1) && (aiPlayer.CanAPieceBeCapturedLeft(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
             {
                 yTwo = yOne + 2;
                 xTwo = xOne - 2;
-                return;
+                return true;
             }
+
+            return false;
 
         }
 
-
-
-
-
         private bool KingLegalMove(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray)
-        {
-            
-
+        {        
             downLeft = false;
             downRight = false;
             upRight = false;
@@ -876,7 +897,7 @@ namespace Coursework
             return false;
         }
 
-        private bool NormalLegalMove(ref int yOne, ref int xOne, ref int yTwo, ref int xTwo, string[,]positionsArray)
+        private bool NormalLegalMove(int yOne,int xOne, ref int yTwo, ref int xTwo, string[,]positionsArray)
         {
             
 
