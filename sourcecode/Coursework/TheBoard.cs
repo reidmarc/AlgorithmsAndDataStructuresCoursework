@@ -19,11 +19,15 @@ namespace Coursework
 
         int playerOneWins = 0;
         int playerTwoWins = 0;
+        int totalDraws = 0;
         int totalGames = 0;
-    
 
-        int fastTick = 150;
-        int slowTick = 300;
+
+        //int fastTick = 150;
+        //int slowTick = 300;
+
+        int fastTick = 0;
+        int slowTick = 0;
 
         string stringPlayerOneCounter;
         string stringPlayerTwoCounter;
@@ -32,6 +36,7 @@ namespace Coursework
         string stringPlayerOneWins;
         string stringPlayerTwoWins;
         string stringTotalGames;
+        string stringTotalDraws;
 
 
         string theBoard;
@@ -155,10 +160,10 @@ namespace Coursework
                     "     v      ╚═══╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣    ╠═════════════════╣           \n" +
                     "     v          ╠╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╣    ║ X Won - {37}     ║         \n" +
                     "     v      ╔═══╬╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ║    ║ O Won - {38}     ║         \n" +
-                    "     v      ║ 6 ╠╬╬╬╬╬╬╬╣  {29}  ╠╬╬╬╬╬╬╬╣  {30}  ╠╬╬╬╬╬╬╬╣  {31}  ╠╬╬╬╬╬╬╬╣  {32}  ║    ╠═════════════════╣       \n" +
-                    "     v      ╚═══╬╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ║    ║ Total - {39}    ║     \n" +
-                    "     v          ╠╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╣    ╚═════════════════╝                                   \n" +
-                    " v v v v v  ╔═══╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣\n" +
+                    "     v      ║ 6 ╠╬╬╬╬╬╬╬╣  {29}  ╠╬╬╬╬╬╬╬╣  {30}  ╠╬╬╬╬╬╬╬╣  {31}  ╠╬╬╬╬╬╬╬╣  {32}  ║    ║ Draws - {40}     ║    \n" +
+                    "     v      ╚═══╬╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ║    ╠═════════════════╣                                        \n" +
+                    "     v          ╠╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╬╩╩╩╩╩╩╩╬╦╦╦╦╦╦╦╣    ║ Total - {39}    ║                                   \n" +
+                    " v v v v v  ╔═══╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣    ╚═════════════════╝                             \n" +
                     "   v v v    ║ 7 ║  {33}  ╠╬╬╬╬╬╬╬╣  {34}  ╠╬╬╬╬╬╬╬╣  {35}  ╠╬╬╬╬╬╬╬╣  {36}  ╠╬╬╬╬╬╬╬╣\n" +
                     "     v      ╚═══╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣\n" +
                     "                ╚═╦═══╦═╩╩╬╩╩╩╬╩╩═╦═══╦═╩╩╬╩╩╩╬╩╩═╦═══╦═╩╩╬╩╩╩╬╩╩═╦═══╦═╩╩╬╩╩╩╬╩╝\n" +
@@ -181,7 +186,7 @@ namespace Coursework
                         positionsArray[5, 0], positionsArray[5, 2], positionsArray[5, 4], positionsArray[5, 6],
                         positionsArray[6, 1], positionsArray[6, 3], positionsArray[6, 5], positionsArray[6, 7],
                         positionsArray[7, 0], positionsArray[7, 2], positionsArray[7, 4], positionsArray[7, 6],
-                        stringPlayerOneWins, stringPlayerTwoWins, stringTotalGames);
+                        stringPlayerOneWins, stringPlayerTwoWins, stringTotalGames, stringTotalDraws);
 
             Console.Write(theBoard);
         }
@@ -257,6 +262,11 @@ namespace Coursework
 
         #region End Game Method
 
+        public void IsItADraw(int count)
+        {
+            totalDraws = totalDraws + count;
+        }
+
         public bool IsThereAWinner()
         {         
             if ((playerOneCounter + playerOneKingCounter).Equals(0))
@@ -278,7 +288,7 @@ namespace Coursework
         }  
         
         public void PlayerXWinningMessage()
-        {  
+        {
             for (int j = 0; j < 5; j++)
             {
                 Console.Clear();
@@ -298,7 +308,7 @@ namespace Coursework
             Console.Clear();
             Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", theWinnerIs, playerX);
             playerOneWins = playerOneWins + 1;
-            Console.ReadKey();
+            //Console.ReadKey();
             
         }
 
@@ -323,7 +333,7 @@ namespace Coursework
             Console.Clear();
             Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", theWinnerIs, playerO);
             playerTwoWins = playerTwoWins + 1;
-            Console.ReadKey();
+            //Console.ReadKey();
             
         }
 
@@ -333,7 +343,7 @@ namespace Coursework
 
         private void TotalGames()
         {
-            totalGames = playerOneWins + playerTwoWins;
+            totalGames = playerOneWins + playerTwoWins + totalDraws;
         }
 
 
@@ -441,6 +451,21 @@ namespace Coursework
             else
             {
                 stringPlayerTwoWins = playerTwoWins.ToString();
+            }
+
+            // If the value for totalDraws is a single digit or double digit
+            // This statement deals with a formatting issue
+            if (totalDraws < 10)
+            {
+                stringTotalDraws = ("" + totalDraws + "  ");
+            }
+            else if ((totalDraws > 9) && (totalDraws < 100))
+            {
+                stringTotalDraws = ("" + totalDraws + " ");
+            }
+            else
+            {
+                stringTotalDraws = totalDraws.ToString();
             }
 
 
