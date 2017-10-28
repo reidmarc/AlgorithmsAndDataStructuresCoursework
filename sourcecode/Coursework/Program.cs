@@ -86,7 +86,7 @@ namespace Coursework
                     case 1:
                         {
                             gameModeSelection = 1;
-                            notMadeChoice = false; ;
+                            notMadeChoice = false;
                             break;
                         }
 
@@ -143,13 +143,9 @@ namespace Coursework
                 // Displays the current board
                 theBoard.DisplayTheBoard(positionsArray, player1Turn);
 
-                if (gameModeSelection.Equals(3))
-                {
-                    // what to do  if its AI vs AI
+                
 
-                }
-
-                if (gameModeSelection.Equals(1) || gameModeSelection.Equals(2))
+                if (gameModeSelection.Equals(1) || gameModeSelection.Equals(2) || gameModeSelection.Equals(3))
                 {
 
                     // Displays the menu
@@ -175,37 +171,42 @@ namespace Coursework
                         case 1:
                             {
                                 try
-                                {                                    
+                                {                                   
+                                    // Checks if the current player has any available moves
+                                    // If the method returns false, the player will lose.
                                     if (playerOb.AreThereAnyValidMoves(positionsArray, player1Turn).Equals(false))
                                     {
                                         // Stores the current state of the board
                                         undoRedoReplay.StoreTheMovePositionsUndoRedo(positionsArray, player1Turn);
 
-
+                                        // A different winning message is displayed depending on who won
                                         if (player1Turn.Equals(false))
                                         {
-                                            theBoard.PlayerXWinningMessage();                                           
-
-                                            Console.Clear();
-                                            theBoard.DisplayTheBoard(positionsArray, player1Turn);
-                                            Console.WriteLine("Press enter to return to the menu");
-                                            Console.ReadKey();
-                                            break;                                           
+                                            theBoard.PlayerXWinningMessage();   
                                         }
                                         else
                                         {
                                             theBoard.PlayerOWinningMessage();
-                                            Console.Clear();
-                                            theBoard.DisplayTheBoard(positionsArray, player1Turn);
-                                            Console.WriteLine("Press enter to return to the menu");
-                                            Console.ReadKey();
-                                            break;                                           
                                         }
-                                    }                                   
+                                        
+                                        Console.Clear();
+                                        theBoard.DisplayTheBoard(positionsArray, player1Turn);
+                                        Console.WriteLine("Press enter to return to the menu");
+                                        Console.ReadKey();
+                                        break;
+                                    }
+                                    
+
 
 
                                     Console.Clear();
-                                    theBoard.DisplayTheBoard(positionsArray, player1Turn);   
+                                    theBoard.DisplayTheBoard(positionsArray, player1Turn);
+
+                                    if (gameModeSelection.Equals(3))
+                                    {
+                                        aI.GetMove(ref yOne, ref xOne, ref yTwo, ref xTwo, positionsArray, ref player1Turn);                                       
+
+                                    }
 
                                     if (gameModeSelection.Equals(2) && player1Turn.Equals(false))
                                     {
@@ -215,7 +216,7 @@ namespace Coursework
 
                                     }
 
-                                    if (gameModeSelection.Equals(1) || player1Turn.Equals(true))
+                                    if (gameModeSelection.Equals(1) || (player1Turn.Equals(true) && gameModeSelection.Equals(2)))
                                     {
                                         Console.WriteLine("Please enter the Y Co-Ordinate of the piece you want to move:");
                                         Int32.TryParse(Console.ReadLine(), out yOne);

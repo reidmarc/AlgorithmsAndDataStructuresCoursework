@@ -503,17 +503,33 @@ namespace Coursework
                 {
                     for (int j = 0; j < 8; j++)
                     {
-                        if ((positionsArray[i, j]).Contains(playerOne) || (positionsArray[i, j]).Contains(playerOneKing))
+                        if ((positionsArray[i, j]).Contains(playerOne))
                         {
                             if ((CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true)) ||
-                                (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)) ||
-                                (CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true)))
+                                (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)))                                
                             {
                                 int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
                                 listOfForcedMoves.Add(potentialMove);
                                 forcedCapture = true;
                             }
                         }
+
+
+
+                        if ((positionsArray[i, j]).Contains(playerOneKing))
+                        {
+                            if (CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
+                            {
+                                int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
+                                listOfForcedMoves.Add(potentialMove);
+                                forcedCapture = true;
+                            }
+                        }
+
+
+
+
+
                     }
                 }
 
@@ -575,17 +591,26 @@ namespace Coursework
                 {
                     for (int j = 0; j < 8; j++)
                     {
-                        if ((positionsArray[i, j]).Contains(playerTwo) || (positionsArray[i, j]).Contains(playerTwoKing))
+                        if ((positionsArray[i, j]).Contains(playerTwo))
                         {
                             if ((CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true)) ||
-                                (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)) ||
-                                (CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true)))
-                            {
+                                (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)))
+                            { 
                                 int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
                                 listOfForcedMoves.Add(potentialMove);
                                 forcedCapture = true;
                             }
 
+                        }
+
+                        if ((positionsArray[i, j]).Contains(playerTwoKing))
+                        {
+                            if ((CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true)))
+                            {
+                                int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
+                                listOfForcedMoves.Add(potentialMove);
+                                forcedCapture = true;
+                            }
                         }
                     }
                 }
@@ -838,111 +863,117 @@ namespace Coursework
             // Player 1 Movement Logic
             if (player1Turn)
             {
-
-                if (CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
+                if ((positionsArray[yOne, xOne]).Equals(playerOne))
                 {
-                    // Checks if removing a piece to the right is the move made
-                    if ((yOne - 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
+
+                    if (CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
                     {
-                        // Sets the square clicked first to blank
-                        positionsArray[yOne, xOne] = noMansLand;
+                        // Checks if removing a piece to the right is the move made
+                        if ((yOne - 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
+                        {
+                            // Sets the square clicked first to blank
+                            positionsArray[yOne, xOne] = noMansLand;
 
-                        // Sets the square with the oppositions pieces on it to empty
-                        positionsArray[(yOne - 1), (xOne + 1)] = noMansLand;
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(yOne - 1), (xOne + 1)] = noMansLand;
 
-                        // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerOne;
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[yTwo, xTwo] = playerOne;
+
+                            if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
+                            {
+                                player1Turn = false;
+                            }
+
+                            return;
+                        }
+                    }
+
+                    if (CanAPieceBeCapturedLeft(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
+                    {
+                        // Checks if removing a piece to the left is the move made
+                        if ((yOne - 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
+                        {
+                            // Sets the square clicked first to blank
+                            positionsArray[yOne, xOne] = noMansLand;
+
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(yOne - 1), (xOne - 1)] = noMansLand;
+
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[yTwo, xTwo] = playerOne;
+
+                            if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
+                            {
+                                player1Turn = false;
+                            }
+
+                            return;
+                        }
+                    }
+                }
+
+                if ((positionsArray[yOne, xOne]).Equals(playerOneKing))
+                {
+                    if (CanAPieceBeCapturedKing(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
+                    {
+
+                        // Checks if removing a piece to the top left is the move made
+                        if ((yOne - 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
+                        {
+                            // Sets the square clicked first to blank
+                            positionsArray[yOne, xOne] = noMansLand;
+
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(yOne - 1), (xOne - 1)] = noMansLand;
+
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[yTwo, xTwo] = playerOneKing;
+                        }
+
+                        // Checks if removing a piece to the top right is the move made
+                        if ((yOne - 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
+                        {
+                            // Sets the square clicked first to blank
+                            positionsArray[yOne, xOne] = noMansLand;
+
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(yOne - 1), (xOne + 1)] = noMansLand;
+
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[yTwo, xTwo] = playerOneKing;
+                        }
+
+                        // Checks if removing a piece to the bottom right is the move made
+                        if ((yOne + 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
+                        {
+                            // Sets the square clicked first to blank
+                            positionsArray[yOne, xOne] = noMansLand;
+
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(yOne + 1), (xOne + 1)] = noMansLand;
+
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[yTwo, xTwo] = playerOneKing;
+                        }
+
+                        // Checks if removing a piece to the bottom left is the move made
+                        if ((yOne + 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
+                        {
+                            // Sets the square clicked first to blank
+                            positionsArray[yOne, xOne] = noMansLand;
+
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(yOne + 1), (xOne - 1)] = noMansLand;
+
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[yTwo, xTwo] = playerOneKing;
+                        }
 
                         if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                         {
                             player1Turn = false;
                         }
-
-                        return;
-                    }
-                }
-
-                if (CanAPieceBeCapturedLeft(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
-                {
-                    // Checks if removing a piece to the left is the move made
-                    if ((yOne - 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
-                    {
-                        // Sets the square clicked first to blank
-                        positionsArray[yOne, xOne] = noMansLand;
-
-                        // Sets the square with the oppositions pieces on it to empty
-                        positionsArray[(yOne - 1), (xOne - 1)] = noMansLand;
-
-                        // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerOne;
-
-                        if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
-                        {
-                            player1Turn = false;
-                        }
-
-                        return;
-                    }
-                }
-
-                if (CanAPieceBeCapturedKing(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
-                {
-
-                    // Checks if removing a piece to the top left is the move made
-                    if ((yOne - 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
-                    {
-                        // Sets the square clicked first to blank
-                        positionsArray[yOne, xOne] = noMansLand;
-
-                        // Sets the square with the oppositions pieces on it to empty
-                        positionsArray[(yOne - 1), (xOne - 1)] = noMansLand;
-
-                        // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerOneKing;
-                    }
-
-                    // Checks if removing a piece to the top right is the move made
-                    if ((yOne - 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
-                    {
-                        // Sets the square clicked first to blank
-                        positionsArray[yOne, xOne] = noMansLand;
-
-                        // Sets the square with the oppositions pieces on it to empty
-                        positionsArray[(yOne - 1), (xOne + 1)] = noMansLand;
-
-                        // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerOneKing;
-                    }
-
-                    // Checks if removing a piece to the bottom right is the move made
-                    if ((yOne + 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
-                    {
-                        // Sets the square clicked first to blank
-                        positionsArray[yOne, xOne] = noMansLand;
-
-                        // Sets the square with the oppositions pieces on it to empty
-                        positionsArray[(yOne + 1), (xOne + 1)] = noMansLand;
-
-                        // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerOneKing;
-                    }
-
-                    // Checks if removing a piece to the bottom left is the move made
-                    if ((yOne + 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
-                    {
-                        // Sets the square clicked first to blank
-                        positionsArray[yOne, xOne] = noMansLand;
-
-                        // Sets the square with the oppositions pieces on it to empty
-                        positionsArray[(yOne + 1), (xOne - 1)] = noMansLand;
-
-                        // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerOneKing;
-                    }
-
-                    if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
-                    {
-                        player1Turn = false;
                     }
                 }
 
@@ -957,118 +988,129 @@ namespace Coursework
 
                 }
             }
-            // Player 2's movement logic
+
+            /////////////////////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////// Player 2 Movement Logic //////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////////
+
             else
             {
-
-                if (CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
+                if ((positionsArray[yOne, xOne]).Equals(playerTwo))
                 {
-                    // Checks if removing a piece to the right is the move made
-                    if ((yOne + 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
+
+
+                    if (CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
                     {
-                        // Sets the square clicked first to blank
-                        positionsArray[yOne, xOne] = noMansLand;
+                        // Checks if removing a piece to the right is the move made
+                        if ((yOne + 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
+                        {
+                            // Sets the square clicked first to blank
+                            positionsArray[yOne, xOne] = noMansLand;
 
-                        // Sets the square with the oppositions pieces on it to empty
-                        positionsArray[(yOne + 1), (xOne + 1)] = noMansLand;
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(yOne + 1), (xOne + 1)] = noMansLand;
 
-                        // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerTwo;
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[yTwo, xTwo] = playerTwo;
+
+                            if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
+                            {
+                                player1Turn = true;
+                            }
+
+                            return;
+                        }
+                    }
+
+
+                    if (CanAPieceBeCapturedLeft(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
+                    {
+                        // Checks if removing a piece to the left is the move made
+                        if ((yOne + 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
+                        {
+                            // Sets the square clicked first to blank
+                            positionsArray[yOne, xOne] = noMansLand;
+
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(yOne + 1), (xOne - 1)] = noMansLand;
+
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[yTwo, xTwo] = playerTwo;
+
+                            if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
+                            {
+                                player1Turn = true;
+                            }
+
+                            return;
+                        }
+                    }
+                }
+
+                if ((positionsArray[yOne, xOne]).Equals(playerTwoKing))
+                {
+                    if (CanAPieceBeCapturedKing(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
+                    {
+                        // Checks if removing a piece to the top left is the move made
+                        if ((yOne - 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
+                        {
+                            // Sets the square clicked first to blank
+                            positionsArray[yOne, xOne] = noMansLand;
+
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(yOne - 1), (xOne - 1)] = noMansLand;
+
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                        }
+
+                        // Checks if removing a piece to the top right is the move made
+                        if ((yOne - 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
+                        {
+                            // Sets the square clicked first to blank
+                            positionsArray[yOne, xOne] = noMansLand;
+
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(yOne - 1), (xOne + 1)] = noMansLand;
+
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                        }
+
+                        // Checks if removing a piece to the bottom right is the move made
+                        if ((yOne + 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
+                        {
+                            // Sets the square clicked first to blank
+                            positionsArray[yOne, xOne] = noMansLand;
+
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(yOne + 1), (xOne + 1)] = noMansLand;
+
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                        }
+
+                        // Checks if removing a piece to the bottom left is the move made
+                        if ((yOne + 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
+                        {
+                            // Sets the square clicked first to blank
+                            positionsArray[yOne, xOne] = noMansLand;
+
+                            // Sets the square with the oppositions pieces on it to empty
+                            positionsArray[(yOne + 1), (xOne - 1)] = noMansLand;
+
+                            // Sets the square clicked second to now show the player one piece
+                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                        }                    
 
                         if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                         {
                             player1Turn = true;
                         }
-
-                        return;
                     }
                 }
-
-
-                if (CanAPieceBeCapturedLeft(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
-                {
-                    // Checks if removing a piece to the left is the move made
-                    if ((yOne + 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
-                    {
-                        // Sets the square clicked first to blank
-                        positionsArray[yOne, xOne] = noMansLand;
-
-                        // Sets the square with the oppositions pieces on it to empty
-                        positionsArray[(yOne + 1), (xOne - 1)] = noMansLand;
-
-                        // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerTwo;
-
-                        if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
-                        {
-                            player1Turn = true;
-                        }
-
-                        return;
-                    }
-                }
-
-                if (CanAPieceBeCapturedKing(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
-                {
-
-                    // Checks if removing a piece to the top left is the move made
-                    if ((yOne - 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
-                    {
-                        // Sets the square clicked first to blank
-                        positionsArray[yOne, xOne] = noMansLand;
-
-                        // Sets the square with the oppositions pieces on it to empty
-                        positionsArray[(yOne - 1), (xOne - 1)] = noMansLand;
-
-                        // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerTwoKing;
-                    }
-
-                    // Checks if removing a piece to the top right is the move made
-                    if ((yOne - 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
-                    {
-                        // Sets the square clicked first to blank
-                        positionsArray[yOne, xOne] = noMansLand;
-
-                        // Sets the square with the oppositions pieces on it to empty
-                        positionsArray[(yOne - 1), (xOne + 1)] = noMansLand;
-
-                        // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerTwoKing;
-                    }
-
-                    // Checks if removing a piece to the bottom right is the move made
-                    if ((yOne + 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
-                    {
-                        // Sets the square clicked first to blank
-                        positionsArray[yOne, xOne] = noMansLand;
-
-                        // Sets the square with the oppositions pieces on it to empty
-                        positionsArray[(yOne + 1), (xOne + 1)] = noMansLand;
-
-                        // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerTwoKing;
-                    }
-
-                    // Checks if removing a piece to the bottom left is the move made
-                    if ((yOne + 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
-                    {
-                        // Sets the square clicked first to blank
-                        positionsArray[yOne, xOne] = noMansLand;
-
-                        // Sets the square with the oppositions pieces on it to empty
-                        positionsArray[(yOne + 1), (xOne - 1)] = noMansLand;
-
-                        // Sets the square clicked second to now show the player one piece
-                        positionsArray[yTwo, xTwo] = playerTwoKing;
-                    }
-
-                    if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
-                    {
-                        player1Turn = true;
-                    }
-                }
-
 
                 if (positionsArray[yTwo, xTwo].Equals(noMansLand))
                 {
