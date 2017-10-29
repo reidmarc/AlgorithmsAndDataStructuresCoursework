@@ -1,8 +1,8 @@
 % #######################################
 % ########### FILL THESE IN #############
 % #######################################
-\def\mytitle{Coursework Report}
-\def\mykeywords{C Sharp, WPF, Draughts, Checkers, Marc, Reid}
+\def\mytitle{THINK OF A TITLE FOR REPORT}
+\def\mykeywords{C Sharp, Console, Draughts, Checkers, Command Line Interface, Marc Reid}
 \def\myauthor{Marc Reid}
 \def\contact{03001588@live.napier.ac.uk}
 \def\mymodule{Algorithms and Data Structures (SET09117)}
@@ -82,82 +82,55 @@
 % ########### START FROM HERE ###########
 % #######################################
 \begin{document}
-    \maketitle
-    \begin{abstract}
-        %Replace the lipsum command with actual text 
-        \lipsum[2]
-    \end{abstract}
+	
+    \maketitle  
     
-    \textbf{Keywords -- }{\mykeywords}
+    \begin{abstract}
+    An abstract is a 100-200 word summary of your report. It provides a brief overview of the report by stating the purpose, defining the topic, summarising the main sections of the report, and stating the conclusion or outcomes. An abstract is usually written when you have completed the report.
+    \end{abstract}
+
+
+    \pagenumbering{arabic} 
+    %\textbf{Keywords -- }{\mykeywords}
+    
+    
     
     \section{Introduction}
-    \paragraph{Referencing}
-    You should cite References like this: \cite{Keshav}. The references are saved in an external .bib file, and will automatically be added to the bibliography at the end once cited.
+    The purpose of this report was to document the process of implementing the game of Checkers with a command line interface in C \#.
     
-    \figuremacro{h}{placeholder}{ImageTitle}{ - Some Descriptive Text}{1.0}
-	
-	\section{Formatting}
-	Some common formatting you may need uses these commands for \textbf{Bold Text}, \textit{Italics}, and \underline{underlined}.
-	\subsection{LineBreaks}
-	Here is a line
     
-    Here is a line followed by a double line break.
-	This line is only one line break down from the above, Notice that latex can ignore this
     
-    We can force a break \\ with the break operator.
     
-	\subsection{Maths}
-    Embedding Maths is Latex's bread and butter    
+    \section{Design}
+    Explaining how I designed and architected my software, paying attention to the algorithms and data structures used.
     
-    {\centering \Large \(
-        J = \begin{bmatrix}
-            \frac{\delta e}{\delta \theta _0}
-            \frac{\delta e}{\delta \theta _1}
-            \frac{\delta e}{\delta \theta _2}
-        \end{bmatrix}
-        = e_{current} - e_{target} 
-    \)\par}
-	
-	\subsection{Code Listing}
-    You can load segments of code from a file, or embed them directly.
     
-\begin{lstlisting}[caption = Hello World! in c++]
-#include <iostream>
-
-int main() {
-    std::cout << "Hello World!" << std::endl;
-    std::cin.get();
-    return 0;
-}
-\end{lstlisting}
-
-\lstinputlisting[caption = Hello World! in python script]{./sourceCode/hello.py}
     
-\subsection{PseudoCode}
-
-\begin{algorithm}[h]
-\For{$i = 0$ \KwTo $100$}{
- print\_number = true\;
-\If{i is divisible by 3}{
- print "Fizz"\;
- print\_number = false\;
-}
-\If{i is divisible by 5}{
- print "Buzz"\;
- print\_number = false\;
-}
-\If{print\_number}{
-    print i\;
-}
-print a newline\;
-}
-\caption{FizzBuzz}
-\end{algorithm}
-	
-\section{Conclusion}
-This is the conclusion..... Marc Reid
-	
-\bibliographystyle{ieeetr}
-\bibliography{references}
-		
+    
+    \section{Enhancements}
+    During the implementation phase of the project, these were the functions and features that were considered but deemed to be too time intensive to implement and test before the submission date. These may be implemented as part of the software's evolution in the future. 
+    
+    \subsection{Export/Import full game replay to and from a CSV file.}
+    The ability to export all the move from a game of checkers to a CSV file, which could be stored and viewed at a later date with the application.
+    
+    
+    \subsection{Multiple Rules sets available}
+    Allowing the users to select which game rules they would like use for the current session. International Checkers would be the first additional rule set to be implemented. As the board is 10 x 10 and the rules vary significantly from the English draughts rule set that we implemented for this project.
+    
+    
+    \subsection{Improved AI}
+    scoring system for moves
+    
+    
+    
+    \section{Critical Evaluation}
+    Describe the features that I felt worked well or poorly and why I thought this.
+    
+    \section{Personal Evaluation}
+   Reflecting on what I learnt, the challenges I faced, the methods I used to overcome these challenges and how I feel that I performed.
+   
+   \section{References}
+   Links.....
+   
+   
 \end{document}

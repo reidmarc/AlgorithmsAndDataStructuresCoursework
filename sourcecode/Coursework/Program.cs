@@ -189,7 +189,7 @@ namespace Coursework
 
                                             stopWatchGameTime.Start();
 
-                                            int testSize = 1000;
+                                            int testSize = 2500;
 
                                             for (int k = 0; k < testSize; k++)
                                             {
