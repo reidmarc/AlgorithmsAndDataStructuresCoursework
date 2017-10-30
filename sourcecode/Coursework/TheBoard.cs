@@ -23,11 +23,10 @@ namespace Coursework
         int totalGames = 0;
 
 
-        //int fastTick = 150;
-        //int slowTick = 300;
+        int fastTick = 150;
+        int slowTick = 300;
 
-        int fastTick = 0;
-        int slowTick = 0;
+        
 
         string stringPlayerOneCounter;
         string stringPlayerTwoCounter;
@@ -308,7 +307,7 @@ namespace Coursework
             Console.Clear();
             Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", theWinnerIs, playerX);
             playerOneWins = playerOneWins + 1;
-            //Console.ReadKey();
+            Console.ReadKey();
             
         }
 
@@ -333,7 +332,7 @@ namespace Coursework
             Console.Clear();
             Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", theWinnerIs, playerO);
             playerTwoWins = playerTwoWins + 1;
-            //Console.ReadKey();
+            Console.ReadKey();
             
         }
 
