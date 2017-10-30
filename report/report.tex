@@ -78,15 +78,15 @@
 \date{}
 \hypersetup{pdfauthor=\myauthor,pdftitle=\mytitle,pdfkeywords=\mykeywords}
 \sloppy
-% #######################################
-% ########### START FROM HERE ###########
-% #######################################
+% ###############################################################################
+% ########### START FROM HERE ###################################################
+% ###############################################################################
 \begin{document}
 	
     \maketitle  
     
     \begin{abstract}
-    An abstract is a 100-200 word summary of your report. It provides a brief overview of the report by stating the purpose, defining the topic, summarising the main sections of the report, and stating the conclusion or outcomes. An abstract is usually written when you have completed the report.
+    %An abstract is a 100-200 word summary of your report. It provides a brief %overview of the report by stating the purpose, defining the topic, summarising %the main sections of the report, and stating the conclusion or outcomes. An %abstract is usually written when you have completed the report
     \end{abstract}
 
 
@@ -102,26 +102,165 @@
     
     
     \section{Design}
-    Explaining how I designed and architected my software, paying attention to the algorithms and data structures used.
+    %Explaining how I designed and architected my software, paying attention to the algorithms and data structures used.
     
+    During the project a test-driven development approach was used in conjunction with an agile methodology. This is where the code is developed incrementally in sprints with the project only moving on to the next sprint once the testing of the work done, has been passed. We will look at the following 3 main areas which demonstrate the design choices that were made during development.
+    
+    \subsection{Interface}
+    The application runs from the command line as this is what was asked for in the coursework specification with the proviso that we could develop the application with a graphical interface at a later date.
+    \subsubsection{CLI Playing Board}
+    To represent the board visually in the CLI, characters from the Windows character map application were used to
+    \newline 
+    create a custom design. The priority when designing the CLI board, was to ensure that it was easy to read with good spacing so as to stop the screen from becoming cluttered. 
+    
+    \subsection{Data Structures Used}
+    We highlight the essential data structures used and 
+    \newline
+    explain why we used these specific data structures in the circumstances which we did. The data structures used have allowed us to provide the features included in the application such as undo/redo and replay.  
+     
+    
+    \subsubsection{2-Dimensional Array}   
+    As the board for English draughts is an 8 x 8 chequered board, a 2 dimensional array[8,8] named \textit{positionsArray} is used to represent the board and store the current 
+    \newline 
+    locations of the playing pieces. The array is updated 
+    \newline
+    after every turn is made, with all the contents of each 
+    \newline
+    index of \textit{positionsArray}, concatenated together separated by a comma into a single string with the last value either a 'X' or an 'O' to indicate who has just taken their turn. Every time the string is created it then gets popped on to a stack called \textit{undoStack} and enqueued in to a queue called \textit{replayQueue}. 
+    
+    \subsubsection{Queue}
+    The queue data structure was selected for the replay 
+    \newline
+    feature as it uses the First-In-First-Out method for 
+    \newline
+    storing and retrieving information. This meant that we were able to add (enqueue) the string comprised of the current playing piece positions to the back of the queue after ever turn. When the user selects to replay the 
+    \newline
+    current match, the application enters a loop which will 
+    \newline
+    iterate through all the string stored in the que. A pause has been added to the loop, so that the replay can be followed by the human eye.
+    
+    \subsubsection{Stack}
+    The stack data structure is used to aid the 
+    \newline
+    implementation for both the undo and redo features. A stack uses the Last-In-Last-Out method for storing and 
+    \newline
+    retrieving information, which meant we could synergise the stacks together, to provide robust undo and redo 
+    \newline
+    features.
+    \newline
+    The queue and stack data structures selected both 
+    \newline
+    offer improved performance over the other data structures available which could perform similar tasks, such as an array or a list.
+    
+    \subsubsection{List}
+    The list data structure is used twice in the application, both times it has been used as the number of values it would store at any one time will vary from move to move. It was decided that as the size of the data 
+    \newline
+    structure needed could not accurately be predicted a list would be the best option as it adjusts its size as needed. This removes the potential for an out of range exception when accessing the data structure.
+    
+    
+    
+    \subsection{Algorithms Used}
+    The application has many algorithms which when all 
+    \newline
+    combined help to produce a robust version of the game checkers. We will look at the algorithms that are essential for the application to simulate multiple games of checkers.
+    
+    \subsubsection{Valid Move Check}
+    The valid move check takes place before the user has entered the y co-ordinate of the piece they wish to move. The method \textit{AreThereAnyValidMoves()} is called (from the Player class) which returns a boolean value depending on whether the current player has any available move to play or not.   
+    
+    
+    \subsubsection{Force Capture}  
+    
+    \subsubsection{Movement}
+     
+    
+    \subsubsection{A.I}
+    
+    \subsubsection{Win / Draw Conditions}
+    
+    
+    
+    
+    
+    
+    % ################## SORT FOR AI ###############################################
+ 	% ##############################################################################
+    % \begin{algorithm}[h]
+    %	\For{$i = 0$ \KwTo $100$}{
+    %		print\_number = true\;
+    %		\If{i is divisible by 3}{
+    %			print "Fizz"\;
+    %			print\_number = false\;
+    %		}
+    %		\If{i is divisible by 5}{
+    %			print "Buzz"\;
+    %			print\_number = false\;
+    %		}
+    %		\If{print\_number}{
+    %			print i\;
+    %		}
+    %		print a newline\;
+    %	}
+    %	\caption{A.I.}
+    %\end{algorithm}
+ 	% ###############################################################################
+
     
     
     
     \section{Enhancements}
-    During the implementation phase of the project, these were the functions and features that were considered but deemed to be too time intensive to implement and test before the submission date. These may be implemented as part of the software's evolution in the future. 
+    During the implementation phase of this project, these were the features that were considered but either deemed to be too time intensive to implement and test before the submission date or a simplified version was implemented. These features may be implemented or improved as part of the software's evolution in the future. 
     
-    \subsection{Export/Import full game replay to and from a CSV file.}
-    The ability to export all the move from a game of checkers to a CSV file, which could be stored and viewed at a later date with the application.
+    % ###############################################################################
+    \subsection{Export/Import full game replay}
+    The ability to export/import game replays, to/from a file format such as comma-separated values (CSV).
+    \newline   
+    The application would convert the string that are currently used to store the positions of all the playing pieces each turn, into the standardised notation for recording English draughts games.
     
+    % ###############################################################################
+    \subsection{Multiple rules sets available}
+    Allowing the users to select which game rules they would like to play for the current session. Examples of different rule sets that could of been implemented: 
     
-    \subsection{Multiple Rules sets available}
-    Allowing the users to select which game rules they would like use for the current session. International Checkers would be the first additional rule set to be implemented. As the board is 10 x 10 and the rules vary significantly from the English draughts rule set that we implemented for this project.
+    \subsubsection{International Checkers}
+    The size of the board would have to be increased as for International Checkers the standard board size is 10 x 10 with 20 playing pieces per player. The 'flying kings' rule and the ability for 'normal' pieces to capture 
+    \newline
+    opponent pieces by jumping backwards would both 
+    \newline
+    require alterations to the movement and capturing logic.    
+    As it is a rule that the move which captures the highest amount of opponent pieces must always be taken, a form of scoring system would need to be introduced to ensure that only the highest scoring move is taken by the player or AI.
     
+    \subsubsection{Brazilian / Italian Checkers}
+    Both of these rule sets are only slight modifications from either English draughts or International checkers. 
+    \newline
+    Brazilian checkers uses the same rule set as International checkers but these games are played on a 8 x 8 board whereas Italian checkers while played on the same size of board with a similar rule set to English draughts, there is the additional rule that 'normal' pieces cannot capture king pieces.
     
+    \subsubsection{Suicide Checkers}
+    Suicide checkers, which is also known as Losing draughts, is a variation of checkers where the objective of the game is to lose all the pieces that belong to 
+    \newline
+    yourself before your opponent can lose all of their pieces. The winner being the first player left with zero checkers or no available moves to make. 
+    
+    % ###############################################################################
     \subsection{Improved AI}
-    scoring system for moves
+    The current A.I. could be improved by implementing an 
+    \newline
+    algorithm which would search for each available move 
+    \newline
+    assigning them all a score, based on a set criteria. The algorithm would then select and play the move with the highest score.
+    \newline 
+    The current A.I. only searches either one or two tiles away diagonally before making an available move. Increasing the search distance to 3 or 4 tiles from the selected piece would survey a larger portion of the board each move and would allow a score based algorithm to adapt sooner to the opponents move. 
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    % ###############################################################################
+    % ###############################################################################
     
     \section{Critical Evaluation}
     Describe the features that I felt worked well or poorly and why I thought this.
