@@ -170,8 +170,6 @@ namespace Coursework
                         "\nPress [0] to exit the application.\n\n");
                 }
 
-
-
                         int caseSwitch;
                         Int32.TryParse(Console.ReadLine(), out caseSwitch);
 
@@ -181,15 +179,12 @@ namespace Coursework
                             case 1:
                                 {
                                     try
-                                    {
-                                       
-
+                                    {   
                                         if (gameModeSelection.Equals(3))
                                         {
-
                                             stopWatchGameTime.Start();
 
-                                            int testSize = 2500;
+                                            int testSize = 25;
 
                                             for (int k = 0; k < testSize; k++)
                                             {
