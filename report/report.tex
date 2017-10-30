@@ -137,7 +137,7 @@
     \newline
     current match, the application enters a loop which will 
     \newline
-    iterate through all the string stored in the que. A pause has been added to the loop, so that the replay can be followed by the human eye.
+    iterate through all the string stored in the queue. A pause has been added to the loop, so that the replay can be followed by the human eye.
     
     \subsubsection{Stack}
     The stack data structure is used to aid the 
@@ -148,8 +148,8 @@
     \newline
     features.
     \newline
-    The queue and stack data structures selected both 
-    \newline
+    Both the queue and stack data structures selected 
+    \newline 
     offer improved performance over the other data structures available which could perform similar tasks, such as an array or a list.
     
     \subsubsection{List}
@@ -165,10 +165,24 @@
     combined help to produce a robust version of the game checkers. We will look at the algorithms that are essential for the application to simulate multiple games of checkers.
     
     \subsubsection{Valid Move Check}
-    The valid move check takes place before the user has entered the y co-ordinate of the piece they wish to move. The method \textit{AreThereAnyValidMoves()} is called (from the Player class) which returns a boolean value depending on whether the current player has any available move to play or not.   
+    If a player has no valid moves available then they lose the game. To implement this rule we used a valid move check algorithm.
+    \newline
+    The valid move check takes place before the user has entered the y co-ordinate of the piece they wish to move. The method \textit{AreThereAnyValidMoves()} is called (from the Player class) which returns a boolean value depending on whether the current player has any available move to play or not. 
+    \newline
+    The algorithm loops through the \textit{positionsArray} checking every index for a string that matches the current players normal piece or a king piece. 
+    \newline
+    Once a piece is found, the algorithm first checks if that piece can capture an opponents piece. 
+    \newline
+    If not then the algorithm checks if the piece can complete a successful move. 
+    \newline
+    If after all the current players pieces have been checked and neither of the capture or move checks return true, then the current player loses the game as there are no available moves to be made. 
     
-    
-    \subsubsection{Force Capture}  
+    \subsubsection{Force Capture} 
+    As stated in the rules of English draughts that if there is a capture available the player must make that move, unless there are multiple captures where the player can choose which capture to make.
+    \newline
+    After the player has entered the y and x co-ordinates of the piece they want to move and the tile they want to move the piece to, the method \textit{ForcedCaptureCheck()} is called (from the Player class).
+    \newline
+       
     
     \subsubsection{Movement}
      

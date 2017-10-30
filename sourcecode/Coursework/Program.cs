@@ -196,7 +196,7 @@ namespace Coursework
 
 
                                             // Pauses the app, so you can follow the moves
-                                            int milliseconds = 1000;
+                                            int milliseconds = 2000;
                                             Thread.Sleep(milliseconds);
 
 
