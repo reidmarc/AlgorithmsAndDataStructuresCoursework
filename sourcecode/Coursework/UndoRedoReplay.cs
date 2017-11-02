@@ -31,13 +31,7 @@ namespace Coursework
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    positionsTemp = positionsArray[i, j];
-
-                    //// Replaces the tiles that have no content with a symbol
-                    //if (positionsTemp.Equals("   "))
-                    //{
-                    //    positionsTemp = "-";
-                    //}
+                    positionsTemp = positionsArray[i, j];                   
 
                     // Stops the string from starting with a comma
                     if (i.Equals(0) && j.Equals(0))
@@ -81,18 +75,7 @@ namespace Coursework
 
             string positionsOfPiecesNow = undoStack.Peek();
 
-            string[] savedPositions = positionsOfPiecesNow.Split(',');
-
-            //// Replaces the '-' with string.empty like it was before being saved
-            //for (int i = 0; i < savedPositions.Length; i++)
-            //{
-            //    if (savedPositions[i].Equals("-"))
-            //    {
-            //        savedPositions[i] = "   ";
-            //    }
-            //}
-
-
+            string[] savedPositions = positionsOfPiecesNow.Split(',');        
 
             return savedPositions;
 
@@ -108,17 +91,7 @@ namespace Coursework
 
             undoStack.Push(positionsOfPieces);
 
-
-            string[] savedPositions = positionsOfPieces.Split(',');
-
-            //// Replaces the '-' with string.empty like it was before being saved
-            //for (int i = 0; i < savedPositions.Length; i++)
-            //{
-            //    if (savedPositions[i].Equals("-"))
-            //    {
-            //        savedPositions[i] = "   ";
-            //    }
-            //}         
+            string[] savedPositions = positionsOfPieces.Split(',');            
 
             return savedPositions;
         }

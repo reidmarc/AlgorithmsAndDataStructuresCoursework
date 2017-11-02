@@ -40,6 +40,8 @@ namespace Coursework
             bool endGame = true;
             bool aiGame = true;
             bool notMadeChoice = true;
+            bool undoRedoTick = false;
+
 
             #endregion
 
@@ -77,7 +79,8 @@ namespace Coursework
             {
                 Console.Clear();
                 Console.WriteLine("Game Modes Available:\n\n[1] - Human vs Human\n[2] - Human vs A.I.\n[3] - A.I. vs A.I.\n[4] - To quit the game\n\nPlease select a game mode.");
-
+                gameModeSelection = 0;
+                endGame = true;
 
                 Int32.TryParse(Console.ReadLine(), out gameMode);
 
@@ -155,7 +158,7 @@ namespace Coursework
                             "\nPress [3] to redo a move." +
                             "\t\t\tPress [7] to restart the game." +
                             "\nPress [4] to replay the game." +
-                            "\t\t\tPress [0] to exit the application.\n\n");
+                            "\t\t\tPress [0] to exit to the game mode menu.\n\n");
                     }
 
                     if (gameModeSelection.Equals(3))
@@ -164,7 +167,7 @@ namespace Coursework
                         Console.WriteLine("Menu\n" +
                             "\nPress [1] to start a new game." +
                             "\nPress [4] to replay the game." +
-                            "\nPress [0] to exit the application.\n\n");
+                            "\nPress [0] to exit to the game mode menu.\n\n");
                     }
 
 
@@ -428,6 +431,8 @@ namespace Coursework
                                     yTwo = 0;
                                     xTwo = 0;
 
+                                    undoRedoTick = false;
+
 
 
                                 }
@@ -467,6 +472,7 @@ namespace Coursework
                                             theBoard.UpdateTheBoard(positionsArray, savedPositions);
                                             theBoard.DisplayTheBoard(positionsArray, player1Turn);
 
+                                            undoRedoTick = true;
 
 
                                         }
@@ -501,7 +507,7 @@ namespace Coursework
 
                                         // Stops the program from trying to pop the top value off the stack 'redoStack'
                                         // When there is nothing stored on the stack
-                                        if (undoRedoReplay.redoStack.Count > 0)
+                                        if (undoRedoReplay.redoStack.Count > 0 && undoRedoTick.Equals(true))
                                         {
                                             string[] savedPositions = undoRedoReplay.DisplayTheRedoMovePositions(positionsArray);
 
@@ -519,6 +525,7 @@ namespace Coursework
                                         }
                                         else
                                         {
+                                            undoRedoReplay.redoStack.Clear();
                                             Console.Clear();
                                             theBoard.DisplayTheBoard(positionsArray, player1Turn);
                                             Console.WriteLine("There are no more moves to 'Redo'");

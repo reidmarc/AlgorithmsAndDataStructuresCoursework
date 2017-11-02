@@ -233,18 +233,18 @@ namespace Coursework
             //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = "   ";
 
 
-            //positionsArray[7, 2] = " X ";
-            ////positionsArray[0, 1] = " O ";
-
-
-
-
-
+            //positionsArray[6, 1] = " X ";
             //positionsArray[5, 2] = " O ";
-            //positionsArray[5, 4] = " O ";
-            //positionsArray[4, 1] = " O ";
 
-            //positionsArray[4, 5] = " O ";
+
+
+
+
+            ////positionsArray[5, 2] = " O ";
+            ////positionsArray[5, 4] = " O ";
+            ////positionsArray[4, 1] = " O ";
+
+            ////positionsArray[4, 5] = " O ";
 
 
 
