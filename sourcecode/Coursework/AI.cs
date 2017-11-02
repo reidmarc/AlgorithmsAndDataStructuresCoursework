@@ -398,13 +398,7 @@ namespace Coursework
                 xTwo = xOne + 2;
                 return true;
             }
-            // Checks Up Left
-            if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(player) || positionsArray[(yOne - 1), (xOne - 1)].Equals(king)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
-            {
-                yTwo = yOne - 2;
-                xTwo = xOne - 2;
-                return true;
-            }
+           
             // Checks Down Right
             if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(player) || positionsArray[(yOne + 1), (xOne + 1)].Equals(king)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
             {
@@ -416,6 +410,13 @@ namespace Coursework
             if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(player) || positionsArray[(yOne + 1), (xOne - 1)].Equals(king)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
             {
                 yTwo = yOne + 2;
+                xTwo = xOne - 2;
+                return true;
+            }
+            // Checks Up Left
+            if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(player) || positionsArray[(yOne - 1), (xOne - 1)].Equals(king)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
+            {
+                yTwo = yOne - 2;
                 xTwo = xOne - 2;
                 return true;
             }
@@ -462,32 +463,6 @@ namespace Coursework
                     return true;
                 }
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             return false;

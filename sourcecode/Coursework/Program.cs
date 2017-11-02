@@ -76,7 +76,7 @@ namespace Coursework
             while (notMadeChoice)
             {
                 Console.Clear();
-                Console.WriteLine("Game Modes Available:\n\n[1] - Human vs Human\n[2] - Human vs AI\n[3] - AI vs AI\n[4] - To quit the game\n\nPlease select a game mode.");
+                Console.WriteLine("Game Modes Available:\n\n[1] - Human vs Human\n[2] - Human vs A.I.\n[3] - A.I. vs A.I.\n[4] - To quit the game\n\nPlease select a game mode.");
 
 
                 Int32.TryParse(Console.ReadLine(), out gameMode);
