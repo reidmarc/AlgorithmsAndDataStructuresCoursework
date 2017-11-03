@@ -1,8 +1,16 @@
-﻿using System;
+﻿// Class AI
+// This class provides the logic for the AI 
+// Written By: Marc Reid [03001588]
+
+#region Usings
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+#endregion
 
 namespace Coursework
 {
@@ -10,7 +18,10 @@ namespace Coursework
     {
         #region Variables / Objects
 
+        // Instantiates a new object of the Player Class.
         Player aiPlayer = new Player();
+
+        // Instantiates a new object of the Random Class.
         Random rng = new Random();
 
         const string playerOne = " X ";
@@ -34,6 +45,20 @@ namespace Coursework
 
         #endregion
 
+        #region A.I. Movement Logic
+
+        /// <summary>
+        /// Method searches for the current players pieces and checks if they can capture an opponents piece
+        /// If they can this method changes the valuesof yOne, xOne, yTwo and xTwo and returns
+        /// If they cannot then the method searches for the current players pieces and checks if they can make a legal move
+        /// When a legal move is found the method changes the valuesof yOne, xOne, yTwo and xTwo and returns        
+        /// </summary>
+        /// <param name="yOne"> Used to change the Y co-ordinate of the piece the AI wants to move</param>
+        /// <param name="xOne"> Used to change the X co-ordinate of the piece the AI wants to move</param>
+        /// <param name="yTwo"> Used to change the Y co-ordinate of the destination tile the AI wants to move their piece to</param>
+        /// <param name="xTwo"> Used to change the X co-ordinate of the destination tile the AI wants to move their piece to</param>
+        /// <param name="positionsArray"> Used to search through to make decisions based on playing piece positions</param>
+        /// <param name="player1Turn"> Indicates whose turn it currently is</param>
         public void GetMove(ref int yOne, ref int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray, ref bool player1Turn)
         {
             if (player1Turn)
@@ -387,8 +412,21 @@ namespace Coursework
             }
         }
 
+        #endregion
+
         #region Private Methods
 
+        /// <summary>
+        /// Checks if the king found can capture an opponents piece
+        /// </summary>
+        /// <param name="yOne"> Used to determine where the king is on the boards Y axis</param>
+        /// <param name="xOne"> Used to determine where the king is on the boards X axis</param>
+        /// <param name="yTwo"> Passed in so that it can be changed if a successful capture happens</param>
+        /// <param name="xTwo"> Passed in so that it can be changed if a successful capture happens</param>
+        /// <param name="positionsArray">The array that stores all the positions of the current playing pieces</param>
+        /// <param name="player"> The normal piece that is needed for a successful capture</param>
+        /// <param name="king"> The king piece that is needed for a successful capture</param>
+        /// <returns> A boolean value depending on whether the king has captured a piece or not</returns>
         private bool KingCapture(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray, string player, string king)
         {
             // Checks Up Right 
@@ -424,10 +462,19 @@ namespace Coursework
             return false;
         }
 
+        /// <summary>
+        /// Checks if the normal piece found can capture an opponents piece
+        /// </summary>
+        /// <param name="yOne"> Used to determine where the normal piece is on the boards Y axis</param>
+        /// <param name="xOne"> Used to determine where the normal piece is on the boards X axis</param>
+        /// <param name="yTwo"> Passed in so that it can be changed if a successful capture happens</param>
+        /// <param name="xTwo"> Passed in so that it can be changed if a successful capture happens</param>
+        /// <param name="positionsArray">The array that stores all the positions of the current playing pieces</param>
+        /// <param name="player"> The normal piece that is needed for a successful capture</param>
+        /// <param name="king"> The king piece that is needed for a successful capture</param>
+        /// <returns> A boolean value depending on whether the normal piece has captured a piece or not</returns>
         private bool NormalCapture(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray, ref bool player1Turn)
         {
-
-
             if ((positionsArray[yOne, xOne]).Equals(playerOne))
             {
                 if ((yOne > 1 && xOne < 6) && (aiPlayer.CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
@@ -443,10 +490,6 @@ namespace Coursework
                     return true;
                 }
             }
-
-
-
-
 
             if ((positionsArray[yOne, xOne]).Equals(playerTwo))
             {
@@ -464,11 +507,19 @@ namespace Coursework
                 }
             }
 
-
             return false;
-
         }
 
+
+        /// <summary>
+        /// Check if the king can make a legal move
+        /// </summary>
+        /// <param name="yOne"> Used to determine where the king is on the boards Y axis</param>
+        /// <param name="xOne"> Used to determine where the king is on the boards X axis</param>
+        /// <param name="yTwo"> Used to check if the destination tile is empty</param>
+        /// <param name="xTwo"> Used to check if the destination tile is empty</param>
+        /// <param name="positionsArray">The array that stores all the positions of the current playing pieces</param>
+        /// <returns> A boolean value depending on whether the king can make a legal move or not</returns>
         private bool KingLegalMove(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray)
         {        
             downLeft = false;
@@ -518,8 +569,6 @@ namespace Coursework
                 {
                     rngList.Add(w + 1);
                 }
-
-
 
                 // If when checking which direction the king could move, the boolean value was changed to true
                 // The app will enter this 'IF' statement and check if the value stored in the list[randomMoveCounter] is equal
@@ -589,14 +638,21 @@ namespace Coursework
                     }
                 }
             }
-
             return false;
         }
 
-        private bool NormalLegalMove(int yOne,int xOne, ref int yTwo, ref int xTwo, string[,]positionsArray)
-        {
-            
 
+        /// <summary>
+        /// Check if the normal piece can make a legal move
+        /// </summary>
+        /// <param name="yOne"> Used to determine where the normal piece is on the boards Y axis</param>
+        /// <param name="xOne"> Used to determine where the normal piece is on the boards X axis</param>
+        /// <param name="yTwo"> Used to check if the destination tile is empty</param>
+        /// <param name="xTwo"> Used to check if the destination tile is empty</param>
+        /// <param name="positionsArray">The array that stores all the positions of the current playing pieces</param>
+        /// <returns> A boolean value depending on whether the normal piece can make a legal move or not</returns>
+        private bool NormalLegalMove(int yOne,int xOne, ref int yTwo, ref int xTwo, string[,]positionsArray)
+        {        
             downLeft = false;
             downRight = false;
             upRight = false;
@@ -635,8 +691,6 @@ namespace Coursework
                 }
             }
 
-
-
             // If the piece found on the board can legally move in 1 of the 2 directions
             // The counter 'randomNumberGenCounter' will be a value from 1 to 2
             if (randomNumberGenCounter > 0)
@@ -652,8 +706,6 @@ namespace Coursework
                 {
                     rngList.Add(w + 1);
                 }
-
-
 
                 // If when checking which direction the piece could move, the boolean value was changed to true
                 // The app will enter this 'IF' statement and check if the value stored in the list[randomMoveCounter] is equal
@@ -724,10 +776,8 @@ namespace Coursework
                     randomMoveCounter = randomMoveCounter + 1;
                 }
             }
-
             return false;
         }
-
 
         public bool IsItADraw()
         {
@@ -740,10 +790,8 @@ namespace Coursework
                 return false;
             }
         }
+
         #endregion
-
-
-
 
     }
 }

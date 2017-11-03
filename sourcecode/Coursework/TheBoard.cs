@@ -1,12 +1,22 @@
-﻿using System;
+﻿// Class TheBoard
+// This class provides methods which deal with the command line interface,
+// The displaying of the score, the winning screens and the console settings
+// Written By: Marc Reid [03001588]
+
+
+#region Usings
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+#endregion
+
 namespace Coursework
-{
+{  
     public class TheBoard
     {
         #region Variables
@@ -22,12 +32,9 @@ namespace Coursework
         int totalDraws = 0;
         int totalGames = 0;
 
-
         int fastTick = 150;
-        int slowTick = 300;
-
-        
-
+        int slowTick = 300;       
+       
         string stringPlayerOneCounter;
         string stringPlayerTwoCounter;
         string stringPlayerOneKingCounter;
@@ -36,9 +43,8 @@ namespace Coursework
         string stringPlayerTwoWins;
         string stringTotalGames;
         string stringTotalDraws;
-
-
         string theBoard;
+
         public string _player;
 
         const string theWinnerIs = ("\n\n _____ _          \n|_   _| |         \n  | | | |__   ___ \n  | | | '_ \\ / _ \\\n  | | | | | |  __/\n  \\_/ |_| |_|\\___|\n\n\n _    _ _                       \n| |  | (_)                      \n| |  | |_ _ __  _ __   ___ _ __ \n| |/\\| | | '_ \\| '_ \\ / _ \\ '__|\n\\  /\\  / | | | | | | |  __/ |   \n \\/  \\/|_|_| |_|_| |_|\\___|_|   \n\n\n _     \n(_)    \n _ ___ \n| / __|\n| \\__ \\\n|_|___/\n");
@@ -47,34 +53,34 @@ namespace Coursework
 
         #endregion
 
-        #region Console Settings Method
+        #region Console Settings Method       
 
+        /// <summary>
+        /// Method which sets up the console how I want it
+        /// </summary>
         public void ConsoleSettings()
         {
             // Sets the title
             Console.Title = ("Check, Check, Checkers....");
 
-            // Sets the width and height of the console window
-
-
-            //int width = (Console.LargestWindowWidth - 100);
-            //int height = (Console.LargestWindowHeight - 10); 
-
+            // Sets the width and height of the console window 
             int width = (Console.LargestWindowWidth - 75);
             int height = (Console.LargestWindowHeight - 10);
-
-
-
-            Console.SetWindowSize(width, height);
-
-            // Set the position of the console window to the top left
-            //Console.SetWindowPosition(1, 1);
+            Console.SetWindowSize(width, height);            
         }
 
         #endregion
 
         #region Display and Update the Board Methods
 
+        /// <summary>
+        /// Method updates the array when the Undo, Redo or Replay features are used.
+        /// Passes in the positionsArray which holds the current positions for the board
+        /// And the array savdPositions which are the positions retrieved from the stack or queue
+        /// Depending on which feature is being used. 
+        /// </summary>
+        /// <param name="positionsArray"> The array which stores the current playing piece positions</param>
+        /// <param name="savedPositions"> The array which stores the playing piece positions that are going to update positionsArray with</param>
         public void UpdateTheBoard(string[,] positionsArray, string[] savedPositions)
         {
             positionsArray[0, 1] = savedPositions[1];
@@ -116,15 +122,20 @@ namespace Coursework
             positionsArray[7, 2] = savedPositions[58];
             positionsArray[7, 4] = savedPositions[60];
             positionsArray[7, 6] = savedPositions[62];
+
+            // Retrieves the which player made the last move, to display.
             _player = savedPositions[64];
         }
 
 
+
+        /// <summary>
+        /// Method displays the board from the current values retrieved from the array
+        /// </summary>
+        /// <param name="positionsArray"> The array which stores the current playing piece positions</param>
+        /// <param name="player1Turn"> Indicates whose turn it is</param>
         public void DisplayTheBoard(string[,] positionsArray, bool player1Turn)
-        {
-            
-
-
+        {   
             _player = CheckPlayerTurn(player1Turn);
 
             Console.Clear();
@@ -192,10 +203,15 @@ namespace Coursework
 
         #endregion
 
-        #region New Game Method
+        #region New Game Method       
 
+        /// <summary>
+        /// Method sets the values in the array to the starting positions
+        /// </summary>
+        /// <param name="positionsArray"> The array which stores the current playing piece positions</param>
         public void NewGame(string[,] positionsArray)
         {
+            // Loops through the array and fills every index with a # 
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -204,13 +220,10 @@ namespace Coursework
                 }
             }
 
-
-
             // Player 2 starting positions            
             positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
             positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
             positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] = " O ";
-
 
             // Blank starting squares            
             positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
@@ -219,55 +232,32 @@ namespace Coursework
             // Player 1 starting positions
             positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
             positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = " X ";
-
-
-            ///////////////////////////////// FOR TESTING PURPOSES ONLY /////////////////////////////
-            //positionsArray[0, 1] = positionsArray[0, 3] = positionsArray[0, 5] = positionsArray[0, 7] =
-            //positionsArray[1, 0] = positionsArray[1, 2] = positionsArray[1, 4] = positionsArray[1, 6] =
-            //positionsArray[2, 1] = positionsArray[2, 3] = positionsArray[2, 5] = positionsArray[2, 7] =
-            //positionsArray[3, 0] = positionsArray[3, 2] = positionsArray[3, 4] = positionsArray[3, 6] =
-            //positionsArray[4, 1] = positionsArray[4, 3] = positionsArray[4, 5] = positionsArray[4, 7] =
-            //positionsArray[5, 0] = positionsArray[5, 2] = positionsArray[5, 4] = positionsArray[5, 6] =
-            //positionsArray[6, 1] = positionsArray[6, 3] = positionsArray[6, 5] = positionsArray[6, 7] =
-            //positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = "   ";
-
-
-            //positionsArray[6, 1] = " X ";
-            //positionsArray[5, 2] = " O ";
-
-
-
-
-
-            ////positionsArray[5, 2] = " O ";
-            ////positionsArray[5, 4] = " O ";
-            ////positionsArray[4, 1] = " O ";
-
-            ////positionsArray[4, 5] = " O ";
-
-
-
-
+            positionsArray[7, 0] = positionsArray[7, 2] = positionsArray[7, 4] = positionsArray[7, 6] = " X ";   
 
             // Displays the starting positions and sets the player's turn to player 1
             DisplayTheBoard(positionsArray, true);
 
             return;
-
         }
 
         #endregion
 
-        #region End Game Method
-
-        public void IsItADraw(int count)
+        #region End Game Methods
+        
+        /// <summary>
+        /// Method checks if an A.I. vs A.I. game is a draw
+        /// </summary>
+        public void IsItADraw()
         {
-            totalDraws = totalDraws + count;
+            totalDraws = totalDraws + 1;
         }
 
+        /// <summary>
+        /// Method checks for a winner
+        /// </summary>
+        /// <returns> A boolean value depending on if there is a winner or not</returns>
         public bool IsThereAWinner()
-        {         
+        {   
             if ((playerOneCounter + playerOneKingCounter).Equals(0))
             {
                 Thread.Sleep(slowTick);
@@ -283,9 +273,12 @@ namespace Coursework
             }
 
             return false;
+        }
 
-        }  
-        
+
+        /// <summary>
+        /// Method to display the winning message, if player X wins
+        /// </summary>
         public void PlayerXWinningMessage()
         {
             for (int j = 0; j < 5; j++)
@@ -311,6 +304,10 @@ namespace Coursework
             
         }
 
+
+        /// <summary>
+        /// Method to display the winning message, if player O wins
+        /// </summary>
         public void PlayerOWinningMessage()
         {
             for (int j = 0; j < 5; j++)
@@ -340,12 +337,20 @@ namespace Coursework
 
         #region Private Methods
 
+        /// <summary>
+        /// Method that calculates the total number of games from each players win totals
+        /// </summary>
         private void TotalGames()
         {
             totalGames = playerOneWins + playerTwoWins + totalDraws;
         }
 
 
+        /// <summary>
+        /// Method which checks which players turn it is
+        /// </summary>
+        /// <param name="player1Turn"> boolean indicating if its player 1's turn or not</param>
+        /// <returns> Returns a different string depending on whose turn it currently is</returns>
         private string CheckPlayerTurn(bool player1Turn)
         {
             if (player1Turn.Equals(true))
@@ -358,9 +363,15 @@ namespace Coursework
             }
         }
 
-        // Method deals with the outline moving due to the number going from 9 (1 char) to 10 (2 chars)
+        
+
+        /// <summary>
+        /// This method deals with a formatting issue that occurs when the number of characters displayed changes (i.e. from 9 to 10)
+        /// As it moves the borders.
+        /// </summary>
         private void FormatScoreOutput()
         {
+            // Fixes formatting issue when the number of player X's normal pieces goes from double figures to single
             if (playerOneCounter < 10)
             {
                 stringPlayerOneCounter = ("" + playerOneCounter + " ").ToString();
@@ -370,6 +381,7 @@ namespace Coursework
                 stringPlayerOneCounter = playerOneCounter.ToString();
             }
 
+            // Fixes formatting issue when the number of player O's normal pieces goes from double figures to single
             if (playerTwoCounter < 10)
             {
                 stringPlayerTwoCounter = ("" + playerTwoCounter + " ").ToString();
@@ -379,8 +391,7 @@ namespace Coursework
                 stringPlayerTwoCounter = playerTwoCounter.ToString();
             }
 
-
-
+            // Fixes formatting issue when the number of player X's kings pieces goes from single figures to double
             if (playerOneKingCounter < 10)
             {
                 stringPlayerOneKingCounter = ("" + playerOneKingCounter + " ");
@@ -390,6 +401,7 @@ namespace Coursework
                 stringPlayerOneKingCounter = playerOneKingCounter.ToString();
             }
 
+            // Fixes formatting issue when the number of player O's kings pieces goes from single figures to double
             if (playerTwoKingCounter < 10)
             {
                 stringPlayerTwoKingCounter = ("" + playerTwoKingCounter + " ");
@@ -398,28 +410,6 @@ namespace Coursework
             {
                 stringPlayerTwoKingCounter = playerTwoKingCounter.ToString();
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             // If the value for playerOneWins is a single digit or double digit
             // This statement deals with a formatting issue
@@ -435,7 +425,6 @@ namespace Coursework
             {
                 stringPlayerOneWins = playerOneWins.ToString();
             }
-
 
             // If the value for playerTwoWins is a single digit or double digit
             // This statement deals with a formatting issue
@@ -467,7 +456,6 @@ namespace Coursework
                 stringTotalDraws = totalDraws.ToString();
             }
 
-
             // If the value for totalGames is a single digit or double digit or triple
             // This statement deals with a formatting issue
             if (totalGames < 10)
@@ -486,42 +474,12 @@ namespace Coursework
             {
                 stringTotalGames = totalGames.ToString();
             }
-
-
-
-
-
-
-
-            
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
+        /// <summary>
+        /// Method checks how many pieces each player has on the board at that time
+        /// </summary>
+        /// <param name="positionsArray"> The array which stores all the positions on the playing pieces</param>
         private void CheckHowManyPiecesRemain(string[,] positionsArray)
         {
             playerOneCounter = playerTwoCounter = playerOneKingCounter = playerTwoKingCounter = 0;

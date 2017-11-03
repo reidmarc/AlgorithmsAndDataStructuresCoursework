@@ -1,8 +1,17 @@
-﻿using System;
+﻿// Class Player
+// This class provides the logic for both players pieces.
+// Written By: Marc Reid [03001588]
+
+
+#region Usings
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+#endregion
 
 namespace Coursework
 {
@@ -16,11 +25,20 @@ namespace Coursework
         const string playerOneKing = "|X|";
         const string playerTwoKing = "|O|";
 
-
         #endregion
 
         #region Basic Movement
 
+        /// <summary>
+        /// Checks if a normal piece can move to the right of their current position
+        /// </summary>
+        /// <param name="yOne"> Needed to set to current position to blank, if the piece can move</param>
+        /// <param name="xOne"> Needed to set to current position to blank, if the piece can move</param>
+        /// <param name="yTwo"> Needed to check the position the player wants to move the piece to is empty</param>
+        /// <param name="xTwo"> Needed to check the position the player wants to move the piece to is empty</param>
+        /// <param name="positionsArray"> The array which stores the current playing piece positions</param>
+        /// <param name="player1Turn"> Indicates whose turn it currently is</param>
+        /// <returns> A boolean value depending if the normal piece can move right or not</returns>
         private bool MovementRight(int yOne, int xOne, int yTwo, int xTwo, string[,] positionsArray, ref bool player1Turn)
         {
 

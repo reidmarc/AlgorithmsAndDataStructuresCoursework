@@ -1,10 +1,19 @@
-﻿using System;
+﻿// Program Class
+// Contains the Main Method
+// Written By: Marc Reid [03001588]
+
+
+#region Usings
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+
+#endregion
 
 namespace Coursework
 {
@@ -134,10 +143,6 @@ namespace Coursework
 
                 // Stores the current state of the board
                 undoRedoReplay.StoreTheMovePositionsUndoRedo(positionsArray, player1Turn);
-
-
-
-
 
                 while (endGame)
                 {
@@ -288,7 +293,7 @@ namespace Coursework
 
                                             if (aI.IsItADraw().Equals(true))
                                             {
-                                                theBoard.IsItADraw(1);
+                                                theBoard.IsItADraw();
 
                                                 Console.Clear();
                                                 theBoard.DisplayTheBoard(positionsArray, player1Turn);
@@ -457,7 +462,7 @@ namespace Coursework
                                         // When there is nothing stored on the stack
                                         if (undoRedoReplay.undoStack.Count > 1)
                                         {
-                                            string[] savedPositions = undoRedoReplay.DisplayTheUndoMovePositions(positionsArray);
+                                            string[] savedPositions = undoRedoReplay.DisplayTheUndoMovePositions();
 
                                             if (savedPositions[64].Equals(" X "))
                                             {
@@ -575,7 +580,7 @@ namespace Coursework
                                         // When there is nothing stored on the stack
                                         if (undoRedoReplay.replayQueue.Count > 1)
                                         {
-                                            string[] savedPositions = undoRedoReplay.DisplayTheReplayMovePositions(positionsArray);
+                                            string[] savedPositions = undoRedoReplay.DisplayTheReplayMovePositions();
 
                                             if (savedPositions[64].Equals(" X "))
                                             {

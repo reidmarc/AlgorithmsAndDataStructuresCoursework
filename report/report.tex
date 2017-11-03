@@ -44,6 +44,7 @@
 \usepackage{amsmath}
 %PseudoCode
 \usepackage{algorithm2e}
+\usepackage[labelformat=empty]{caption}
 
 \titlespacing{\subsection}{0pt}{\parskip}{-3pt}
 \titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
@@ -298,11 +299,21 @@
  % ################################################# CRITICAL  EVALUATION #################################################
  % ######################################################################################################################## 
  \section{Critical Evaluation}
- %Describe the features that I felt worked well or poorly and why I thought this.
- 
- % game is fit for purpose / follows rules/ stability from testing results
- 
- % ai vs ai game mode works well, varied results which means not the same winner all the time
+After he got the A.I. vs A.I. game mode working he set up a testing harness and ran the game mode in a loop for a predetermined number of iterations without the pauses or winning screens. This meant that he could use the built in Stopwatch class to accurately time how long the application took to complete each set of loops. He carried out two test runs in which he set the loop to 500, 1000 and 2500 iterations. The results of these tests can be found in the following appendices:
+
+\begin{itemize}
+	\item Appendix \ref{appendix:d}
+	\item Appendix \ref{appendix:e}
+	\item Appendix \ref{appendix:f}
+	\item Appendix \ref{appendix:g}
+	\item Appendix \ref{appendix:h}
+	\item Appendix \ref{appendix:i}
+\end{itemize}
+
+He feels that the application being able to simulate from 500 games upwards without a crash or exception displays how robust the application is. In total between the two test runs there were 8000 games simulated with the average time per game 3.88 seconds. In the future this allows him to optimise the code and then retest the application under the same conditions. He will then be able to compare times and assess how well the optimisation has worked, if at all.
+\newline
+
+ From the testing done, he could interpret the session info provided. He concluded that his A.I. algorithm is as intended random. This is proven by the scores from test to test varying and that in every run both players won games as well as some games ending in draws. In every run the value for draws was lower than either players win values, which indicates that the number of 20 moves without a capture is at a good level where it does not end an excessive amount of games.
  
  
  % ########################################################################################################################
