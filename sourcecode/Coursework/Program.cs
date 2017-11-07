@@ -1,4 +1,6 @@
-﻿// Program Class
+﻿// STILL TO FINISH COMMENTS
+
+// Program Class
 // Contains the Main Method
 // Written By: Marc Reid [03001588]
 
