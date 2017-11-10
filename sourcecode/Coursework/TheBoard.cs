@@ -53,7 +53,7 @@ namespace Coursework
 
         #endregion
 
-        #region Console Settings Method       
+        #region Console Settings Method
 
         /// <summary>
         /// Method which sets up the console how I want it
@@ -203,7 +203,7 @@ namespace Coursework
 
         #endregion
 
-        #region New Game Method       
+        #region New Game Method
 
         /// <summary>
         /// Method sets the values in the array to the starting positions

@@ -18,7 +18,7 @@ namespace Coursework
 {
     public class UndoRedoReplay
     {
-        #region Variables / Objects / Data Structures   
+        #region Variables / Objects / Data Structures
 
         // Instantiates a new object of the TheBoard Class.
         TheBoard theBoard = new TheBoard();
@@ -35,7 +35,7 @@ namespace Coursework
 
         #endregion        
 
-        #region Storing Moves As Strings 
+        #region Storing Moves As Strings
 
         /// <summary>
         /// Retrieves all the values storing in the array, then concatenates them together in a 
@@ -85,7 +85,7 @@ namespace Coursework
 
         #endregion
 
-        #region Displaying Moves From The Undo Stack 
+        #region Displaying Moves From The Undo Stack
 
         /// <summary>
         /// Method that pops a string off the undoStack, then pushes that string on to the redoStack

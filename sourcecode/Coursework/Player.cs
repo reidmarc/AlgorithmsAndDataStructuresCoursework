@@ -1,10 +1,6 @@
-﻿// STILL TO FINISH COMMENTS
-
-
-// Class Player
-// This class provides the logic for both players pieces.
+﻿// Class Player
+// This class provides the logic for both king and normal playing pieces for both players
 // Written By: Marc Reid [03001588]
-
 
 #region Usings
 
@@ -22,6 +18,7 @@ namespace Coursework
     {
         #region Variables
 
+        // Constant strings representing the different contents of a playable square
         const string playerOne = " X ";
         const string playerTwo = " O ";
         const string noMansLand = "   ";
@@ -34,6 +31,7 @@ namespace Coursework
 
         /// <summary>
         /// Checks if a normal piece can move to the right of their current position
+        /// If it can it makes the move based on the co-ordinates given
         /// </summary>
         /// <param name="yOne"> Needed to set to current position to blank, if the piece can move</param>
         /// <param name="xOne"> Needed to set to current position to blank, if the piece can move</param>
@@ -107,6 +105,7 @@ namespace Coursework
 
         /// <summary>
         /// Checks if a normal piece can move to the left of their current position
+        /// If it can it makes the move based on the co-ordinates given
         /// </summary>
         /// <param name="yOne"> Needed to set to current position to blank, if the piece can move</param>
         /// <param name="xOne"> Needed to set to current position to blank, if the piece can move</param>
@@ -178,6 +177,17 @@ namespace Coursework
             }
         }
 
+        /// <summary>
+        /// Checks if a king can move in atleast 1 of the 4 directions available to the king
+        /// If it can it makes the move based on the co-ordinates given
+        /// </summary>
+        /// <param name="yOne">Needed to set to current position to blank, if the piece can move</param>
+        /// <param name="xOne">Needed to set to current position to blank, if the piece can move</param>
+        /// <param name="yTwo">Needed to check the position the player wants to move the piece to is empty</param>
+        /// <param name="xTwo">Needed to check the position the player wants to move the piece to is empty</param>
+        /// <param name="positionsArray">The array which stores the current playing piece positions</param>
+        /// <param name="player1Turn">Indicates whose turn it currently is</param>
+        /// <returns>A boolean value depending if the king piece can move or not</returns>
         private bool MovementKing(int yOne, int xOne, int yTwo, int xTwo, string[,] positionsArray, ref bool player1Turn)
         {
             if (player1Turn.Equals(true))
@@ -321,6 +331,12 @@ namespace Coursework
 
         #region Pre Move Checks
 
+        /// <summary>
+        /// Checks if there are any available moves for the player whose turn it is
+        /// </summary>
+        /// <param name="positionsArray">The array which stores the current playing piece positions</param>
+        /// <param name="player1Turn">Indicates whose turn it currently is</param>
+        /// <returns>A boolean value depending if a player has any valid moves or not</returns>
         public bool AreThereAnyValidMoves(string[,] positionsArray, bool player1Turn)
         {  
             for (int i = 0; i < 8; i++)
@@ -363,10 +379,8 @@ namespace Coursework
                                     return true;
                                 }
                             }
-
-
-
                         }
+
                         if ((positionsArray[i, j]).Equals(playerOneKing))
                         {
                             // Movement Up Right
@@ -513,13 +527,19 @@ namespace Coursework
         }
 
 
-
+        /// <summary>
+        /// Checks if the current player has a capture move available which they will be forced to take
+        /// </summary>
+        /// <param name="player1Turn">Indicates whose turn it currently is</param>
+        /// <param name="positionsArray">The array which stores the current playing piece positions</param>     
+        /// <param name="yOne">This value is used to determine whether the piece selected by the user, is on the list of forced moves or not</param>
+        /// <param name="xOne">This value is used to determine whether the piece selected by the user, is on the list of forced moves or not</param>
+        /// <param name="yTwo">This value is passed on when the method PlayerMove is called to determine the destination square</param>
+        /// <param name="xTwo">This value is passed on when the method PlayerMove is called to determine the destination square</param>
         public void ForcedCaptureCheck(ref bool player1Turn, string[,] positionsArray, int yOne, int xOne, int yTwo, int xTwo)
         {
             // Boolean value which represents whether there is a forced capture move or not
             bool forcedCapture = false;
-
-
 
             // A list to store the potential 'takes' that must be chosen from
             List<int> listOfForcedMoves = new List<int>();
@@ -545,8 +565,6 @@ namespace Coursework
                             }
                         }
 
-
-
                         if ((positionsArray[i, j]).Contains(playerOneKing))
                         {
                             if (CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
@@ -556,11 +574,6 @@ namespace Coursework
                                 forcedCapture = true;
                             }
                         }
-
-
-
-
-
                     }
                 }
 
@@ -568,8 +581,6 @@ namespace Coursework
                 {
 
                     int potentialMoveCheck = Convert.ToInt32(string.Format("{0}{1}", yOne, xOne));
-
-
 
                     // Checks that the destination co-ords to the up right are the correct ones to perform the forced 'take'
                     if (listOfForcedMoves.Contains(potentialMoveCheck) && ((yOne - 2).Equals(yTwo) && (xOne + 2).Equals(xTwo)))
@@ -690,7 +701,14 @@ namespace Coursework
             }
         }
 
-
+        /// <summary>
+        /// Checks if a normal piece can capture an opponents piece to the right
+        /// </summary>
+        /// <param name="yOne">This value is used to determine whether the piece selected by the user, can capture a piece to the right</param>
+        /// <param name="xOne">This value is used to determine whether the piece selected by the user, can capture a piece to the right</param>        
+        /// <param name="positionsArray">The array which stores the current playing piece positions</param>     
+        /// <param name="player1Turn">Indicates whose turn it currently is</param>       
+        /// <returns>A boolean value indicating if a piece can be captured to the right or not</returns>
         public bool CanAPieceBeCapturedRight(int yOne, int xOne, string[,] positionsArray, ref bool player1Turn)
         {
             if (player1Turn)
@@ -737,6 +755,14 @@ namespace Coursework
             }
         }
 
+        /// <summary>
+        /// Checks if a normal piece can capture an opponents piece to the left
+        /// </summary>
+        /// <param name="yOne">This value is used to determine whether the piece selected by the user, can capture a piece to the left</param>
+        /// <param name="xOne">This value is used to determine whether the piece selected by the user, can capture a piece to the left</param>        
+        /// <param name="positionsArray">The array which stores the current playing piece positions</param>     
+        /// <param name="player1Turn">Indicates whose turn it currently is</param>       
+        /// <returns>A boolean value indicating if a piece can be captured to the left or not</returns>
         public bool CanAPieceBeCapturedLeft(int yOne, int xOne, string[,] positionsArray, ref bool player1Turn)
         {
             if (player1Turn)
@@ -782,7 +808,14 @@ namespace Coursework
             }
         }
 
-
+        /// <summary>
+        /// Checks if a king piece can capture an opponents piece in any of the 4 directions available
+        /// </summary>
+        /// <param name="yOne">This value is used to determine whether the piece selected by the user, can capture an opponents piece</param>
+        /// <param name="xOne">This value is used to determine whether the piece selected by the user, can capture an opponents piece</param>        
+        /// <param name="positionsArray">The array which stores the current playing piece positions</param>     
+        /// <param name="player1Turn">Indicates whose turn it currently is</param>       
+        /// <returns>A boolean value indicating if a king piece can be captured an opponents piece or not</returns>
         public bool CanAPieceBeCapturedKing(int yOne, int xOne, string[,] positionsArray, ref bool player1Turn)
         {
             if (player1Turn.Equals(true))
@@ -841,7 +874,17 @@ namespace Coursework
             }
         }        
         
-        // Method checks that the first co-ords entered contain a piece belonging to the player attempting to play their turn
+        
+        // Method 
+
+        /// <summary>
+        /// Checks that the first co-ordinates entered contain a piece belonging to the player attempting to play their turn
+        /// </summary>
+        /// <param name="yOne">This value is used to determine whether the piece selected belongs to the player whose turn it currently is</param>
+        /// <param name="xOne">This value is used to determine whether the piece selected belongs to the player whose turn it currently is</param>        
+        /// <param name="positionsArray">The array which stores the current playing piece positions</param>     
+        /// <param name="player1Turn">Indicates whose turn it currently is</param>       
+        /// <returns>A boolean value indicating if the piece selected belongs to the player whose turn it currently is</returns>
         public bool PlayerCheck(int yOne, int xOne, string[,] positionsArray, bool player1Turn)
         {
             
@@ -861,10 +904,16 @@ namespace Coursework
             }
 
             return true;
-        }
-    
+        }  
+      
 
-        // Method converts normal pieces into Kings, when the normal pieces land on the last row
+        /// <summary>
+        /// Converts normal pieces into Kings, when the normal pieces land on the last row
+        /// </summary>
+        /// <param name="yTwo">This value is used to determine if the piece that has just moved, finishes their move on an end row square</param>
+        /// <param name="xTwo">This value is used to determine if the piece that has just moved, finishes their move on an end row square</param>
+        /// <param name="positionsArray">The array which stores the current playing piece positions</param>
+        /// <param name="player1Turn">Indicates whose turn it currently is</param>
         public void IsItAKing(int yTwo, int xTwo, string[,] positionsArrays, ref bool player1Turn)
         {
             if (yTwo.Equals(0) && (xTwo.Equals(1) || xTwo.Equals(3) || xTwo.Equals(5) || xTwo.Equals(7)))
@@ -889,6 +938,15 @@ namespace Coursework
 
         #region Advanced Movement
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="yOne"></param>
+        /// <param name="xOne"></param>
+        /// <param name="yTwo"></param>
+        /// <param name="xTwo"></param>
+        /// <param name="positionsArray">The array which stores the current playing piece positions</param>
+        /// <param name="player1Turn">Indicates whose turn it currently is</param>
         private void PlayerMove(int yOne, int xOne, int yTwo, int xTwo, string[,] positionsArray, ref bool player1Turn)
         {
             // Player 1 Movement Logic
@@ -1030,8 +1088,6 @@ namespace Coursework
             {
                 if ((positionsArray[yOne, xOne]).Equals(playerTwo))
                 {
-
-
                     if (CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
                     {
                         // Checks if removing a piece to the right is the move made

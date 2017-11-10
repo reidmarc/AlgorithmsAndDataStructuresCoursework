@@ -24,6 +24,7 @@ namespace Coursework
         // Instantiates a new object of the Random Class.
         Random rng = new Random();
 
+        // Constant strings representing the different contents of a playable square
         const string playerOne = " X ";
         const string playerTwo = " O ";
         const string noMansLand = "   ";
@@ -510,7 +511,6 @@ namespace Coursework
             return false;
         }
 
-
         /// <summary>
         /// Check if the king can make a legal move
         /// </summary>
@@ -526,7 +526,6 @@ namespace Coursework
             downRight = false;
             upRight = false;
             upLeft = false;
-
 
             // Checks Down Left for an empty tile
             if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
@@ -552,7 +551,6 @@ namespace Coursework
                 randomNumberGenCounter = randomNumberGenCounter + 1;
                 upLeft = true;
             }
-
 
             // If the king found on the board can legally move in 1 of the 4 directions
             // The counter 'randomNumberGenCounter' will be a value from 1 to 4
@@ -779,6 +777,11 @@ namespace Coursework
             return false;
         }
 
+        /// <summary>
+        /// Method checks if both A.I. players have not captured an opponents piece in 
+        /// 20 moves combined.
+        /// </summary>
+        /// <returns>Returns true if it is a draw, returns false if it is not</returns>
         public bool IsItADraw()
         {
             if (howManyMovesWithoutACapture.Equals(20))
@@ -792,6 +795,5 @@ namespace Coursework
         }
 
         #endregion
-
     }
 }
