@@ -1,0 +1,6 @@
+Make sure Visual Studio 2013 or newer is installed. 
+Right click on the file "Coursework.csproj" and select "Open with"
+Then select "Visual Studio 2013 or newer".
+Then select "Build" > "Build Solution".
+To find the executable you need to navigate to the folder "Coursework"
+Then "bin" > "Debug". The executable can be found in the "Debug" folder.

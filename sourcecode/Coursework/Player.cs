@@ -1,6 +1,12 @@
-﻿// Class Player
+﻿//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////// Class Player ////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// Code Written By: Marc Reid [03001588] ////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Description:
 // This class provides the logic for both king and normal playing pieces for both players
-// Written By: Marc Reid [03001588]
+
 
 #region Usings
 
@@ -94,7 +100,7 @@ namespace Coursework
                     else
                     {
                         return false;
-                    } 
+                    }
                 }
                 else
                 {
@@ -338,11 +344,11 @@ namespace Coursework
         /// <param name="player1Turn">Indicates whose turn it currently is</param>
         /// <returns>A boolean value depending if a player has any valid moves or not</returns>
         public bool AreThereAnyValidMoves(string[,] positionsArray, bool player1Turn)
-        {  
+        {
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
-                {     
+                {
                     if (player1Turn.Equals(true))
                     {
                         if ((positionsArray[i, j]).Equals(playerOne))
@@ -430,7 +436,7 @@ namespace Coursework
                             {
                                 return true;
                             }
-                        }                                               
+                        }
                     }
                     else
                     {
@@ -453,10 +459,10 @@ namespace Coursework
                             {
                                 // Check if player 2 can move left                    
                                 if (positionsArray[(i + 1), (j - 1)].Equals(noMansLand))
-                                {                                        
+                                {
                                     return true;
-                                }                                    
-                            } 
+                                }
+                            }
 
                             // Checks Down Right for an empty tile                            
                             // To stop the if statement recieving an out of bounds exception
@@ -466,9 +472,9 @@ namespace Coursework
                                 if (positionsArray[(i + 1), (j + 1)].Equals(noMansLand))
                                 {
                                     return true;
-                                }                                    
-                            }                                
-                                                     
+                                }
+                            }
+
                         }
                         if (positionsArray[i, j].Equals(playerTwoKing))
                         {
@@ -477,7 +483,7 @@ namespace Coursework
                             if (i > 0 && j < 7)
                             {
                                 if (positionsArray[(i - 1), (j + 1)].Equals(noMansLand))
-                                {                                    
+                                {
                                     return true;
                                 }
 
@@ -488,7 +494,7 @@ namespace Coursework
                             if (i < 7 && j < 7)
                             {
                                 if (positionsArray[(i + 1), (j + 1)].Equals(noMansLand))
-                                {                                    
+                                {
                                     return true;
                                 }
                             }
@@ -498,8 +504,8 @@ namespace Coursework
                             if (i > 0 && j > 0)
                             {
                                 // Check if player 1 can move left
-                                if (positionsArray[(i - 1), (j - 1)].Equals(noMansLand)) 
-                                {                                   
+                                if (positionsArray[(i - 1), (j - 1)].Equals(noMansLand))
+                                {
                                     return true;
                                 }
                             }
@@ -509,10 +515,10 @@ namespace Coursework
                             if (i < 7 && j > 0)
                             {
                                 if (positionsArray[(i + 1), (j - 1)].Equals(noMansLand))
-                                {                                    
+                                {
                                     return true;
-                                }                                   
-                            }  
+                                }
+                            }
 
                             // Checks All 4 directions for the king
                             if (CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
@@ -557,7 +563,7 @@ namespace Coursework
                         if ((positionsArray[i, j]).Contains(playerOne))
                         {
                             if ((CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true)) ||
-                                (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)))                                
+                                (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)))
                             {
                                 int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
                                 listOfForcedMoves.Add(potentialMove);
@@ -637,7 +643,7 @@ namespace Coursework
                         {
                             if ((CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true)) ||
                                 (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)))
-                            { 
+                            {
                                 int potentialMove = Convert.ToInt32(string.Format("{0}{1}", i, j));
                                 listOfForcedMoves.Add(potentialMove);
                                 forcedCapture = true;
@@ -733,7 +739,7 @@ namespace Coursework
                 }
             }
             else
-            {             
+            {
                 // To stop the if statement recieving an out of bounds exception
                 if (yOne < 6 && xOne < 6)
                 {
@@ -872,10 +878,7 @@ namespace Coursework
                     return false;
                 }
             }
-        }        
-        
-        
-        // Method 
+        }
 
         /// <summary>
         /// Checks that the first co-ordinates entered contain a piece belonging to the player attempting to play their turn
@@ -887,7 +890,7 @@ namespace Coursework
         /// <returns>A boolean value indicating if the piece selected belongs to the player whose turn it currently is</returns>
         public bool PlayerCheck(int yOne, int xOne, string[,] positionsArray, bool player1Turn)
         {
-            
+
             if (player1Turn.Equals(true))
             {
                 if (!positionsArray[yOne, xOne].Equals(" X ") && !positionsArray[yOne, xOne].Equals("|X|"))
@@ -904,8 +907,8 @@ namespace Coursework
             }
 
             return true;
-        }  
-      
+        }
+
 
         /// <summary>
         /// Converts normal pieces into Kings, when the normal pieces land on the last row
@@ -939,12 +942,12 @@ namespace Coursework
         #region Advanced Movement
 
         /// <summary>
-        /// 
+        /// Method which depending on the outcome of certain checks, will move the current players piece.
         /// </summary>
-        /// <param name="yOne"></param>
-        /// <param name="xOne"></param>
-        /// <param name="yTwo"></param>
-        /// <param name="xTwo"></param>
+        /// <param name="yOne">Needed to check other tiles from this position and if a move is made this will be need to set this tiles content to empty</param>
+        /// <param name="xOne">Needed to check other tiles from this position and if a move is made this will be need to set this tiles content to empty</param>
+        /// <param name="yTwo">Needed to check if this tile is empty and if there if there has been a capture made</param>
+        /// <param name="xTwo">Needed to check if this tile is empty and if there if there has been a capture made</param>
         /// <param name="positionsArray">The array which stores the current playing piece positions</param>
         /// <param name="player1Turn">Indicates whose turn it currently is</param>
         private void PlayerMove(int yOne, int xOne, int yTwo, int xTwo, string[,] positionsArray, ref bool player1Turn)
@@ -1190,7 +1193,7 @@ namespace Coursework
 
                             // Sets the square clicked second to now show the player one piece
                             positionsArray[yTwo, xTwo] = playerTwoKing;
-                        }                    
+                        }
 
                         if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                         {

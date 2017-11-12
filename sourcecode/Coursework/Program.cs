@@ -1,8 +1,12 @@
-﻿// STILL TO FINISH COMMENTS
+﻿//////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////// Class Program ////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// Code Written By: Marc Reid [03001588] ////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Program Class
+// Description:
 // Contains the Main Method
-// Written By: Marc Reid [03001588]
+
 
 
 #region Usings
@@ -26,11 +30,17 @@ namespace Coursework
 
             #region Variables / Objects / Collections
 
+            // Instantiates a new object of the TheBoard Class.
             TheBoard theBoard = new TheBoard();
-            Player playerOb = new Player();
-            UndoRedoReplay undoRedoReplay = new UndoRedoReplay();
-            AI aI = new AI();
 
+            // Instantiates a new object of the Player Class.
+            Player playerOb = new Player();
+
+            // Instantiates a new object of the UndoRedoReplay Class.
+            UndoRedoReplay undoRedoReplay = new UndoRedoReplay();
+
+            // Instantiates a new object of the AI Class.
+           AI aI = new AI();
 
 
             // 2D array to map store the piece locations
@@ -52,7 +62,6 @@ namespace Coursework
             bool aiGame = true;
             bool notMadeChoice = true;
             bool undoRedoTick = false;
-
 
             #endregion
 

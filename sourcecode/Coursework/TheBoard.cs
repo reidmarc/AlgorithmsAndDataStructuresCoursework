@@ -1,17 +1,19 @@
-﻿// Class TheBoard
+﻿//////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////// Class TheBoard ///////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// Code Written By: Marc Reid [03001588] ////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Description:
 // This class provides methods which deal with the command line interface,
 // The displaying of the score, the winning screens and the console settings
-// Written By: Marc Reid [03001588]
+
 
 
 #region Usings
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 #endregion
 
@@ -61,7 +63,7 @@ namespace Coursework
         public void ConsoleSettings()
         {
             // Sets the title
-            Console.Title = ("Check, Check, Checkers....");
+            Console.Title = ("Check, Check, Checkers.... Marc Reid [03001588]");
 
             // Sets the width and height of the console window 
             int width = (Console.LargestWindowWidth - 75);
