@@ -23,35 +23,35 @@ namespace Coursework
     {
         #region Variables
 
-        int playerOneCounter = 0;
-        int playerTwoCounter = 0;
+        private int _playerOneCounter = 0;
+        private int _playerTwoCounter = 0;
+         
+        private int _playerOneKingCounter = 0;
+        private int _playerTwoKingCounter = 0;
+         
+        private int _playerOneWins = 0;
+        private int _playerTwoWins = 0;
+        private int _totalDraws = 0;
+        private int _totalGames = 0;
+        
+        private int _fastTick = 150;
+        private int _slowTick = 300;
+        
+        private string _stringPlayerOneCounter;
+        private string _stringPlayerTwoCounter;
+        private string _stringPlayerOneKingCounter;
+        private string _stringPlayerTwoKingCounter;
+        private string _stringPlayerOneWins;
+        private string _stringPlayerTwoWins;
+        private string _stringTotalGames;
+        private string _stringTotalDraws;
+        private string _theBoard;
 
-        int playerOneKingCounter = 0;
-        int playerTwoKingCounter = 0;
+        public string player;
 
-        int playerOneWins = 0;
-        int playerTwoWins = 0;
-        int totalDraws = 0;
-        int totalGames = 0;
-
-        int fastTick = 150;
-        int slowTick = 300;       
-       
-        string stringPlayerOneCounter;
-        string stringPlayerTwoCounter;
-        string stringPlayerOneKingCounter;
-        string stringPlayerTwoKingCounter;
-        string stringPlayerOneWins;
-        string stringPlayerTwoWins;
-        string stringTotalGames;
-        string stringTotalDraws;
-        string theBoard;
-
-        public string _player;
-
-        const string theWinnerIs = ("\n\n _____ _          \n|_   _| |         \n  | | | |__   ___ \n  | | | '_ \\ / _ \\\n  | | | | | |  __/\n  \\_/ |_| |_|\\___|\n\n\n _    _ _                       \n| |  | (_)                      \n| |  | |_ _ __  _ __   ___ _ __ \n| |/\\| | | '_ \\| '_ \\ / _ \\ '__|\n\\  /\\  / | | | | | | |  __/ |   \n \\/  \\/|_|_| |_|_| |_|\\___|_|   \n\n\n _     \n(_)    \n _ ___ \n| / __|\n| \\__ \\\n|_|___/\n");
-        const string playerX = ("\n\n______ _                        __   __\n| ___ \\ |                       \\ \\ / /\n| |_/ / | __ _ _   _  ___ _ __   \\ V / \n|  __/| |/ _` | | | |/ _ \\ '__|  /   \\ \n| |   | | (_| | |_| |  __/ |    / /^\\ \\\n\\_|   |_|\\__,_|\\__, |\\___|_|    \\/   \\/\n                __/ |                  \n               |___/                   \n\n\n\n");
-        const string playerO = ("\n\n______ _                         _____ \n| ___ \\ |                       |  _  |\n| |_/ / | __ _ _   _  ___ _ __  | | | |\n|  __/| |/ _` | | | |/ _ \\ '__| | | | |\n| |   | | (_| | |_| |  __/ |    \\ \\_/ /\n\\_|   |_|\\__,_|\\__, |\\___|_|     \\___/ \n                __/ |                  \n               |___/                   \n\n\n\n");
+        private const string _theWinnerIs = ("\n\n _____ _          \n|_   _| |         \n  | | | |__   ___ \n  | | | '_ \\ / _ \\\n  | | | | | |  __/\n  \\_/ |_| |_|\\___|\n\n\n _    _ _                       \n| |  | (_)                      \n| |  | |_ _ __  _ __   ___ _ __ \n| |/\\| | | '_ \\| '_ \\ / _ \\ '__|\n\\  /\\  / | | | | | | |  __/ |   \n \\/  \\/|_|_| |_|_| |_|\\___|_|   \n\n\n _     \n(_)    \n _ ___ \n| / __|\n| \\__ \\\n|_|___/\n");
+        private const string _playerX = ("\n\n______ _                        __   __\n| ___ \\ |                       \\ \\ / /\n| |_/ / | __ _ _   _  ___ _ __   \\ V / \n|  __/| |/ _` | | | |/ _ \\ '__|  /   \\ \n| |   | | (_| | |_| |  __/ |    / /^\\ \\\n\\_|   |_|\\__,_|\\__, |\\___|_|    \\/   \\/\n                __/ |                  \n               |___/                   \n\n\n\n");
+        private const string _playerO = ("\n\n______ _                         _____ \n| ___ \\ |                       |  _  |\n| |_/ / | __ _ _   _  ___ _ __  | | | |\n|  __/| |/ _` | | | |/ _ \\ '__| | | | |\n| |   | | (_| | |_| |  __/ |    \\ \\_/ /\n\\_|   |_|\\__,_|\\__, |\\___|_|     \\___/ \n                __/ |                  \n               |___/                   \n\n\n\n");
 
         #endregion
 
@@ -126,7 +126,7 @@ namespace Coursework
             positionsArray[7, 6] = savedPositions[62];
 
             // Retrieves the which player made the last move, to display.
-            _player = savedPositions[64];
+            player = savedPositions[64];
         }
 
 
@@ -138,14 +138,14 @@ namespace Coursework
         /// <param name="player1Turn"> Indicates whose turn it is</param>
         public void DisplayTheBoard(string[,] positionsArray, bool player1Turn)
         {   
-            _player = CheckPlayerTurn(player1Turn);
+            player = CheckPlayerTurn(player1Turn);
 
             Console.Clear();
             CheckHowManyPiecesRemain(positionsArray);
             FormatScoreOutput();
             TotalGames();
 
-            theBoard = string.Format("" +
+            _theBoard = string.Format("" +
                     "     v          ╔╦╦╦╦╦╦╦╦═══════╦╦╦╦╦╦╦╦╦═══════╦╦╦╦╦╦╦╦╦═══════╦╦╦╦╦╦╦╦╦═══════╗    ╔═════════════════╗      \n" +
                     "     v      ╔═══╬╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ╠╬╬╬╬╬╬╬╣       ║    ║ Player {0}'s turn ║    \n" +
                     "     v      ║ 0 ╠╬╬╬╬╬╬╬╣  {1}  ╠╬╬╬╬╬╬╬╣  {2}  ╠╬╬╬╬╬╬╬╣  {3}  ╠╬╬╬╬╬╬╬╣  {4}  ║    ╚═════════════════╝      \n" +
@@ -187,20 +187,20 @@ namespace Coursework
                     "                > > > > > > > > > > > > > > > [X-Axis] > > > > > > > > > > > > > \n" +
                     "                                                                           > >   \n" +
                     "                                                                           >     \n" +
-                    "", _player,
+                    "", player,
                         positionsArray[0, 1], positionsArray[0, 3], positionsArray[0, 5], positionsArray[0, 7],
                         positionsArray[1, 0], positionsArray[1, 2], positionsArray[1, 4], positionsArray[1, 6],
-                        stringPlayerOneCounter, stringPlayerTwoCounter,
+                        _stringPlayerOneCounter, _stringPlayerTwoCounter,
                         positionsArray[2, 1], positionsArray[2, 3], positionsArray[2, 5], positionsArray[2, 7],
                         positionsArray[3, 0], positionsArray[3, 2], positionsArray[3, 4], positionsArray[3, 6],
-                        stringPlayerOneKingCounter, stringPlayerTwoKingCounter,
+                        _stringPlayerOneKingCounter, _stringPlayerTwoKingCounter,
                         positionsArray[4, 1], positionsArray[4, 3], positionsArray[4, 5], positionsArray[4, 7],
                         positionsArray[5, 0], positionsArray[5, 2], positionsArray[5, 4], positionsArray[5, 6],
                         positionsArray[6, 1], positionsArray[6, 3], positionsArray[6, 5], positionsArray[6, 7],
                         positionsArray[7, 0], positionsArray[7, 2], positionsArray[7, 4], positionsArray[7, 6],
-                        stringPlayerOneWins, stringPlayerTwoWins, stringTotalGames, stringTotalDraws);
+                        _stringPlayerOneWins, _stringPlayerTwoWins, _stringTotalGames, _stringTotalDraws);
 
-            Console.Write(theBoard);
+            Console.Write(_theBoard);
         }
 
         #endregion
@@ -251,7 +251,7 @@ namespace Coursework
         /// </summary>
         public void IsItADraw()
         {
-            totalDraws = totalDraws + 1;
+            _totalDraws = _totalDraws + 1;
         }
 
         /// <summary>
@@ -260,16 +260,16 @@ namespace Coursework
         /// <returns> A boolean value depending on if there is a winner or not</returns>
         public bool IsThereAWinner()
         {   
-            if ((playerOneCounter + playerOneKingCounter).Equals(0))
+            if ((_playerOneCounter + _playerOneKingCounter).Equals(0))
             {
-                Thread.Sleep(slowTick);
+                Thread.Sleep(_slowTick);
                 PlayerOWinningMessage();
                 return true;
             }
 
-            if ((playerTwoCounter + playerTwoKingCounter).Equals(0))
+            if ((_playerTwoCounter + _playerTwoKingCounter).Equals(0))
             {
-                Thread.Sleep(slowTick);
+                Thread.Sleep(_slowTick);
                 PlayerXWinningMessage();
                 return true;
             }
@@ -286,24 +286,23 @@ namespace Coursework
             for (int j = 0; j < 5; j++)
             {
                 Console.Clear();
-                Thread.Sleep(slowTick);
-                Console.WriteLine(theWinnerIs);
-                Thread.Sleep(slowTick);
+                Thread.Sleep(_slowTick);
+                Console.WriteLine(_theWinnerIs);
+                Thread.Sleep(_slowTick);
             }
 
             for (int i = 0; i < 5; i++)
             {
                 Console.Clear();
-                Thread.Sleep(fastTick);
-                Console.WriteLine(playerX);
-                Thread.Sleep(fastTick);
+                Thread.Sleep(_fastTick);
+                Console.WriteLine(_playerX);
+                Thread.Sleep(_fastTick);
             }
 
             Console.Clear();
-            Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", theWinnerIs, playerX);
-            playerOneWins = playerOneWins + 1;
-            Console.ReadKey();
-            
+            Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", _theWinnerIs, _playerX);
+            _playerOneWins = _playerOneWins + 1;
+            Console.ReadKey();            
         }
 
 
@@ -315,24 +314,23 @@ namespace Coursework
             for (int j = 0; j < 5; j++)
             {
                 Console.Clear();
-                Thread.Sleep(slowTick);
-                Console.WriteLine(theWinnerIs);
-                Thread.Sleep(slowTick);
+                Thread.Sleep(_slowTick);
+                Console.WriteLine(_theWinnerIs);
+                Thread.Sleep(_slowTick);
             }
 
             for (int i = 0; i < 5; i++)
             {
                 Console.Clear();
-                Thread.Sleep(fastTick);
-                Console.WriteLine(playerO);
-                Thread.Sleep(fastTick);
+                Thread.Sleep(_fastTick);
+                Console.WriteLine(_playerO);
+                Thread.Sleep(_fastTick);
             }
 
             Console.Clear();
-            Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", theWinnerIs, playerO);
-            playerTwoWins = playerTwoWins + 1;
-            Console.ReadKey();
-            
+            Console.WriteLine("{0}\n{1}\n\nPlease press enter to return to the menu.", _theWinnerIs, _playerO);
+            _playerTwoWins = _playerTwoWins + 1;
+            Console.ReadKey();            
         }
 
         #endregion
@@ -344,7 +342,7 @@ namespace Coursework
         /// </summary>
         private void TotalGames()
         {
-            totalGames = playerOneWins + playerTwoWins + totalDraws;
+            _totalGames = _playerOneWins + _playerTwoWins + _totalDraws;
         }
 
 
@@ -374,107 +372,107 @@ namespace Coursework
         private void FormatScoreOutput()
         {
             // Fixes formatting issue when the number of player X's normal pieces goes from double figures to single
-            if (playerOneCounter < 10)
+            if (_playerOneCounter < 10)
             {
-                stringPlayerOneCounter = ("" + playerOneCounter + " ").ToString();
+                _stringPlayerOneCounter = ("" + _playerOneCounter + " ").ToString();
             }
             else
             {
-                stringPlayerOneCounter = playerOneCounter.ToString();
+                _stringPlayerOneCounter = _playerOneCounter.ToString();
             }
 
             // Fixes formatting issue when the number of player O's normal pieces goes from double figures to single
-            if (playerTwoCounter < 10)
+            if (_playerTwoCounter < 10)
             {
-                stringPlayerTwoCounter = ("" + playerTwoCounter + " ").ToString();
+                _stringPlayerTwoCounter = ("" + _playerTwoCounter + " ").ToString();
             }
             else
             {
-                stringPlayerTwoCounter = playerTwoCounter.ToString();
+                _stringPlayerTwoCounter = _playerTwoCounter.ToString();
             }
 
             // Fixes formatting issue when the number of player X's kings pieces goes from single figures to double
-            if (playerOneKingCounter < 10)
+            if (_playerOneKingCounter < 10)
             {
-                stringPlayerOneKingCounter = ("" + playerOneKingCounter + " ");
+                _stringPlayerOneKingCounter = ("" + _playerOneKingCounter + " ");
             }
             else
             {
-                stringPlayerOneKingCounter = playerOneKingCounter.ToString();
+                _stringPlayerOneKingCounter = _playerOneKingCounter.ToString();
             }
 
             // Fixes formatting issue when the number of player O's kings pieces goes from single figures to double
-            if (playerTwoKingCounter < 10)
+            if (_playerTwoKingCounter < 10)
             {
-                stringPlayerTwoKingCounter = ("" + playerTwoKingCounter + " ");
+                _stringPlayerTwoKingCounter = ("" + _playerTwoKingCounter + " ");
             }
             else
             {
-                stringPlayerTwoKingCounter = playerTwoKingCounter.ToString();
+                _stringPlayerTwoKingCounter = _playerTwoKingCounter.ToString();
             }
 
             // If the value for playerOneWins is a single digit or double digit
             // This statement deals with a formatting issue
-            if (playerOneWins < 10)
+            if (_playerOneWins < 10)
             {
-                stringPlayerOneWins = ("" + playerOneWins + "  ");                
+                _stringPlayerOneWins = ("" + _playerOneWins + "  ");                
             }
-            else if ((playerOneWins > 9) && (playerOneWins < 100))
+            else if ((_playerOneWins > 9) && (_playerOneWins < 100))
             {
-                stringPlayerOneWins = ("" + playerOneWins + " ");
+                _stringPlayerOneWins = ("" + _playerOneWins + " ");
             }
             else
             {
-                stringPlayerOneWins = playerOneWins.ToString();
+                _stringPlayerOneWins = _playerOneWins.ToString();
             }
 
             // If the value for playerTwoWins is a single digit or double digit
             // This statement deals with a formatting issue
-            if (playerTwoWins < 10)
+            if (_playerTwoWins < 10)
             {
-                stringPlayerTwoWins = ("" + playerTwoWins + "  ");
+                _stringPlayerTwoWins = ("" + _playerTwoWins + "  ");
             }
-            else if ((playerTwoWins > 9) && (playerTwoWins < 100))
+            else if ((_playerTwoWins > 9) && (_playerTwoWins < 100))
             {
-                stringPlayerTwoWins = ("" + playerTwoWins + " ");
+                _stringPlayerTwoWins = ("" + _playerTwoWins + " ");
             }
             else
             {
-                stringPlayerTwoWins = playerTwoWins.ToString();
+                _stringPlayerTwoWins = _playerTwoWins.ToString();
             }
 
             // If the value for totalDraws is a single digit or double digit
             // This statement deals with a formatting issue
-            if (totalDraws < 10)
+            if (_totalDraws < 10)
             {
-                stringTotalDraws = ("" + totalDraws + "  ");
+                _stringTotalDraws = ("" + _totalDraws + "  ");
             }
-            else if ((totalDraws > 9) && (totalDraws < 100))
+            else if ((_totalDraws > 9) && (_totalDraws < 100))
             {
-                stringTotalDraws = ("" + totalDraws + " ");
+                _stringTotalDraws = ("" + _totalDraws + " ");
             }
             else
             {
-                stringTotalDraws = totalDraws.ToString();
+                _stringTotalDraws = _totalDraws.ToString();
             }
 
             // If the value for totalGames is a single digit or double digit or triple
             // This statement deals with a formatting issue
-            if (totalGames < 10)
+            if (_totalGames < 10)
             {
-                stringTotalGames = ("" + totalGames + "   ");
+                _stringTotalGames = ("" + _totalGames + "   ");
             }
-            else if ((totalGames > 9) && (totalGames < 100))
+            else if ((_totalGames > 9) && (_totalGames < 100))
             {
-                stringTotalGames = ("" + totalGames + "  ");
+                _stringTotalGames = ("" + _totalGames + "  ");
             }
-            else if ((totalGames > 99) && (totalGames < 1000))
+            else if ((_totalGames > 99) && (_totalGames < 1000))
             {
-                stringTotalGames = ("" + totalGames + " ");
+                _stringTotalGames = ("" + _totalGames + " ");
             }
             else
             {
-                stringTotalGames = totalGames.ToString();
+                _stringTotalGames = _totalGames.ToString();
             }
         }
 
@@ -484,7 +482,7 @@ namespace Coursework
         /// <param name="positionsArray"> The array which stores all the positions on the playing pieces</param>
         private void CheckHowManyPiecesRemain(string[,] positionsArray)
         {
-            playerOneCounter = playerTwoCounter = playerOneKingCounter = playerTwoKingCounter = 0;
+            _playerOneCounter = _playerTwoCounter = _playerOneKingCounter = _playerTwoKingCounter = 0;
             // Method loops through the array looking for each players pieces.
             // It adds 1 to a counter for each player when a piece is found
             // This allows the app to keep upto date with how many pieces remain on the board
@@ -493,28 +491,27 @@ namespace Coursework
             {
                 for (int j = 0; j < 8; j++)
                 {
-
                     if ((positionsArray[i, j]).Contains(" X "))
                     {
-                        playerOneCounter = playerOneCounter + 1;
+                        _playerOneCounter = _playerOneCounter + 1;
 
                     }
 
                     if ((positionsArray[i, j]).Contains(" O "))
                     {
-                        playerTwoCounter = playerTwoCounter + 1;
+                        _playerTwoCounter = _playerTwoCounter + 1;
 
                     }
 
                     if ((positionsArray[i, j]).Contains("|X|"))
                     {
-                        playerOneKingCounter = playerOneKingCounter + 1;
+                        _playerOneKingCounter = _playerOneKingCounter + 1;
 
                     }
 
                     if ((positionsArray[i, j]).Contains("|O|"))
                     {
-                        playerTwoKingCounter = playerTwoKingCounter + 1;
+                        _playerTwoKingCounter = _playerTwoKingCounter + 1;
 
                     }
                 }

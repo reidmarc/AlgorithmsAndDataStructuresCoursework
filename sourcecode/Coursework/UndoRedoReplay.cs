@@ -23,7 +23,7 @@ namespace Coursework
         #region Variables / Objects / Data Structures
 
         // Instantiates a new object of the TheBoard Class.
-        TheBoard theBoard = new TheBoard();
+        private TheBoard _theBoard = new TheBoard();
 
         // Creates 2 stacks which holds string values.
         public Stack<string> undoStack = new Stack<string>();
@@ -32,8 +32,8 @@ namespace Coursework
         // Creates a Queue which holds string values.
         public Queue<string> replayQueue = new Queue<string>();
 
-        string positions;
-        string positionsTemp;
+        private string _positions;
+        private string _positionsTemp;
 
         #endregion        
 
@@ -53,16 +53,16 @@ namespace Coursework
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    positionsTemp = positionsArray[i, j];                   
+                    _positionsTemp = positionsArray[i, j];                   
 
                     // Stops the string from starting with a comma
                     if (i.Equals(0) && j.Equals(0))
                     {
-                        positions = positionsTemp;
+                        _positions = _positionsTemp;
                     }
                     else
                     {
-                        positions = string.Concat(string.Concat(positions, ","), positionsTemp);
+                        _positions = string.Concat(string.Concat(_positions, ","), _positionsTemp);
                     }
                 }
             }
@@ -70,19 +70,18 @@ namespace Coursework
             // Sets the last value of the string according to whose turn it is
             if (player1Turn.Equals(true))
             {
-                positions = string.Concat(string.Concat(positions, ","), " X ");
+                _positions = string.Concat(string.Concat(_positions, ","), " X ");
             }
             else
             {
-                positions = string.Concat(string.Concat(positions, ","), " O ");
+                _positions = string.Concat(string.Concat(_positions, ","), " O ");
             }
 
-
             // Pushes the string 'positions' on to the stack 'undoStack'
-            undoStack.Push(positions);
+            undoStack.Push(_positions);
 
             // Enqueues the string 'positions' in the queue 'replayQueue'
-            replayQueue.Enqueue(positions);
+            replayQueue.Enqueue(_positions);
         }
 
         #endregion
@@ -106,7 +105,6 @@ namespace Coursework
             string[] savedPositions = positionsOfPiecesNow.Split(',');        
 
             return savedPositions;
-
         }
 
         #endregion

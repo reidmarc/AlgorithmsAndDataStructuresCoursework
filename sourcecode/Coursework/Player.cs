@@ -25,11 +25,11 @@ namespace Coursework
         #region Variables
 
         // Constant strings representing the different contents of a playable square
-        const string playerOne = " X ";
-        const string playerTwo = " O ";
-        const string noMansLand = "   ";
-        const string playerOneKing = "|X|";
-        const string playerTwoKing = "|O|";
+        private const string _playerOne = " X ";
+        private const string _playerTwo = " O ";
+        private const string _noMansLand = "   ";
+        private const string _playerOneKing = "|X|";
+        private const string _playerTwoKing = "|O|";
 
         #endregion
 
@@ -51,16 +51,16 @@ namespace Coursework
 
             if (player1Turn)
             {
-                if ((positionsArray[yOne, xOne]).Equals(playerOne))
+                if ((positionsArray[yOne, xOne]).Equals(_playerOne))
                 {
                     // To stop the if statement recieving an out of bounds exception
                     if (yOne > 0 && xOne < 7)
                     {
                         // Check if player 1 can move right
-                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
+                        if ((positionsArray[yTwo, xTwo].Equals(_noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
                         {
-                            positionsArray[yOne, xOne] = noMansLand;
-                            positionsArray[yTwo, xTwo] = playerOne;
+                            positionsArray[yOne, xOne] = _noMansLand;
+                            positionsArray[yTwo, xTwo] = _playerOne;
                             return true;
                         }
                         else
@@ -80,16 +80,16 @@ namespace Coursework
             }
             else
             {
-                if ((positionsArray[yOne, xOne]).Equals(playerTwo))
+                if ((positionsArray[yOne, xOne]).Equals(_playerTwo))
                 {
                     // To stop the if statement recieving an out of bounds exception
                     if (yOne < 7 && xOne < 7)
                     {
                         // Check if player 2 can move right
-                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
+                        if ((positionsArray[yTwo, xTwo].Equals(_noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
                         {
-                            positionsArray[yOne, xOne] = noMansLand;
-                            positionsArray[yTwo, xTwo] = playerTwo;
+                            positionsArray[yOne, xOne] = _noMansLand;
+                            positionsArray[yTwo, xTwo] = _playerTwo;
                             return true;
                         }
                         else
@@ -124,17 +124,16 @@ namespace Coursework
         {
             if (player1Turn)
             {
-                if ((positionsArray[yOne, xOne]).Equals(playerOne))
+                if ((positionsArray[yOne, xOne]).Equals(_playerOne))
                 {
-
                     // To stop the if statement recieving an out of bounds exception
                     if (yOne > 0 && xOne > 0)
                     {
                         // Check if player 1 can move left
-                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
+                        if ((positionsArray[yTwo, xTwo].Equals(_noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
                         {
-                            positionsArray[yOne, xOne] = noMansLand;
-                            positionsArray[yTwo, xTwo] = playerOne;
+                            positionsArray[yOne, xOne] = _noMansLand;
+                            positionsArray[yTwo, xTwo] = _playerOne;
                             return true;
                         }
                         else
@@ -154,16 +153,16 @@ namespace Coursework
             }
             else
             {
-                if ((positionsArray[yOne, xOne]).Equals(playerTwo))
+                if ((positionsArray[yOne, xOne]).Equals(_playerTwo))
                 {
                     // To stop the if statement recieving an out of bounds exception
                     if (yOne < 7 && xOne > 0)
                     {
                         // Check if player 2 can move left                    
-                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
+                        if ((positionsArray[yTwo, xTwo].Equals(_noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
                         {
-                            positionsArray[yOne, xOne] = noMansLand;
-                            positionsArray[yTwo, xTwo] = playerTwo;
+                            positionsArray[yOne, xOne] = _noMansLand;
+                            positionsArray[yTwo, xTwo] = _playerTwo;
                             return true;
                         }
                         else
@@ -198,30 +197,28 @@ namespace Coursework
         {
             if (player1Turn.Equals(true))
             {
-                if ((positionsArray[yOne, xOne]).Equals(playerOneKing))
+                if ((positionsArray[yOne, xOne]).Equals(_playerOneKing))
                 {
-
                     // Movement Up Right
                     // To stop the if statement recieving an out of bounds exception
                     if (yOne > 0 && xOne < 7)
                     {
-                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
+                        if ((positionsArray[yTwo, xTwo].Equals(_noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
                         {
-                            positionsArray[yOne, xOne] = noMansLand;
-                            positionsArray[yTwo, xTwo] = playerOneKing;
+                            positionsArray[yOne, xOne] = _noMansLand;
+                            positionsArray[yTwo, xTwo] = _playerOneKing;
                             return true;
                         }
-
                     }
 
                     // Movement Down Right
                     // To stop the if statement recieving an out of bounds exception
                     if (yOne < 7 && xOne < 7)
                     {
-                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
+                        if ((positionsArray[yTwo, xTwo].Equals(_noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
                         {
-                            positionsArray[yOne, xOne] = noMansLand;
-                            positionsArray[yTwo, xTwo] = playerOneKing;
+                            positionsArray[yOne, xOne] = _noMansLand;
+                            positionsArray[yTwo, xTwo] = _playerOneKing;
                             return true;
                         }
                     }
@@ -231,10 +228,10 @@ namespace Coursework
                     if (yOne > 0 && xOne > 0)
                     {
                         // Check if player 1 can move left
-                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
+                        if ((positionsArray[yTwo, xTwo].Equals(_noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
                         {
-                            positionsArray[yOne, xOne] = noMansLand;
-                            positionsArray[yTwo, xTwo] = playerOneKing;
+                            positionsArray[yOne, xOne] = _noMansLand;
+                            positionsArray[yTwo, xTwo] = _playerOneKing;
                             return true;
                         }
                     }
@@ -243,10 +240,10 @@ namespace Coursework
                     // To stop the if statement recieving an out of bounds exception
                     if (yOne < 7 && xOne > 0)
                     {
-                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
+                        if ((positionsArray[yTwo, xTwo].Equals(_noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
                         {
-                            positionsArray[yOne, xOne] = noMansLand;
-                            positionsArray[yTwo, xTwo] = playerOneKing;
+                            positionsArray[yOne, xOne] = _noMansLand;
+                            positionsArray[yTwo, xTwo] = _playerOneKing;
                             return true;
                         }
                         else
@@ -266,29 +263,28 @@ namespace Coursework
             }
             else
             {
-                if ((positionsArray[yOne, xOne]).Equals(playerTwoKing))
+                if ((positionsArray[yOne, xOne]).Equals(_playerTwoKing))
                 {
                     // Movement Up Right
                     // To stop the if statement recieving an out of bounds exception
                     if (yOne > 0 && xOne < 7)
                     {
-                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
+                        if ((positionsArray[yTwo, xTwo].Equals(_noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(-1))))
                         {
-                            positionsArray[yOne, xOne] = noMansLand;
-                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                            positionsArray[yOne, xOne] = _noMansLand;
+                            positionsArray[yTwo, xTwo] = _playerTwoKing;
                             return true;
                         }
-
                     }
 
                     // Movement Down Right
                     // To stop the if statement recieving an out of bounds exception
                     if (yOne < 7 && xOne < 7)
                     {
-                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
+                        if ((positionsArray[yTwo, xTwo].Equals(_noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(-1))))
                         {
-                            positionsArray[yOne, xOne] = noMansLand;
-                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                            positionsArray[yOne, xOne] = _noMansLand;
+                            positionsArray[yTwo, xTwo] = _playerTwoKing;
                             return true;
                         }
                     }
@@ -298,10 +294,10 @@ namespace Coursework
                     if (yOne > 0 && xOne > 0)
                     {
                         // Check if player 1 can move left
-                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
+                        if ((positionsArray[yTwo, xTwo].Equals(_noMansLand)) && (((yOne - yTwo).Equals(1)) && ((xOne - xTwo).Equals(1))))
                         {
-                            positionsArray[yOne, xOne] = noMansLand;
-                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                            positionsArray[yOne, xOne] = _noMansLand;
+                            positionsArray[yTwo, xTwo] = _playerTwoKing;
                             return true;
                         }
                     }
@@ -310,10 +306,10 @@ namespace Coursework
                     // To stop the if statement recieving an out of bounds exception
                     if (yOne < 7 && xOne > 0)
                     {
-                        if ((positionsArray[yTwo, xTwo].Equals(noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
+                        if ((positionsArray[yTwo, xTwo].Equals(_noMansLand)) && (((yOne - yTwo).Equals(-1)) && ((xOne - xTwo).Equals(1))))
                         {
-                            positionsArray[yOne, xOne] = noMansLand;
-                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                            positionsArray[yOne, xOne] = _noMansLand;
+                            positionsArray[yTwo, xTwo] = _playerTwoKing;
                             return true;
                         }
                         else
@@ -351,7 +347,7 @@ namespace Coursework
                 {
                     if (player1Turn.Equals(true))
                     {
-                        if ((positionsArray[i, j]).Equals(playerOne))
+                        if ((positionsArray[i, j]).Equals(_playerOne))
                         {
                             // Checks Down Right for a 'capture'
                             if (CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true))
@@ -369,7 +365,7 @@ namespace Coursework
                             if (i > 0 && j > 0)
                             {
                                 // Check if player 1 can move left                    
-                                if (positionsArray[(i - 1), (j - 1)].Equals(noMansLand))
+                                if (positionsArray[(i - 1), (j - 1)].Equals(_noMansLand))
                                 {
                                     return true;
                                 }
@@ -380,31 +376,30 @@ namespace Coursework
                             if (i > 0 && j < 7)
                             {
                                 // Check if player 1 can move left                    
-                                if (positionsArray[(i - 1), (j + 1)].Equals(noMansLand))
+                                if (positionsArray[(i - 1), (j + 1)].Equals(_noMansLand))
                                 {
                                     return true;
                                 }
                             }
                         }
 
-                        if ((positionsArray[i, j]).Equals(playerOneKing))
+                        if ((positionsArray[i, j]).Equals(_playerOneKing))
                         {
                             // Movement Up Right
                             // To stop the if statement recieving an out of bounds exception
                             if (i > 0 && j < 7)
                             {
-                                if (positionsArray[(i - 1), (j + 1)].Equals(noMansLand))
+                                if (positionsArray[(i - 1), (j + 1)].Equals(_noMansLand))
                                 {
                                     return true;
                                 }
-
                             }
 
                             // Movement Down Right
                             // To stop the if statement recieving an out of bounds exception
                             if (i < 7 && j < 7)
                             {
-                                if (positionsArray[(i + 1), (j + 1)].Equals(noMansLand))
+                                if (positionsArray[(i + 1), (j + 1)].Equals(_noMansLand))
                                 {
                                     return true;
                                 }
@@ -415,7 +410,7 @@ namespace Coursework
                             if (i > 0 && j > 0)
                             {
                                 // Check if player 1 can move left
-                                if (positionsArray[(i - 1), (j - 1)].Equals(noMansLand))
+                                if (positionsArray[(i - 1), (j - 1)].Equals(_noMansLand))
                                 {
                                     return true;
                                 }
@@ -425,7 +420,7 @@ namespace Coursework
                             // To stop the if statement recieving an out of bounds exception
                             if (i < 7 && j > 0)
                             {
-                                if (positionsArray[(i + 1), (j - 1)].Equals(noMansLand))
+                                if (positionsArray[(i + 1), (j - 1)].Equals(_noMansLand))
                                 {
                                     return true;
                                 }
@@ -440,7 +435,7 @@ namespace Coursework
                     }
                     else
                     {
-                        if (positionsArray[i, j].Equals(playerTwo))
+                        if (positionsArray[i, j].Equals(_playerTwo))
                         {
                             // Checks Down Right for a 'capture'
                             if (CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true))
@@ -458,7 +453,7 @@ namespace Coursework
                             if (i < 7 && j > 0)
                             {
                                 // Check if player 2 can move left                    
-                                if (positionsArray[(i + 1), (j - 1)].Equals(noMansLand))
+                                if (positionsArray[(i + 1), (j - 1)].Equals(_noMansLand))
                                 {
                                     return true;
                                 }
@@ -469,31 +464,29 @@ namespace Coursework
                             if (i < 7 && j < 7)
                             {
                                 // Check if player 2 can move left                    
-                                if (positionsArray[(i + 1), (j + 1)].Equals(noMansLand))
+                                if (positionsArray[(i + 1), (j + 1)].Equals(_noMansLand))
                                 {
                                     return true;
                                 }
                             }
-
                         }
-                        if (positionsArray[i, j].Equals(playerTwoKing))
+                        if (positionsArray[i, j].Equals(_playerTwoKing))
                         {
                             // Movement Up Right
                             // To stop the if statement recieving an out of bounds exception
                             if (i > 0 && j < 7)
                             {
-                                if (positionsArray[(i - 1), (j + 1)].Equals(noMansLand))
+                                if (positionsArray[(i - 1), (j + 1)].Equals(_noMansLand))
                                 {
                                     return true;
                                 }
-
                             }
 
                             // Movement Down Right
                             // To stop the if statement recieving an out of bounds exception
                             if (i < 7 && j < 7)
                             {
-                                if (positionsArray[(i + 1), (j + 1)].Equals(noMansLand))
+                                if (positionsArray[(i + 1), (j + 1)].Equals(_noMansLand))
                                 {
                                     return true;
                                 }
@@ -504,7 +497,7 @@ namespace Coursework
                             if (i > 0 && j > 0)
                             {
                                 // Check if player 1 can move left
-                                if (positionsArray[(i - 1), (j - 1)].Equals(noMansLand))
+                                if (positionsArray[(i - 1), (j - 1)].Equals(_noMansLand))
                                 {
                                     return true;
                                 }
@@ -514,7 +507,7 @@ namespace Coursework
                             // To stop the if statement recieving an out of bounds exception
                             if (i < 7 && j > 0)
                             {
-                                if (positionsArray[(i + 1), (j - 1)].Equals(noMansLand))
+                                if (positionsArray[(i + 1), (j - 1)].Equals(_noMansLand))
                                 {
                                     return true;
                                 }
@@ -560,7 +553,7 @@ namespace Coursework
                 {
                     for (int j = 0; j < 8; j++)
                     {
-                        if ((positionsArray[i, j]).Contains(playerOne))
+                        if ((positionsArray[i, j]).Contains(_playerOne))
                         {
                             if ((CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true)) ||
                                 (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)))
@@ -571,7 +564,7 @@ namespace Coursework
                             }
                         }
 
-                        if ((positionsArray[i, j]).Contains(playerOneKing))
+                        if ((positionsArray[i, j]).Contains(_playerOneKing))
                         {
                             if (CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
                             {
@@ -585,7 +578,6 @@ namespace Coursework
 
                 if (forcedCapture.Equals(true))
                 {
-
                     int potentialMoveCheck = Convert.ToInt32(string.Format("{0}{1}", yOne, xOne));
 
                     // Checks that the destination co-ords to the up right are the correct ones to perform the forced 'take'
@@ -625,21 +617,20 @@ namespace Coursework
                     }
                 }
 
-
                 PlayerMove(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn);
             }
+
             // If player 2, the application loops through the array looking for all of players 2's pieces
             // Once it finds a piece, it checks if that piece can capture an opponents piece
             // If 'true' then it adds that piece of player 2's to a list, which stores all the forced moves
             // Available to player 2, that they must selected from.
             else
             {
-
                 for (int i = 0; i < 8; i++)
                 {
                     for (int j = 0; j < 8; j++)
                     {
-                        if ((positionsArray[i, j]).Contains(playerTwo))
+                        if ((positionsArray[i, j]).Contains(_playerTwo))
                         {
                             if ((CanAPieceBeCapturedRight(i, j, positionsArray, ref player1Turn).Equals(true)) ||
                                 (CanAPieceBeCapturedLeft(i, j, positionsArray, ref player1Turn).Equals(true)))
@@ -648,10 +639,9 @@ namespace Coursework
                                 listOfForcedMoves.Add(potentialMove);
                                 forcedCapture = true;
                             }
-
                         }
 
-                        if ((positionsArray[i, j]).Contains(playerTwoKing))
+                        if ((positionsArray[i, j]).Contains(_playerTwoKing))
                         {
                             if ((CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true)))
                             {
@@ -665,7 +655,6 @@ namespace Coursework
 
                 if (forcedCapture.Equals(true))
                 {
-
                     int potentialMoveCheck = Convert.ToInt32(string.Format("{0}{1}", yOne, xOne));
 
                     // Checks that the destination co-ords to the down right are the correct ones to perform the forced 'take'
@@ -674,22 +663,20 @@ namespace Coursework
                         PlayerMove(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn);
                         return;
                     }
-
                     // Checks that the destination co-ords to the down left are the correct ones to perform the forced 'take'
-                    if (listOfForcedMoves.Contains(potentialMoveCheck) && ((yOne + 2).Equals(yTwo) && (xOne - 2).Equals(xTwo)))
+                    else if (listOfForcedMoves.Contains(potentialMoveCheck) && ((yOne + 2).Equals(yTwo) && (xOne - 2).Equals(xTwo)))
                     {
                         PlayerMove(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn);
                         return;
                     }
                     // Checks that the destination co-ords to the up right are the correct ones to perform the forced 'take'
-                    if (listOfForcedMoves.Contains(potentialMoveCheck) && ((yOne - 2).Equals(yTwo) && (xOne + 2).Equals(xTwo)))
+                    else if (listOfForcedMoves.Contains(potentialMoveCheck) && ((yOne - 2).Equals(yTwo) && (xOne + 2).Equals(xTwo)))
                     {
                         PlayerMove(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn);
                         return;
                     }
-
                     // Checks that the destination co-ords to the up left are the correct ones to perform the forced 'take'
-                    if (listOfForcedMoves.Contains(potentialMoveCheck) && ((yOne - 2).Equals(yTwo) && (xOne - 2).Equals(xTwo)))
+                    else if (listOfForcedMoves.Contains(potentialMoveCheck) && ((yOne - 2).Equals(yTwo) && (xOne - 2).Equals(xTwo)))
                     {
                         PlayerMove(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn);
                         return;
@@ -724,7 +711,7 @@ namespace Coursework
                 {
                     // Check if player 1 can remove a player 2 piece to the right
                     // If it can then it is still player 1's turn
-                    if ((positionsArray[(yOne - 1), (xOne + 1)].Equals(playerTwo) || positionsArray[(yOne - 1), (xOne + 1)].Equals(playerTwoKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))
+                    if ((positionsArray[(yOne - 1), (xOne + 1)].Equals(_playerTwo) || positionsArray[(yOne - 1), (xOne + 1)].Equals(_playerTwoKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(_noMansLand))
                     {
                         return true;
                     }
@@ -745,7 +732,7 @@ namespace Coursework
                 {
                     // Check if player 2 can remove a player 1 piece to the right
                     // If it can then it is still player 2's turn
-                    if ((positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))
+                    if ((positionsArray[(yOne + 1), (xOne + 1)].Equals(_playerOne) || positionsArray[(yOne + 1), (xOne + 1)].Equals(_playerOneKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(_noMansLand))
                     {
                         return true;
                     }
@@ -778,7 +765,7 @@ namespace Coursework
                 {
                     // Check if player 1 can remove a player 2 piece to the left
                     // If it can then it is still player 1's turn
-                    if ((positionsArray[(yOne - 1), (xOne - 1)].Equals(playerTwo) || positionsArray[(yOne - 1), (xOne - 1)].Equals(playerTwoKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))
+                    if ((positionsArray[(yOne - 1), (xOne - 1)].Equals(_playerTwo) || positionsArray[(yOne - 1), (xOne - 1)].Equals(_playerTwoKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(_noMansLand))
                     {
                         return true;
                     }
@@ -798,7 +785,7 @@ namespace Coursework
                 {
                     // Check if player 2 can remove a player 1 piece to the left
                     // If it can then it is still player 2's turn
-                    if ((positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))
+                    if ((positionsArray[(yOne + 1), (xOne - 1)].Equals(_playerOne) || positionsArray[(yOne + 1), (xOne - 1)].Equals(_playerOneKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(_noMansLand))
                     {
                         return true;
                     }
@@ -827,22 +814,22 @@ namespace Coursework
             if (player1Turn.Equals(true))
             {
                 // Checks Up Right 
-                if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(playerTwo) || positionsArray[(yOne - 1), (xOne + 1)].Equals(playerTwoKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
+                if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(_playerTwo) || positionsArray[(yOne - 1), (xOne + 1)].Equals(_playerTwoKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(_noMansLand))))
                 {
                     return true;
                 }
                 // Checks Down Right
-                if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(playerTwo) || positionsArray[(yOne + 1), (xOne + 1)].Equals(playerTwoKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
+                if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(_playerTwo) || positionsArray[(yOne + 1), (xOne + 1)].Equals(_playerTwoKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(_noMansLand))))
                 {
                     return true;
                 }
                 // Checks Up Left
-                if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(playerTwo) || positionsArray[(yOne - 1), (xOne - 1)].Equals(playerTwoKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
+                if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(_playerTwo) || positionsArray[(yOne - 1), (xOne - 1)].Equals(_playerTwoKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(_noMansLand))))
                 {
                     return true;
                 }
                 // Checks Down Left
-                if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(playerTwo) || positionsArray[(yOne + 1), (xOne - 1)].Equals(playerTwoKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
+                if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(_playerTwo) || positionsArray[(yOne + 1), (xOne - 1)].Equals(_playerTwoKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(_noMansLand))))
                 {
                     return true;
                 }
@@ -854,22 +841,22 @@ namespace Coursework
             else
             {
                 // Checks Up Right 
-                if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne - 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
+                if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(_playerOne) || positionsArray[(yOne - 1), (xOne + 1)].Equals(_playerOneKing)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(_noMansLand))))
                 {
                     return true;
                 }
                 // Checks Down Right
-                if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne + 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
+                if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(_playerOne) || positionsArray[(yOne + 1), (xOne + 1)].Equals(_playerOneKing)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(_noMansLand))))
                 {
                     return true;
                 }
                 // Checks Up Left
-                if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne - 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
+                if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(_playerOne) || positionsArray[(yOne - 1), (xOne - 1)].Equals(_playerOneKing)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(_noMansLand))))
                 {
                     return true;
                 }
                 // Checks Down Left
-                if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOne) || positionsArray[(yOne + 1), (xOne - 1)].Equals(playerOneKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
+                if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(_playerOne) || positionsArray[(yOne + 1), (xOne - 1)].Equals(_playerOneKing)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(_noMansLand))))
                 {
                     return true;
                 }
@@ -890,7 +877,6 @@ namespace Coursework
         /// <returns>A boolean value indicating if the piece selected belongs to the player whose turn it currently is</returns>
         public bool PlayerCheck(int yOne, int xOne, string[,] positionsArray, bool player1Turn)
         {
-
             if (player1Turn.Equals(true))
             {
                 if (!positionsArray[yOne, xOne].Equals(" X ") && !positionsArray[yOne, xOne].Equals("|X|"))
@@ -908,7 +894,6 @@ namespace Coursework
 
             return true;
         }
-
 
         /// <summary>
         /// Converts normal pieces into Kings, when the normal pieces land on the last row
@@ -955,22 +940,21 @@ namespace Coursework
             // Player 1 Movement Logic
             if (player1Turn)
             {
-                if ((positionsArray[yOne, xOne]).Equals(playerOne))
+                if ((positionsArray[yOne, xOne]).Equals(_playerOne))
                 {
-
                     if (CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
                     {
                         // Checks if removing a piece to the right is the move made
                         if ((yOne - 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
                         {
                             // Sets the square clicked first to blank
-                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yOne, xOne] = _noMansLand;
 
                             // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(yOne - 1), (xOne + 1)] = noMansLand;
+                            positionsArray[(yOne - 1), (xOne + 1)] = _noMansLand;
 
                             // Sets the square clicked second to now show the player one piece
-                            positionsArray[yTwo, xTwo] = playerOne;
+                            positionsArray[yTwo, xTwo] = _playerOne;
 
                             if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                             {
@@ -987,13 +971,13 @@ namespace Coursework
                         if ((yOne - 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
                         {
                             // Sets the square clicked first to blank
-                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yOne, xOne] = _noMansLand;
 
                             // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(yOne - 1), (xOne - 1)] = noMansLand;
+                            positionsArray[(yOne - 1), (xOne - 1)] = _noMansLand;
 
                             // Sets the square clicked second to now show the player one piece
-                            positionsArray[yTwo, xTwo] = playerOne;
+                            positionsArray[yTwo, xTwo] = _playerOne;
 
                             if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                             {
@@ -1005,61 +989,60 @@ namespace Coursework
                     }
                 }
 
-                if ((positionsArray[yOne, xOne]).Equals(playerOneKing))
+                if ((positionsArray[yOne, xOne]).Equals(_playerOneKing))
                 {
                     if (CanAPieceBeCapturedKing(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
                     {
-
                         // Checks if removing a piece to the top left is the move made
                         if ((yOne - 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
                         {
                             // Sets the square clicked first to blank
-                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yOne, xOne] = _noMansLand;
 
                             // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(yOne - 1), (xOne - 1)] = noMansLand;
+                            positionsArray[(yOne - 1), (xOne - 1)] = _noMansLand;
 
                             // Sets the square clicked second to now show the player one piece
-                            positionsArray[yTwo, xTwo] = playerOneKing;
+                            positionsArray[yTwo, xTwo] = _playerOneKing;
                         }
 
                         // Checks if removing a piece to the top right is the move made
                         if ((yOne - 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
                         {
                             // Sets the square clicked first to blank
-                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yOne, xOne] = _noMansLand;
 
                             // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(yOne - 1), (xOne + 1)] = noMansLand;
+                            positionsArray[(yOne - 1), (xOne + 1)] = _noMansLand;
 
                             // Sets the square clicked second to now show the player one piece
-                            positionsArray[yTwo, xTwo] = playerOneKing;
+                            positionsArray[yTwo, xTwo] = _playerOneKing;
                         }
 
                         // Checks if removing a piece to the bottom right is the move made
                         if ((yOne + 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
                         {
                             // Sets the square clicked first to blank
-                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yOne, xOne] = _noMansLand;
 
                             // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(yOne + 1), (xOne + 1)] = noMansLand;
+                            positionsArray[(yOne + 1), (xOne + 1)] = _noMansLand;
 
                             // Sets the square clicked second to now show the player one piece
-                            positionsArray[yTwo, xTwo] = playerOneKing;
+                            positionsArray[yTwo, xTwo] = _playerOneKing;
                         }
 
                         // Checks if removing a piece to the bottom left is the move made
                         if ((yOne + 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
                         {
                             // Sets the square clicked first to blank
-                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yOne, xOne] = _noMansLand;
 
                             // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(yOne + 1), (xOne - 1)] = noMansLand;
+                            positionsArray[(yOne + 1), (xOne - 1)] = _noMansLand;
 
                             // Sets the square clicked second to now show the player one piece
-                            positionsArray[yTwo, xTwo] = playerOneKing;
+                            positionsArray[yTwo, xTwo] = _playerOneKing;
                         }
 
                         if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
@@ -1069,7 +1052,7 @@ namespace Coursework
                     }
                 }
 
-                if (positionsArray[yTwo, xTwo].Equals(noMansLand))
+                if (positionsArray[yTwo, xTwo].Equals(_noMansLand))
                 {
                     // Basic Movement
                     if ((MovementRight(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)) || (MovementLeft(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)) || (MovementKing(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)))
@@ -1077,7 +1060,6 @@ namespace Coursework
                         player1Turn = false;
                         return;
                     }
-
                 }
             }
 
@@ -1089,7 +1071,7 @@ namespace Coursework
 
             else
             {
-                if ((positionsArray[yOne, xOne]).Equals(playerTwo))
+                if ((positionsArray[yOne, xOne]).Equals(_playerTwo))
                 {
                     if (CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
                     {
@@ -1097,13 +1079,13 @@ namespace Coursework
                         if ((yOne + 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
                         {
                             // Sets the square clicked first to blank
-                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yOne, xOne] = _noMansLand;
 
                             // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(yOne + 1), (xOne + 1)] = noMansLand;
+                            positionsArray[(yOne + 1), (xOne + 1)] = _noMansLand;
 
                             // Sets the square clicked second to now show the player one piece
-                            positionsArray[yTwo, xTwo] = playerTwo;
+                            positionsArray[yTwo, xTwo] = _playerTwo;
 
                             if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                             {
@@ -1114,20 +1096,19 @@ namespace Coursework
                         }
                     }
 
-
                     if (CanAPieceBeCapturedLeft(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
                     {
                         // Checks if removing a piece to the left is the move made
                         if ((yOne + 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
                         {
                             // Sets the square clicked first to blank
-                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yOne, xOne] = _noMansLand;
 
                             // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(yOne + 1), (xOne - 1)] = noMansLand;
+                            positionsArray[(yOne + 1), (xOne - 1)] = _noMansLand;
 
                             // Sets the square clicked second to now show the player one piece
-                            positionsArray[yTwo, xTwo] = playerTwo;
+                            positionsArray[yTwo, xTwo] = _playerTwo;
 
                             if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
                             {
@@ -1139,7 +1120,7 @@ namespace Coursework
                     }
                 }
 
-                if ((positionsArray[yOne, xOne]).Equals(playerTwoKing))
+                if ((positionsArray[yOne, xOne]).Equals(_playerTwoKing))
                 {
                     if (CanAPieceBeCapturedKing(yOne, xOne, positionsArray, ref player1Turn).Equals(true))
                     {
@@ -1147,52 +1128,52 @@ namespace Coursework
                         if ((yOne - 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
                         {
                             // Sets the square clicked first to blank
-                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yOne, xOne] = _noMansLand;
 
                             // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(yOne - 1), (xOne - 1)] = noMansLand;
+                            positionsArray[(yOne - 1), (xOne - 1)] = _noMansLand;
 
                             // Sets the square clicked second to now show the player one piece
-                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                            positionsArray[yTwo, xTwo] = _playerTwoKing;
                         }
 
                         // Checks if removing a piece to the top right is the move made
                         if ((yOne - 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
                         {
                             // Sets the square clicked first to blank
-                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yOne, xOne] = _noMansLand;
 
                             // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(yOne - 1), (xOne + 1)] = noMansLand;
+                            positionsArray[(yOne - 1), (xOne + 1)] = _noMansLand;
 
                             // Sets the square clicked second to now show the player one piece
-                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                            positionsArray[yTwo, xTwo] = _playerTwoKing;
                         }
 
                         // Checks if removing a piece to the bottom right is the move made
                         if ((yOne + 2).Equals(yTwo) && (xOne + 2).Equals(xTwo))
                         {
                             // Sets the square clicked first to blank
-                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yOne, xOne] = _noMansLand;
 
                             // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(yOne + 1), (xOne + 1)] = noMansLand;
+                            positionsArray[(yOne + 1), (xOne + 1)] = _noMansLand;
 
                             // Sets the square clicked second to now show the player one piece
-                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                            positionsArray[yTwo, xTwo] = _playerTwoKing;
                         }
 
                         // Checks if removing a piece to the bottom left is the move made
                         if ((yOne + 2).Equals(yTwo) && (xOne - 2).Equals(xTwo))
                         {
                             // Sets the square clicked first to blank
-                            positionsArray[yOne, xOne] = noMansLand;
+                            positionsArray[yOne, xOne] = _noMansLand;
 
                             // Sets the square with the oppositions pieces on it to empty
-                            positionsArray[(yOne + 1), (xOne - 1)] = noMansLand;
+                            positionsArray[(yOne + 1), (xOne - 1)] = _noMansLand;
 
                             // Sets the square clicked second to now show the player one piece
-                            positionsArray[yTwo, xTwo] = playerTwoKing;
+                            positionsArray[yTwo, xTwo] = _playerTwoKing;
                         }
 
                         if ((CanAPieceBeCapturedRight(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedLeft(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false) && (CanAPieceBeCapturedKing(yTwo, xTwo, positionsArray, ref player1Turn)).Equals(false))
@@ -1202,7 +1183,7 @@ namespace Coursework
                     }
                 }
 
-                if (positionsArray[yTwo, xTwo].Equals(noMansLand))
+                if (positionsArray[yTwo, xTwo].Equals(_noMansLand))
                 {
                     // Basic Movement
                     if ((MovementRight(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)) || (MovementLeft(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)) || (MovementKing(yOne, xOne, yTwo, xTwo, positionsArray, ref player1Turn).Equals(true)))

@@ -12,22 +12,20 @@
 #region Usings
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 #endregion
 
 namespace Coursework
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Main Method
+        /// </summary>
+        /// <param name="args"></param>
+        public static void Main(string[] args)
         {
-
             #region Variables / Objects / Collections
 
             // Instantiates a new object of the TheBoard Class.
@@ -40,12 +38,10 @@ namespace Coursework
             UndoRedoReplay undoRedoReplay = new UndoRedoReplay();
 
             // Instantiates a new object of the AI Class.
-           AI aI = new AI();
-
+            AI aI = new AI();
 
             // 2D array to map store the piece locations
             string[,] positionsArray = new string[8, 8];
-
 
             int yOne = 0;
             int xOne = 0;
@@ -69,7 +65,6 @@ namespace Coursework
 
             // Console settings
             theBoard.ConsoleSettings();
-
 
             //StartingMenu();
             Console.WriteLine("\n" +
@@ -95,6 +90,7 @@ namespace Coursework
 
             #region Game Selection Menu
 
+            // While loop which keep the whole application running
             while (notMadeChoice)
             {
                 Console.Clear();
@@ -104,24 +100,26 @@ namespace Coursework
 
                 Int32.TryParse(Console.ReadLine(), out gameMode);
 
-
-
+                // Switch that alows the user to select which game mode they wish to play
                 switch (gameMode)
                 {
                     case 1:
                         {
+                            // Selects Human vs Human
                             gameModeSelection = 1;                            
                             break;
                         }
 
                     case 2:
                         {
+                            // Selects Human vs A.I.
                             gameModeSelection = 2;                            
                             break;
                         }
 
                     case 3:
                         {
+                            // Seleccts A.I. vs A.I.
                             gameModeSelection = 3;                            
                             break;
                         }
@@ -143,9 +141,7 @@ namespace Coursework
                             Console.ReadKey();
                             break;
                         }
-
                 }
-
 
                 #endregion
 
@@ -186,8 +182,6 @@ namespace Coursework
                             "\nPress [0] to exit to the game mode menu.\n\n");
                     }
 
-
-
                     int caseSwitch;
                     Int32.TryParse(Console.ReadLine(), out caseSwitch);
 
@@ -198,8 +192,6 @@ namespace Coursework
                             {
                                 try
                                 {
-
-
                                     if (gameModeSelection.Equals(3))
                                     {
 
@@ -207,17 +199,14 @@ namespace Coursework
 
                                         while (aiGame)
                                         {
-
+                                            // Clears both stacks and the queue
                                             undoRedoReplay.undoStack.Clear();
                                             undoRedoReplay.redoStack.Clear();
                                             undoRedoReplay.redoStack.Clear();
 
-
-
                                             // Pauses the app, so you can follow the moves
                                             int milliseconds = 2000;
                                             Thread.Sleep(milliseconds);
-
 
                                             // Checks if the current player has any available moves
                                             // If the method returns false, the player will lose.
@@ -247,9 +236,6 @@ namespace Coursework
                                                 player1Turn = true;
                                                 break;
                                             }
-
-
-
 
                                             Console.Clear();
                                             theBoard.DisplayTheBoard(positionsArray, player1Turn);
@@ -301,7 +287,7 @@ namespace Coursework
                                             yTwo = 0;
                                             xTwo = 0;
 
-
+                                            // Checks if it is a draw (AI vs AI)
                                             if (aI.IsItADraw().Equals(true))
                                             {
                                                 theBoard.IsItADraw();
@@ -322,15 +308,6 @@ namespace Coursework
                                             }
                                         }
                                     }
-
-
-
-
-
-
-
-
-
 
                                     // Checks if the current player has any available moves
                                     // If the method returns false, the player will lose.
@@ -356,20 +333,12 @@ namespace Coursework
                                         break;
                                     }
 
-
-
-
                                     Console.Clear();
                                     theBoard.DisplayTheBoard(positionsArray, player1Turn);
 
-
-
                                     if (gameModeSelection.Equals(2) && player1Turn.Equals(false))
                                     {
-
                                         aI.GetMove(ref yOne, ref xOne, ref yTwo, ref xTwo, positionsArray, ref player1Turn);
-
-
                                     }
 
                                     if (gameModeSelection.Equals(1) || (player1Turn.Equals(true) && gameModeSelection.Equals(2)))
@@ -407,7 +376,6 @@ namespace Coursework
 
                                         Console.WriteLine("Please enter the X Co-Ordinate of the tile you want to move your piece to:");
                                         Int32.TryParse(Console.ReadLine(), out xTwo);
-
                                     }
 
                                     // Stops any out of range exceptions
@@ -448,9 +416,6 @@ namespace Coursework
                                     xTwo = 0;
 
                                     undoRedoTick = false;
-
-
-
                                 }
                                 catch (Exception ex)
                                 {
@@ -484,13 +449,10 @@ namespace Coursework
                                                 player1Turn = false;
                                             }
 
-
                                             theBoard.UpdateTheBoard(positionsArray, savedPositions);
                                             theBoard.DisplayTheBoard(positionsArray, player1Turn);
 
                                             undoRedoTick = true;
-
-
                                         }
                                         else
                                         {
@@ -499,7 +461,6 @@ namespace Coursework
                                             Console.WriteLine("There are no more moves to 'Undo'");
                                             Console.ReadKey();
                                         }
-
                                     }
                                 }
                                 catch (Exception ex)
@@ -508,7 +469,6 @@ namespace Coursework
                                     Console.WriteLine(ex);
                                     Console.ReadKey();
                                 }
-
 
                                 break;
                             }
@@ -520,7 +480,6 @@ namespace Coursework
                                 {
                                     if (gameModeSelection.Equals(1) || gameModeSelection.Equals(2))
                                     {
-
                                         // Stops the program from trying to pop the top value off the stack 'redoStack'
                                         // When there is nothing stored on the stack
                                         if (undoRedoReplay.redoStack.Count > 0 && undoRedoTick.Equals(true))
@@ -556,7 +515,6 @@ namespace Coursework
                                     Console.ReadKey();
                                 }
 
-
                                 break;
                             }
 
@@ -568,8 +526,6 @@ namespace Coursework
                                     // Gets the number for how many times to loop
                                     int numReplays = undoRedoReplay.replayQueue.Count;
 
-
-
                                     if (undoRedoReplay.replayQueue.Count.Equals(1))
                                     {
                                         Console.WriteLine("You must play some moves first, before being able to replay.");
@@ -577,15 +533,11 @@ namespace Coursework
                                         break;
                                     }
 
-
-
                                     for (int i = 0; i < numReplays; i++)
                                     {
                                         // Pauses the app, so you can follow the moves
                                         int milliseconds = 2000;
                                         Thread.Sleep(milliseconds);
-
-
 
                                         // Stops the program from trying to dequeue the first value off the queue 'replayQueue'
                                         // When there is nothing stored on the stack
@@ -604,10 +556,6 @@ namespace Coursework
                                             Console.Clear();
                                             theBoard.UpdateTheBoard(positionsArray, savedPositions);
                                             theBoard.DisplayTheBoard(positionsArray, player1Turn);
-
-
-
-
                                         }
                                         else
                                         {
@@ -618,12 +566,8 @@ namespace Coursework
                                         }
                                     }
 
-
-
                                     Console.WriteLine("The replay has ended, a new game will begin.");
                                     Console.ReadKey();
-
-
 
                                     theBoard.NewGame(positionsArray);
 
@@ -646,7 +590,6 @@ namespace Coursework
 
                                 break;
                             }
-
 
                         // Reset a turn
                         case 5:
@@ -741,8 +684,6 @@ namespace Coursework
                                 break;
                             }
 
-
-
                         default:
                             {
                                 Console.Beep();
@@ -751,94 +692,7 @@ namespace Coursework
                                 break;
                             }
                     }
-
                 }
-
-                // Closes the application
-                //Environment.Exit(0);
-
-                #region Starting Menu   
-
-                //void StartingMenu()
-                //{
-
-                //    Console.WriteLine("\n" +
-                //        "   ___  _                  _                          \n" +
-                //        "  / __\\| |__    ___   ___ | | __ ___  _ __  ___      \n" +
-                //        " / /   | '_ \\  / _ \\ / __|| |/ // _ \\| '__|/ __|   \n" +
-                //        "/ /___ | | | ||  __/| (__ |   <|  __/| |   \\__ \\    \n" +
-                //        "\\____/ |_| |_| \\___| \\___||_|\\_\\\\___||_|   |___/\n" +
-                //        "" +
-                //        "" +
-                //        "                                                         ___  _                  _                          \n" +
-                //        "                                                        / __\\| |__    ___   ___ | | __ ___  _ __  ___      \n" +
-                //        "                                                       / /   | '_ \\  / _ \\ / __|| |/ // _ \\| '__|/ __|   \n" +
-                //        "                                                      / /___ | | | ||  __/| (__ |   <|  __/| |   \\__ \\    \n" +
-                //        "                                                      \\____/ |_| |_| \\___| \\___||_|\\_\\\\___||_|   |___/\n" +
-                //        "");
-                //    Console.ReadKey();
-
-                //    Console.WriteLine("                                                                               By Marc Reid [03001588]");
-                //    Console.ReadKey();
-
-
-
-
-                //    while (notMadeChoice)
-                //    {
-                //        Console.Clear();
-                //        Console.WriteLine("Game Modes Available:\n\n[1] - Human vs Human\n[2] - Human vs AI\n[3] - AI vs AI\n[4] - To quit the game\n\nPlease select a game mode.");
-
-
-                //        Int32.TryParse(Console.ReadLine(), out gameMode);
-
-
-
-                //        switch (gameMode)
-                //        {
-                //            case 1:
-                //                {
-                //                    gameModeSelection = 1;
-                //                    notMadeChoice = false; ;
-                //                    break;
-                //                }
-
-                //            case 2:
-                //                {
-                //                    gameModeSelection = 2;
-                //                    notMadeChoice = false;
-                //                    break;
-                //                }
-
-                //            case 3:
-                //                {
-                //                    gameModeSelection = 3;
-                //                    notMadeChoice = false;
-                //                    break;
-                //                }
-
-                //            case 4:
-                //                {
-                //                    // Closes the application
-                //                    Environment.Exit(0);
-                //                    break;
-                //                }
-
-                //            default:
-                //                {
-                //                    Console.Clear();
-                //                    Console.Beep();
-                //                    notMadeChoice = true;
-                //                    Console.WriteLine("Please make sure the number you select is on the menu.");
-                //                    Console.ReadKey();
-                //                    break;
-                //                }
-
-                //        }
-                //    }
-                //}
-
-                #endregion
             }
         }
     }

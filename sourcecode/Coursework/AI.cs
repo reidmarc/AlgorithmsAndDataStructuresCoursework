@@ -22,30 +22,30 @@ namespace Coursework
         #region Variables / Objects
 
         // Instantiates a new object of the Player Class.
-        Player aiPlayer = new Player();
+        private Player _aiPlayer = new Player();
 
         // Instantiates a new object of the Random Class.
-        Random rng = new Random();
+        private Random _rng = new Random();
 
         // Constant strings representing the different contents of a playable square
-        const string playerOne = " X ";
-        const string playerTwo = " O ";
-        const string noMansLand = "   ";
-        const string playerOneKing = "|X|";
-        const string playerTwoKing = "|O|";
+        private const string _playerOne = " X ";
+        private const string _playerTwo = " O ";
+        private const string _noMansLand = "   ";
+        private const string _playerOneKing = "|X|";
+        private const string _playerTwoKing = "|O|";
 
-        bool downLeft = false;
-        bool downRight = false;
-        bool upRight = false;
-        bool upLeft = false;
+        private bool _downLeft = false;
+        private bool _downRight = false;
+        private bool _upRight = false;
+        private bool _upLeft = false;
 
-        int randomNumberGenCounter = 0;
-        int randomMoveCounter = 0;
-
-        int getPlayerOneMoveCounter = 0;
-        int getPlayerTwoMoveCounter = 0;
-
-        int howManyMovesWithoutACapture = 0;
+        private int _randomNumberGenCounter = 0;
+        private int _randomMoveCounter = 0;
+         
+        private int _getPlayerOneMoveCounter = 0;
+        private int _getPlayerTwoMoveCounter = 0;
+         
+        private int _howManyMovesWithoutACapture = 0;
 
         #endregion
 
@@ -67,25 +67,25 @@ namespace Coursework
         {
             if (player1Turn)
             {
-                getPlayerOneMoveCounter = getPlayerOneMoveCounter + 1;
+                _getPlayerOneMoveCounter = _getPlayerOneMoveCounter + 1;
 
-                if ((getPlayerOneMoveCounter % 2).Equals(0))
+                if ((_getPlayerOneMoveCounter % 2).Equals(0))
                 {
                     // Loops through the array looking for a king piece and whether it can 'take' an opponents piece
                     for (int i = 0; i < 8; i++)
                     {
                         for (int j = 0; j < 8; j++)
                         {
-                            if (positionsArray[i, j].Equals(playerOneKing))
+                            if (positionsArray[i, j].Equals(_playerOneKing))
                             {
-                                if (aiPlayer.CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
+                                if (_aiPlayer.CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
                                 {
                                     yOne = i;
                                     xOne = j;
 
-                                    if (KingCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, playerTwo, playerTwoKing).Equals(true))
+                                    if (KingCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, _playerTwo, _playerTwoKing).Equals(true))
                                     {
-                                        howManyMovesWithoutACapture = 0;
+                                        _howManyMovesWithoutACapture = 0;
                                         return;
                                     }                                    
                                 }
@@ -98,30 +98,28 @@ namespace Coursework
                     {
                         for (int j = 0; j < 8; j++)
                         {
-                            if (positionsArray[i, j].Equals(playerOne))
+                            if (positionsArray[i, j].Equals(_playerOne))
                             {
                                 yOne = i;
                                 xOne = j;
 
                                 if (NormalCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, ref player1Turn).Equals(true))
                                 {
-                                    howManyMovesWithoutACapture = 0;
+                                    _howManyMovesWithoutACapture = 0;
                                     return;
                                 }                               
                             }
                         }
                     }
 
-                    howManyMovesWithoutACapture = howManyMovesWithoutACapture + 1;                  
-
-                    
+                    _howManyMovesWithoutACapture = _howManyMovesWithoutACapture + 1;                    
 
                     // Loops through the array looking to make a legal move with a king piece
                     for (int i = 0; i < 8; i++)
                     {
                         for (int j = 0; j < 8; j++)
                         {
-                            if (positionsArray[i, j].Equals(playerOneKing))
+                            if (positionsArray[i, j].Equals(_playerOneKing))
                             {
                                 yOne = i;
                                 xOne = j;
@@ -139,7 +137,7 @@ namespace Coursework
                     {
                         for (int j = 0; j < 8; j++)
                         {
-                            if (positionsArray[i, j].Equals(playerOne))
+                            if (positionsArray[i, j].Equals(_playerOne))
                             {
                                 yOne = i;
                                 xOne = j;
@@ -160,16 +158,16 @@ namespace Coursework
                     {
                         for (int j = 7; j >= 0; j--)
                         {
-                            if (positionsArray[i, j].Equals(playerOneKing))
+                            if (positionsArray[i, j].Equals(_playerOneKing))
                             {
-                                if (aiPlayer.CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
+                                if (_aiPlayer.CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
                                 {
                                     yOne = i;
                                     xOne = j;
 
-                                    if (KingCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, playerTwo, playerTwoKing).Equals(true))
+                                    if (KingCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, _playerTwo, _playerTwoKing).Equals(true))
                                     {
-                                        howManyMovesWithoutACapture = 0;
+                                        _howManyMovesWithoutACapture = 0;
                                         return;
                                     }
                                 }
@@ -182,29 +180,28 @@ namespace Coursework
                     {
                         for (int j = 7; j >= 0; j--)
                         {
-                            if (positionsArray[i, j].Equals(playerOne))
+                            if (positionsArray[i, j].Equals(_playerOne))
                             {
                                 yOne = i;
                                 xOne = j;
 
                                 if (NormalCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, ref player1Turn).Equals(true))
                                 {
-                                    howManyMovesWithoutACapture = 0;
+                                    _howManyMovesWithoutACapture = 0;
                                     return;
                                 }
                             }
                         }
                     }
 
-                    howManyMovesWithoutACapture = howManyMovesWithoutACapture + 1;
-                    
+                    _howManyMovesWithoutACapture = _howManyMovesWithoutACapture + 1;                    
 
                     // Loops through the array looking to make a legal move with a king piece
                     for (int i = 7; i >= 0; i--)
                     {
                         for (int j = 7; j >= 0; j--)
                         {
-                            if (positionsArray[i, j].Equals(playerOneKing))
+                            if (positionsArray[i, j].Equals(_playerOneKing))
                             {
                                 yOne = i;
                                 xOne = j;
@@ -222,8 +219,7 @@ namespace Coursework
                     {
                         for (int j = 7; j >= 0; j--)
                         {
-
-                            if (positionsArray[i, j].Equals(playerOne))
+                            if (positionsArray[i, j].Equals(_playerOne))
                             {
                                 yOne = i;
                                 xOne = j;
@@ -245,26 +241,25 @@ namespace Coursework
             /////////////////////////////////////////////////////////////////////////////////////////////
             else
             {
-                getPlayerTwoMoveCounter = getPlayerTwoMoveCounter + 1;
+                _getPlayerTwoMoveCounter = _getPlayerTwoMoveCounter + 1;
 
-
-                if ((getPlayerTwoMoveCounter % 2).Equals(0))
+                if ((_getPlayerTwoMoveCounter % 2).Equals(0))
                 {
                     // Loops through the array looking for a king piece and whether it can 'take' an opponents piece
                     for (int i = 0; i < 8; i++)
                     {
                         for (int j = 0; j < 8; j++)
                         {
-                            if (positionsArray[i, j].Equals(playerTwoKing))
+                            if (positionsArray[i, j].Equals(_playerTwoKing))
                             {
-                                if (aiPlayer.CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
+                                if (_aiPlayer.CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
                                 {
                                     yOne = i;
                                     xOne = j;
 
-                                    if (KingCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, playerOne, playerOneKing).Equals(true))
+                                    if (KingCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, _playerOne, _playerOneKing).Equals(true))
                                     {
-                                        howManyMovesWithoutACapture = 0;
+                                        _howManyMovesWithoutACapture = 0;
                                         return;
                                     }
                                 }
@@ -277,21 +272,21 @@ namespace Coursework
                     {
                         for (int j = 0; j < 8; j++)
                         {
-                            if (positionsArray[i, j].Equals(playerTwo))
+                            if (positionsArray[i, j].Equals(_playerTwo))
                             {
                                 yOne = i;
                                 xOne = j;
 
                                 if (NormalCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, ref player1Turn).Equals(true))
                                 {
-                                    howManyMovesWithoutACapture = 0;
+                                    _howManyMovesWithoutACapture = 0;
                                     return;
                                 }  
                             }
                         }
                     }
 
-                    howManyMovesWithoutACapture = howManyMovesWithoutACapture + 1;
+                    _howManyMovesWithoutACapture = _howManyMovesWithoutACapture + 1;
                    
 
                     // Loops through the array looking to make a legal move with a king piece
@@ -299,7 +294,7 @@ namespace Coursework
                     {
                         for (int j = 0; j < 8; j++)
                         {
-                            if (positionsArray[i, j].Equals(playerTwoKing))
+                            if (positionsArray[i, j].Equals(_playerTwoKing))
                             {
                                 yOne = i;
                                 xOne = j;
@@ -317,7 +312,7 @@ namespace Coursework
                     {
                         for (int j = 0; j < 8; j++)
                         {
-                            if (positionsArray[i, j].Equals(playerTwo))
+                            if (positionsArray[i, j].Equals(_playerTwo))
                             {
                                 yOne = i;
                                 xOne = j;
@@ -337,16 +332,16 @@ namespace Coursework
                     {
                         for (int j = 7; j >= 0; j--)
                         {
-                            if (positionsArray[i, j].Equals(playerTwoKing))
+                            if (positionsArray[i, j].Equals(_playerTwoKing))
                             {
-                                if (aiPlayer.CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
+                                if (_aiPlayer.CanAPieceBeCapturedKing(i, j, positionsArray, ref player1Turn).Equals(true))
                                 {
                                     yOne = i;
                                     xOne = j;
 
-                                    if (KingCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, playerOne, playerOneKing).Equals(true))
+                                    if (KingCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, _playerOne, _playerOneKing).Equals(true))
                                     {
-                                        howManyMovesWithoutACapture = 0;
+                                        _howManyMovesWithoutACapture = 0;
                                         return;
                                     }   
                                 }
@@ -359,29 +354,28 @@ namespace Coursework
                     {
                         for (int j = 7; j >= 0; j--)
                         {
-                            if (positionsArray[i, j].Equals(playerTwo))
+                            if (positionsArray[i, j].Equals(_playerTwo))
                             {
                                 yOne = i;
                                 xOne = j;
 
                                 if (NormalCapture(yOne, xOne, ref yTwo, ref xTwo, positionsArray, ref player1Turn).Equals(true))
                                 {
-                                    howManyMovesWithoutACapture = 0;
+                                    _howManyMovesWithoutACapture = 0;
                                     return;
                                 }   
                             }
                         }
                     }
 
-                    howManyMovesWithoutACapture = howManyMovesWithoutACapture + 1;
-                    
+                    _howManyMovesWithoutACapture = _howManyMovesWithoutACapture + 1;                    
 
                     // Loops through the array looking to make a legal move with a king piece
                     for (int i = 7; i >= 0; i--)
                     {
                         for (int j = 7; j >= 0; j--)
                         {
-                            if (positionsArray[i, j].Equals(playerTwoKing))
+                            if (positionsArray[i, j].Equals(_playerTwoKing))
                             {
                                 yOne = i;
                                 xOne = j;
@@ -400,7 +394,7 @@ namespace Coursework
                         for (int j = 7; j >= 0; j--)
                         {
 
-                            if (positionsArray[i, j].Equals(playerTwo))
+                            if (positionsArray[i, j].Equals(_playerTwo))
                             {
                                 yOne = i;
                                 xOne = j;
@@ -434,7 +428,7 @@ namespace Coursework
         private bool KingCapture(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray, string player, string king)
         {
             // Checks Up Right 
-            if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(player) || positionsArray[(yOne - 1), (xOne + 1)].Equals(king)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(noMansLand))))
+            if ((yOne > 1 && xOne < 6) && (((positionsArray[(yOne - 1), (xOne + 1)].Equals(player) || positionsArray[(yOne - 1), (xOne + 1)].Equals(king)) && positionsArray[(yOne - 2), (xOne + 2)].Equals(_noMansLand))))
             {
                 yTwo = yOne - 2;
                 xTwo = xOne + 2;
@@ -442,21 +436,21 @@ namespace Coursework
             }
            
             // Checks Down Right
-            if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(player) || positionsArray[(yOne + 1), (xOne + 1)].Equals(king)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(noMansLand))))
+            if ((yOne < 6 && xOne < 6) && (((positionsArray[(yOne + 1), (xOne + 1)].Equals(player) || positionsArray[(yOne + 1), (xOne + 1)].Equals(king)) && positionsArray[(yOne + 2), (xOne + 2)].Equals(_noMansLand))))
             {
                 yTwo = yOne + 2;
                 xTwo = xOne + 2;
                 return true;
             }
             // Checks Down Left
-            if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(player) || positionsArray[(yOne + 1), (xOne - 1)].Equals(king)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(noMansLand))))
+            if ((yOne < 6 && xOne > 1) && (((positionsArray[(yOne + 1), (xOne - 1)].Equals(player) || positionsArray[(yOne + 1), (xOne - 1)].Equals(king)) && positionsArray[(yOne + 2), (xOne - 2)].Equals(_noMansLand))))
             {
                 yTwo = yOne + 2;
                 xTwo = xOne - 2;
                 return true;
             }
             // Checks Up Left
-            if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(player) || positionsArray[(yOne - 1), (xOne - 1)].Equals(king)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(noMansLand))))
+            if ((yOne > 1 && xOne > 1) && (((positionsArray[(yOne - 1), (xOne - 1)].Equals(player) || positionsArray[(yOne - 1), (xOne - 1)].Equals(king)) && positionsArray[(yOne - 2), (xOne - 2)].Equals(_noMansLand))))
             {
                 yTwo = yOne - 2;
                 xTwo = xOne - 2;
@@ -479,15 +473,15 @@ namespace Coursework
         /// <returns> A boolean value depending on whether the normal piece has captured a piece or not</returns>
         private bool NormalCapture(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray, ref bool player1Turn)
         {
-            if ((positionsArray[yOne, xOne]).Equals(playerOne))
+            if ((positionsArray[yOne, xOne]).Equals(_playerOne))
             {
-                if ((yOne > 1 && xOne < 6) && (aiPlayer.CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
+                if ((yOne > 1 && xOne < 6) && (_aiPlayer.CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
                 {
                     yTwo = yOne - 2;
                     xTwo = xOne + 2;
                     return true;
                 }
-                if ((yOne > 1 && xOne > 1) && (aiPlayer.CanAPieceBeCapturedLeft(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
+                if ((yOne > 1 && xOne > 1) && (_aiPlayer.CanAPieceBeCapturedLeft(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
                 {
                     yTwo = yOne - 2;
                     xTwo = xOne - 2;
@@ -495,15 +489,15 @@ namespace Coursework
                 }
             }
 
-            if ((positionsArray[yOne, xOne]).Equals(playerTwo))
+            if ((positionsArray[yOne, xOne]).Equals(_playerTwo))
             {
-                if ((yOne < 6 && xOne < 6) && (aiPlayer.CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
+                if ((yOne < 6 && xOne < 6) && (_aiPlayer.CanAPieceBeCapturedRight(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
                 {
                     yTwo = yOne + 2;
                     xTwo = xOne + 2;
                     return true;
                 }
-                if ((yOne < 6 && xOne > 1) && (aiPlayer.CanAPieceBeCapturedLeft(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
+                if ((yOne < 6 && xOne > 1) && (_aiPlayer.CanAPieceBeCapturedLeft(yOne, xOne, positionsArray, ref player1Turn).Equals(true)))
                 {
                     yTwo = yOne + 2;
                     xTwo = xOne - 2;
@@ -525,48 +519,48 @@ namespace Coursework
         /// <returns> A boolean value depending on whether the king can make a legal move or not</returns>
         private bool KingLegalMove(int yOne, int xOne, ref int yTwo, ref int xTwo, string[,] positionsArray)
         {        
-            downLeft = false;
-            downRight = false;
-            upRight = false;
-            upLeft = false;
+            _downLeft = false;
+            _downRight = false;
+            _upRight = false;
+            _upLeft = false;
 
             // Checks Down Left for an empty tile
-            if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
+            if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(_noMansLand)))
             {
-                randomNumberGenCounter = randomNumberGenCounter + 1;
-                downLeft = true;
+                _randomNumberGenCounter = _randomNumberGenCounter + 1;
+                _downLeft = true;
             }
             // Checks Down Right for an empty tile
-            if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(noMansLand)))
+            if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(_noMansLand)))
             {
-                randomNumberGenCounter = randomNumberGenCounter + 1;
-                downRight = true;
+                _randomNumberGenCounter = _randomNumberGenCounter + 1;
+                _downRight = true;
             }
             // Checks Up Right for an empty tile
-            if ((yOne > 0 && xOne < 7) && (positionsArray[(yOne - 1), (xOne + 1)].Equals(noMansLand)))
+            if ((yOne > 0 && xOne < 7) && (positionsArray[(yOne - 1), (xOne + 1)].Equals(_noMansLand)))
             {
-                randomNumberGenCounter = randomNumberGenCounter + 1;
-                upRight = true;
+                _randomNumberGenCounter = _randomNumberGenCounter + 1;
+                _upRight = true;
             }
             // Checks Up Left for an empty tile
-            if ((yOne > 0 && xOne > 0) && (positionsArray[(yOne - 1), (xOne - 1)].Equals(noMansLand)))
+            if ((yOne > 0 && xOne > 0) && (positionsArray[(yOne - 1), (xOne - 1)].Equals(_noMansLand)))
             {
-                randomNumberGenCounter = randomNumberGenCounter + 1;
-                upLeft = true;
+                _randomNumberGenCounter = _randomNumberGenCounter + 1;
+                _upLeft = true;
             }
 
             // If the king found on the board can legally move in 1 of the 4 directions
             // The counter 'randomNumberGenCounter' will be a value from 1 to 4
-            if (randomNumberGenCounter > 0)
+            if (_randomNumberGenCounter > 0)
             {
                 // set the int random to a randomly generated number between 1 and The counter ('randomNumberGenCounter' + 1)
-                int random = rng.Next(1, (randomNumberGenCounter + 1));
+                int random = _rng.Next(1, (_randomNumberGenCounter + 1));
 
                 //Creates a list to store the numbers added to the list by the following loop
                 List<int> rngList = new List<int>();
 
                 // Adds the numbers from 1 to the value for 'randomNumberGenCounter' to the list
-                for (int w = 0; w < randomNumberGenCounter; w++)
+                for (int w = 0; w < _randomNumberGenCounter; w++)
                 {
                     rngList.Add(w + 1);
                 }
@@ -576,64 +570,64 @@ namespace Coursework
                 // To the randomly generated number 'random', if it is then the values yTwo and xTwo are changed to allow the king to move down left
                 // If the move is available but the value stored in the list[randomMoveCounter] is not equal to the randomly generated number 'random'
                 // Then the value for randomMoveCounter will increase by 1 and the app will check the next move available
-                if (downLeft.Equals(true))
+                if (_downLeft.Equals(true))
                 {
-                    if ((rngList[randomMoveCounter]).Equals(random))
+                    if ((rngList[_randomMoveCounter]).Equals(random))
                     {
                         yTwo = yOne + 1;
                         xTwo = xOne - 1;
 
                         rngList.Clear();
-                        randomNumberGenCounter = 0;
-                        randomMoveCounter = 0;
+                        _randomNumberGenCounter = 0;
+                        _randomMoveCounter = 0;
 
                         return true;
                     }
-                    randomMoveCounter = randomMoveCounter + 1;
+                    _randomMoveCounter = _randomMoveCounter + 1;
                 }
 
-                if (downRight.Equals(true))
+                if (_downRight.Equals(true))
                 {
-                    if (rngList[randomMoveCounter].Equals(random))
+                    if (rngList[_randomMoveCounter].Equals(random))
                     {
                         yTwo = yOne + 1;
                         xTwo = xOne + 1;
 
                         rngList.Clear();
-                        randomNumberGenCounter = 0;
-                        randomMoveCounter = 0;
+                        _randomNumberGenCounter = 0;
+                        _randomMoveCounter = 0;
 
                         return true;
                     }
-                    randomMoveCounter = randomMoveCounter + 1;
+                    _randomMoveCounter = _randomMoveCounter + 1;
                 }
 
-                if (upRight.Equals(true))
+                if (_upRight.Equals(true))
                 {
-                    if (rngList[randomMoveCounter].Equals(random))
+                    if (rngList[_randomMoveCounter].Equals(random))
                     {
                         yTwo = yOne - 1;
                         xTwo = xOne + 1;
 
                         rngList.Clear();
-                        randomNumberGenCounter = 0;
-                        randomMoveCounter = 0;
+                        _randomNumberGenCounter = 0;
+                        _randomMoveCounter = 0;
 
                         return true;
                     }
-                    randomMoveCounter = randomMoveCounter + 1;
+                    _randomMoveCounter = _randomMoveCounter + 1;
                 }
 
-                if (upLeft.Equals(true))
+                if (_upLeft.Equals(true))
                 {
-                    if (rngList[randomMoveCounter].Equals(random))
+                    if (rngList[_randomMoveCounter].Equals(random))
                     {
                         yTwo = yOne - 1;
                         xTwo = xOne - 1;
 
                         rngList.Clear();
-                        randomNumberGenCounter = 0;
-                        randomMoveCounter = 0;
+                        _randomNumberGenCounter = 0;
+                        _randomMoveCounter = 0;
 
                         return true;
                     }
@@ -654,56 +648,56 @@ namespace Coursework
         /// <returns> A boolean value depending on whether the normal piece can make a legal move or not</returns>
         private bool NormalLegalMove(int yOne,int xOne, ref int yTwo, ref int xTwo, string[,]positionsArray)
         {        
-            downLeft = false;
-            downRight = false;
-            upRight = false;
-            upLeft = false;
+            _downLeft = false;
+            _downRight = false;
+            _upRight = false;
+            _upLeft = false;
 
 
-            if ((positionsArray[yOne, xOne]).Equals(playerOne))
+            if ((positionsArray[yOne, xOne]).Equals(_playerOne))
             {
                 // Checks Up Left for an empty tile
-                if ((yOne > 0 && xOne > 0) && (positionsArray[(yOne - 1), (xOne - 1)].Equals(noMansLand)))
+                if ((yOne > 0 && xOne > 0) && (positionsArray[(yOne - 1), (xOne - 1)].Equals(_noMansLand)))
                 {
-                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                    upLeft = true;
+                    _randomNumberGenCounter = _randomNumberGenCounter + 1;
+                    _upLeft = true;
                 }
                 // Checks Up Right for an empty tile
-                if ((yOne > 0 && xOne < 7) && (positionsArray[(yOne - 1), (xOne + 1)].Equals(noMansLand)))
+                if ((yOne > 0 && xOne < 7) && (positionsArray[(yOne - 1), (xOne + 1)].Equals(_noMansLand)))
                 {
-                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                    upRight = true;
+                    _randomNumberGenCounter = _randomNumberGenCounter + 1;
+                    _upRight = true;
                 }
             }
 
-            if ((positionsArray[yOne, xOne]).Equals(playerTwo))
+            if ((positionsArray[yOne, xOne]).Equals(_playerTwo))
             {
                 // Checks Down Left for an empty tile
-                if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(noMansLand)))
+                if ((yOne < 7 && xOne > 0) && (positionsArray[(yOne + 1), (xOne - 1)].Equals(_noMansLand)))
                 {
-                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                    downLeft = true;
+                    _randomNumberGenCounter = _randomNumberGenCounter + 1;
+                    _downLeft = true;
                 }
                 // Checks Down Right for an empty tile
-                if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(noMansLand)))
+                if ((yOne < 7 && xOne < 7) && (positionsArray[(yOne + 1), (xOne + 1)].Equals(_noMansLand)))
                 {
-                    randomNumberGenCounter = randomNumberGenCounter + 1;
-                    downRight = true;
+                    _randomNumberGenCounter = _randomNumberGenCounter + 1;
+                    _downRight = true;
                 }
             }
 
             // If the piece found on the board can legally move in 1 of the 2 directions
             // The counter 'randomNumberGenCounter' will be a value from 1 to 2
-            if (randomNumberGenCounter > 0)
+            if (_randomNumberGenCounter > 0)
             {
                 // set the int random to a randomly generated number between 1 and The counter ('randomNumberGenCounter' + 1)
-                int random = rng.Next(1, (randomNumberGenCounter + 1));
+                int random = _rng.Next(1, (_randomNumberGenCounter + 1));
 
                 //Creates a list to store the numbers added to the list by the following loop
                 List<int> rngList = new List<int>();
 
                 // Adds the numbers from 1 to the value for 'randomNumberGenCounter' to the list
-                for (int w = 0; w < randomNumberGenCounter; w++)
+                for (int w = 0; w < _randomNumberGenCounter; w++)
                 {
                     rngList.Add(w + 1);
                 }
@@ -713,68 +707,68 @@ namespace Coursework
                 // To the randomly generated number 'random', if it is then the values yTwo and xTwo are changed to allow the piece to move down left
                 // If the move is available but the value stored in the list[randomMoveCounter] is not equal to the randomly generated number 'random'
                 // Then the value for randomMoveCounter will increase by 1 and the app will check the next move available
-                if (downLeft.Equals(true))
+                if (_downLeft.Equals(true))
                 {
-                    if ((rngList[randomMoveCounter]).Equals(random))
+                    if ((rngList[_randomMoveCounter]).Equals(random))
                     {
                         yTwo = yOne + 1;
                         xTwo = xOne - 1;
 
                         rngList.Clear();
-                        randomNumberGenCounter = 0;
-                        randomMoveCounter = 0;
+                        _randomNumberGenCounter = 0;
+                        _randomMoveCounter = 0;
 
                         return true;
                     }
-                    randomMoveCounter = randomMoveCounter + 1;
+                    _randomMoveCounter = _randomMoveCounter + 1;
                 }
 
-                if (downRight.Equals(true))
+                if (_downRight.Equals(true))
                 {
-                    if (rngList[randomMoveCounter].Equals(random))
+                    if (rngList[_randomMoveCounter].Equals(random))
                     {
                         yTwo = yOne + 1;
                         xTwo = xOne + 1;
 
                         rngList.Clear();
-                        randomNumberGenCounter = 0;
-                        randomMoveCounter = 0;
+                        _randomNumberGenCounter = 0;
+                        _randomMoveCounter = 0;
 
                         return true;
                     }
-                    randomMoveCounter = randomMoveCounter + 1;
+                    _randomMoveCounter = _randomMoveCounter + 1;
                 }
 
-                if (upRight.Equals(true))
+                if (_upRight.Equals(true))
                 {
-                    if (rngList[randomMoveCounter].Equals(random))
+                    if (rngList[_randomMoveCounter].Equals(random))
                     {
                         yTwo = yOne - 1;
                         xTwo = xOne + 1;
 
                         rngList.Clear();
-                        randomNumberGenCounter = 0;
-                        randomMoveCounter = 0;
+                        _randomNumberGenCounter = 0;
+                        _randomMoveCounter = 0;
 
                         return true;
                     }
-                    randomMoveCounter = randomMoveCounter + 1;
+                    _randomMoveCounter = _randomMoveCounter + 1;
                 }
 
-                if (upLeft.Equals(true))
+                if (_upLeft.Equals(true))
                 {
-                    if (rngList[randomMoveCounter].Equals(random))
+                    if (rngList[_randomMoveCounter].Equals(random))
                     {
                         yTwo = yOne - 1;
                         xTwo = xOne - 1;
 
                         rngList.Clear();
-                        randomNumberGenCounter = 0;
-                        randomMoveCounter = 0;
+                        _randomNumberGenCounter = 0;
+                        _randomMoveCounter = 0;
 
                         return true;
                     }
-                    randomMoveCounter = randomMoveCounter + 1;
+                    _randomMoveCounter = _randomMoveCounter + 1;
                 }
             }
             return false;
@@ -787,7 +781,7 @@ namespace Coursework
         /// <returns>Returns true if it is a draw, returns false if it is not</returns>
         public bool IsItADraw()
         {
-            if (howManyMovesWithoutACapture.Equals(20))
+            if (_howManyMovesWithoutACapture.Equals(20))
             {
                 return true;
             }
